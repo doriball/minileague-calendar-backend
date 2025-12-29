@@ -9,7 +9,7 @@ abstract class BaseTimeDocument {
     var createdAt: LocalDateTime? = null
         protected set
     @LastModifiedDate
-    var updatedAt: LocalDateTime? = null
+    var modifiedAt: LocalDateTime? = null
         protected set
 
 }
