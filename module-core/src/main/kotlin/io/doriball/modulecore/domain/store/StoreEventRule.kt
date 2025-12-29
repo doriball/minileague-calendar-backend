@@ -1,21 +1,20 @@
-package io.doriball.modulecore.domain.event
+package io.doriball.modulecore.domain.store
 
-import io.doriball.modulecore.domain.store.Store
+import io.doriball.modulecore.enums.DayOfWeekType
 import java.time.LocalDateTime
 
-class Event(
+class StoreEventRule(
     val id: String,
-    val store: Store,
+    val storeId: String,
     val name: String,
+    val dayOfWeek: DayOfWeekType,
     val scheduledAt: LocalDateTime,
     val official: Boolean,
-    val stages: List<EventStage>,
+    val stages: List<StoreEventRuleStage>,
     val createdAt: LocalDateTime? = null,
     val modifiedAt: LocalDateTime? = null,
 ) {
 
-    val storeName: String get() = store.name
-    val regionName: String get() = store.regionName
     val stageTypes: List<String> get() = stages.map { it.type.name }
     val roundCount: Int get() = stages.sumOf { it.roundCount }
     val gameCount: Int?

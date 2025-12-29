@@ -9,10 +9,11 @@ class Store(
     val address: String,
     val mapInformation: String?,
     val sns: String?,
-    val createdAt: LocalDateTime,
-    val modifiedAt: LocalDateTime,
+    val eventRules: List<StoreEventRule>? = listOf(),
+    val createdAt: LocalDateTime? = null,
+    val modifiedAt: LocalDateTime? = null,
 ) {
 
-    fun getRegionName(): String = region.name
+    val regionName: String get() = region.name
 
 }
