@@ -1,1 +1,46 @@
-spring.application.name=module-admin
+server:
+  port: 8083
+
+spring:
+  application:
+    name: admin
+  profiles:
+    active: ${SPRING_PROFILE}
+    group:
+      dev:
+        - kubernetes
+      prod:
+        - kubernetes
+  web:
+    resources:
+      add-mappings: false
+  mongodb:
+    uri: mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_URI}:${MONGO_PORT}/${MONGO_DB}?authSource=admin&authMechanism=SCRAM-SHA-1
+    authentication-database: admin
+    database: ${MONGO_DB}
+
+doriball:
+  management:
+    jwt: ${JWT_SECRET}
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: local
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb:
+            core:
+              MongoTemplate: DEBUG
+
+---
+
+
+---
+
