@@ -15,12 +15,12 @@ class StoreServiceV1(val storePort: StorePort, val storeEventRulePort: StoreEven
 
     override fun getStores(command: ReadStoresCommand): List<StoreDto> {
         val stores = storePort.getStores(command.regionNo)
-        return stores.map { StoreDto.of(it) }
+        return stores.map { StoreDto.from(it) }
     }
 
     override fun getStoreDetail(command: ReadStoreDetailCommand): StoreDetailDto {
         val store = storePort.getStoreDetail(command.storeId) ?: throw NotFoundException();
-        return StoreDetailDto.of(store, storeEventRulePort.getStoreEventRules(store.id))
+        return StoreDetailDto.from(store, storeEventRulePort.getStoreEventRules(store.id))
     }
 
 }

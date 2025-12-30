@@ -15,10 +15,10 @@ class StoreDetailDto(
 ) {
 
     companion object {
-        fun of(store: Store, storeEventRules: List<StoreEventRule>): StoreDetailDto {
+        fun from(store: Store, storeEventRules: List<StoreEventRule>): StoreDetailDto {
             val rulesByDay = storeEventRules.groupBy(
                 { it.dayOfWeek },
-                { StoreEventRuleDto.of(it) }
+                { StoreEventRuleDto.from(it) }
             )
 
             val eventsMap = DayOfWeekType.entries.associateWith { day ->

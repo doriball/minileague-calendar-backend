@@ -14,12 +14,12 @@ class AnnouncementServiceV1(val announcementPort: AnnouncementPort) : Announceme
 
     override fun getAnnouncements(command: ReadAnnouncementsCommand): Pair<List<AnnouncementDto>, Long> {
         val (announcements, total) = announcementPort.getAnnouncements(command.page, command.size)
-        return announcements.map { AnnouncementDto.of(it) } to total
+        return announcements.map { AnnouncementDto.from(it) } to total
     }
 
     override fun getAnnouncementDetail(command: ReadAnnouncementDetailCommand): AnnouncementDetailDto {
         val announcement = announcementPort.getAnnouncementDetail(command.announcementId) ?: throw NotFoundException()
-        return AnnouncementDetailDto.of(announcement)
+        return AnnouncementDetailDto.from(announcement)
     }
 
 }

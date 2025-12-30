@@ -6,11 +6,11 @@ import java.time.LocalDateTime
 class AnnouncementDto(
     val id: String,
     val title: String,
-    val createdAt: LocalDateTime
+    val createdAt: LocalDateTime? = null,
 ) {
 
     companion object {
-        fun of(announcement: Announcement): AnnouncementDto =
+        fun from(announcement: Announcement): AnnouncementDto =
             AnnouncementDto(id = announcement.id, title = announcement.title, createdAt = announcement.createdAt)
     }
 

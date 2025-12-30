@@ -3,7 +3,7 @@ package io.doriball.modulecalander.operation.adapter.out.persistence
 import io.doriball.modulecalander.operation.adapter.out.persistence.repository.AnnouncementMongoRepository
 import io.doriball.modulecalander.operation.application.port.out.AnnouncementPort
 import io.doriball.modulecore.domain.operation.Announcement
-import io.doriball.moduleinfrastructure.persistence.entity.AnnouncementDocument
+import io.doriball.moduleinfrastructure.persistence.util.DocumentConvertUtil
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
 import org.springframework.data.repository.findByIdOrNull
@@ -20,19 +20,15 @@ class AnnouncementQueryPersistenceAdapter(val repository: AnnouncementMongoRepos
             Sort.by("createdAt").descending()
         )
         val announcements = repository.findAll(pageable)
-        return Pair(announcements.map { convertToAnnouncement(it) }.toList(), announcements.totalElements)
+        return Pair(
+            announcements.map { DocumentConvertUtil.convertToAnnouncement(it) }.toList(),
+            announcements.totalElements
+        )
     }
 
     override fun getAnnouncementDetail(announcementId: String): Announcement? {
         val announcementDocument = repository.findByIdOrNull(announcementId) ?: return null
-        return convertToAnnouncement(announcementDocument)
+        return DocumentConvertUtil.convertToAnnouncement(announcementDocument)
     }
-
-    private fun convertToAnnouncement(announcementDocument: AnnouncementDocument) = Announcement(
-        id = announcementDocument.id,
-        title = announcementDocument.title,
-        content = announcementDocument.content,
-        createdAt = announcementDocument.createdAt,
-    )
 
 }

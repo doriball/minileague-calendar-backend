@@ -7,11 +7,11 @@ class AnnouncementDetailDto(
     val id: String,
     val title: String,
     val content: String,
-    val createdAt: LocalDateTime,
+    val createdAt: LocalDateTime? = null,
 ) {
 
     companion object {
-        fun of(announcement: Announcement): AnnouncementDetailDto = AnnouncementDetailDto(
+        fun from(announcement: Announcement): AnnouncementDetailDto = AnnouncementDetailDto(
             id = announcement.id,
             title = announcement.title,
             content = announcement.content,

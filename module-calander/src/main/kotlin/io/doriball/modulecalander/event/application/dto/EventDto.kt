@@ -15,7 +15,7 @@ class EventDto(
     val gameCount: Int?,
 ) {
     companion object {
-        fun of(event: Event): EventDto {
+        fun from(event: Event): EventDto {
             return EventDto(
                 id = event.id,
                 name = event.name,

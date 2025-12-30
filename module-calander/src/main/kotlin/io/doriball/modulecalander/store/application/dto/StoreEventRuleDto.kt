@@ -12,7 +12,7 @@ class StoreEventRuleDto(
 ) {
 
     companion object {
-        fun of(rule: StoreEventRule): StoreEventRuleDto = StoreEventRuleDto(
+        fun from(rule: StoreEventRule): StoreEventRuleDto = StoreEventRuleDto(
             scheduledAt = rule.scheduledAt,
             official = rule.official,
             types = rule.stageTypes,

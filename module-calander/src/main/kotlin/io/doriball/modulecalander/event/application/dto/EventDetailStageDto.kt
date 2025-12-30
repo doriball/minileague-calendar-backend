@@ -11,7 +11,7 @@ class EventDetailStageDto(
 ) {
 
     companion object {
-        fun of(stage: EventStage): EventDetailStageDto {
+        fun from(stage: EventStage): EventDetailStageDto {
             return EventDetailStageDto(stage.stageNo, stage.type, stage.roundCount, stage.gameCountPerRound)
         }
     }

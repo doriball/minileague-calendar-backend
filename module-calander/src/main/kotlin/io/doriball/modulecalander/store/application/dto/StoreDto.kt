@@ -10,7 +10,7 @@ class StoreDto(
 ) {
 
     companion object {
-        fun of(store: Store) =
+        fun from(store: Store) =
             StoreDto(id = store.id, name = store.name, region = store.region.name, address = store.address)
     }
 

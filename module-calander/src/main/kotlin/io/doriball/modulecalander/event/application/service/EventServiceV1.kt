@@ -14,12 +14,12 @@ class EventServiceV1(val eventPort: EventPort) : EventUseCase {
 
     override fun getEvents(command: ReadEventsCommand): List<EventDto> {
         val events = eventPort.getEvents(command.year, command.month, command.regionNo)
-        return events.map { EventDto.of(it) }
+        return events.map { EventDto.from(it) }
     }
 
     override fun getEventDetail(command: ReadEventDetailCommand): EventDetailDto {
         val event = eventPort.getEventDetail(command.eventId) ?: throw NotFoundException()
-        return EventDetailDto.of(event)
+        return EventDetailDto.from(event)
     }
 
 }

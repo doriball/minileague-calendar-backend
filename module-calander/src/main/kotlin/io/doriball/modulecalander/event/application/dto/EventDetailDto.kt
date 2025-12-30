@@ -14,7 +14,7 @@ class EventDetailDto(
 ) {
 
     companion object {
-        fun of(event: Event): EventDetailDto {
+        fun from(event: Event): EventDetailDto {
             return EventDetailDto(
                 id = event.id,
                 name = event.name,
@@ -22,7 +22,7 @@ class EventDetailDto(
                 storeName = event.storeName,
                 scheduledAt = event.scheduledAt,
                 official = event.official,
-                stages = event.stages.map { EventDetailStageDto.of(it) }.toList()
+                stages = event.stages.map { EventDetailStageDto.from(it) }.toList()
             )
         }
     }
