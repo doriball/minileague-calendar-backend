@@ -7,5 +7,6 @@ class Announcement(
     val title: String,
     val content: String,
     val createdAt: LocalDateTime? = null,
+    val modifiedAt: LocalDateTime? = null,
 ) {
 }
