@@ -5,8 +5,10 @@ import org.springframework.data.mongodb.core.mapping.Document
 
 @Document(collection = "store_region")
 class StoreRegionDocument(
-    @Id val id: String,
     val regionNo: Int,
     val name: String,
 ) : BaseTimeDocument() {
+
+    @Id var id: String? = null
+
 }

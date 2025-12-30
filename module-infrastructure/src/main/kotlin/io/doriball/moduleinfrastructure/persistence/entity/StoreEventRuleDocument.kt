@@ -7,7 +7,6 @@ import java.time.LocalDateTime
 
 @Document(collection = "store_event_rule")
 class StoreEventRuleDocument(
-    @Id val id: String,
     val storeId: String,
     val name: String,
     val dayOfWeek: DayOfWeekType,
@@ -15,4 +14,7 @@ class StoreEventRuleDocument(
     val official: Boolean,
     val stages: List<StageDocument>,
 ): BaseTimeDocument() {
+
+    @Id var id: String? = null
+
 }

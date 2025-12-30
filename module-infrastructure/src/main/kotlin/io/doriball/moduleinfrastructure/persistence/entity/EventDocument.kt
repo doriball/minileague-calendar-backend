@@ -6,12 +6,13 @@ import java.time.LocalDateTime
 
 @Document(collection = "event")
 class EventDocument(
-    @Id val id: String,
     val storeId: String,
     val name: String,
     val scheduledAt: LocalDateTime,
     val official: Boolean,
     val stages: List<StageDocument> = listOf(),
-): BaseTimeDocument() {
+) : BaseTimeDocument() {
+
+    @Id var id: String? = null
 
 }
