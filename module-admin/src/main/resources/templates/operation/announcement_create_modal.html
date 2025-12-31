@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="modal" class="modal fade" id="announcementCreateModal" tabindex="-1" aria-labelledby="announcementCreateModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="announcementCreateModalLabel">공지사항 등록</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="createForm">
+                    <div class="mb-3">
+                        <label for="createTitle" class="form-label fw-bold">제목</label>
+                        <input type="text" class="form-control" id="createTitle" name="title" maxlength="30" placeholder="제목을 입력하세요 (최대 30자)" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="createContent" class="form-label fw-bold">내용</label>
+                        <textarea class="form-control" id="createContent" name="content" rows="10" maxlength="5000" placeholder="내용을 입력하세요 (최대 5000자)" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                <button type="button" class="btn btn-primary" onclick="submitCreate()">등록</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
