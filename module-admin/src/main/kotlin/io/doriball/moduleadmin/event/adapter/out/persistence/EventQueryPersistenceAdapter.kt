@@ -81,7 +81,6 @@ class EventQueryPersistenceAdapter(
         val eventDocuments = mongoOperations.find(query, EventDocument::class.java)
         if (eventDocuments.isEmpty()) return emptyList()
 
-        // 도메인 모델 변환을 위한 데이터 Batch 조회
         val storeIds = eventDocuments.map { it.storeId }.distinct()
         val stores = storeRepository.findByIdIn(storeIds)
         val regions =
