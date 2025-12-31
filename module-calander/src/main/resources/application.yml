@@ -19,9 +19,9 @@ spring:
     authentication-database: admin
     database: ${MONGO_DB}
 
-doriball:
-  management:
-    jwt: ${JWT_SECRET}
+#doriball:
+#  management:
+#    jwt: ${JWT_SECRET}
 
 ---
 
