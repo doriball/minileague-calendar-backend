@@ -17,7 +17,13 @@ import org.springframework.transaction.annotation.Transactional
 class StoreServiceV1(val storePort: StorePort) : StoreUseCase {
 
     override fun getStores(command: ReadStoresCommand): Pair<List<StoreDto>, Long> {
-        TODO("Not yet implemented")
+        val (stores, size) = storePort.getStores(
+            page = command.page,
+            size = command.size,
+            keyword = command.keyword,
+            regionNo = command.regionNo
+        )
+        return stores.map { StoreDto.from(it) } to size
     }
 
     override fun getStoreSummaries(command: ReadStoreSummariesCommand): List<StoreSummaryDto> {
