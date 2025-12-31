@@ -9,4 +9,12 @@ object PaginationUtil {
         return ceil(totalSize.toDouble() / pageSize).toLong()
     }
 
+    fun getPaginationBarNumbers(currentPageNumber: Int, totalPages: Int): List<Int> {
+        val barLength = 10
+        val startNumber = maxOf(currentPageNumber - (barLength / 2), 0)
+        val endNumber = minOf(startNumber + barLength, totalPages)
+
+        return (startNumber until endNumber).toList()
+    }
+
 }
