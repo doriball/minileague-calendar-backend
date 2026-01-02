@@ -60,7 +60,7 @@ class StoreInitializer(
                 toStoreDocument(
                     name = "아현 카드킹덤",
                     regionNo = 0,
-                    address = "서울 마포구 신촌로 254 4층",
+                    address = "서울시 마포구 신촌로 254 4층",
                     mapInformation = null,
                     sns = null
                 )
@@ -70,7 +70,7 @@ class StoreInitializer(
                 toStoreDocument(
                     name = "신사 포카드",
                     regionNo = 0,
-                    address = "서울 강남구 압구정로10길 14 4층",
+                    address = "서울시 강남구 압구정로10길 14 4층",
                     mapInformation = null,
                     sns = null
                 )
@@ -80,7 +80,7 @@ class StoreInitializer(
                 toStoreDocument(
                     name = "강동 카드타운",
                     regionNo = 0,
-                    address = "서울 강동구 천호대로168길 35 코오롱상가 2층",
+                    address = "서울시 강동구 천호대로168길 35 코오롱상가 2층",
                     mapInformation = null,
                     sns = null
                 )
@@ -90,7 +90,7 @@ class StoreInitializer(
                 toStoreDocument(
                     name = "장한평 카드킹덤 마린포드",
                     regionNo = 0,
-                    address = "서울 동대문구 장한로 37 3층",
+                    address = "서울시 동대문구 장한로 37 3층",
                     mapInformation = null,
                     sns = null
                 )
@@ -100,7 +100,7 @@ class StoreInitializer(
                 toStoreDocument(
                     name = "이수 듀얼파크",
                     regionNo = 0,
-                    address = "서울 동작구 동작대로33가길 5 삼정빌딩 지하 1층",
+                    address = "서울시 동작구 동작대로33가길 5 삼정빌딩 지하 1층",
                     mapInformation = null,
                     sns = null
                 )
@@ -110,7 +110,7 @@ class StoreInitializer(
                 toStoreDocument(
                     name = "당산 카드냥",
                     regionNo = 0,
-                    address = "서울 영등포구 당산로38길 4 401호",
+                    address = "서울시 영등포구 당산로38길 4 401호",
                     mapInformation = null,
                     sns = null
                 )
@@ -120,7 +120,7 @@ class StoreInitializer(
                 toStoreDocument(
                     name = "목동 듀얼파크",
                     regionNo = 0,
-                    address = "서울 양천구 신정중앙로 94 목마빌딩 지하",
+                    address = "서울시 양천구 신정중앙로 94 목마빌딩 지하",
                     mapInformation = null,
                     sns = null
                 )
@@ -130,7 +130,17 @@ class StoreInitializer(
                 toStoreDocument(
                     name = "도곡 듀얼샵",
                     regionNo = 0,
-                    address = "서울 강남구 논현로36길 27 지하",
+                    address = "서울시 강남구 논현로36길 27 지하",
+                    mapInformation = null,
+                    sns = null
+                )
+            )
+
+            storeMongoRepository.save(
+                toStoreDocument(
+                    name = "서울 COEX",
+                    regionNo = 0,
+                    address = "서울시 강남구 영동대로 513",
                     mapInformation = null,
                     sns = null
                 )
@@ -163,7 +173,7 @@ class StoreInitializer(
                 toStoreDocument(
                     name = "범계 트레이너스",
                     regionNo = 3,
-                    address = "경기 안양시 동안구 평촌대로217번길 15 3층",
+                    address = "경기도 안양시 동안구 평촌대로217번길 15 3층",
                     mapInformation = null,
                     sns = null
                 )
@@ -202,6 +212,16 @@ class StoreInitializer(
                 )
             )
 
+            storeMongoRepository.save(
+                toStoreDocument(
+                    name = "광주 김대중컨벤션센터",
+                    regionNo = 6,
+                    address = "광주광역시 서구 상무누리로 30 김대중컨벤션센터",
+                    mapInformation = null,
+                    sns = null
+                )
+            )
+
             // 목포 (7)
             storeMongoRepository.save(
                 toStoreDocument(
@@ -224,6 +244,16 @@ class StoreInitializer(
                 )
             )
 
+            storeMongoRepository.save(
+                toStoreDocument(
+                    name = "대구 EXCO",
+                    regionNo = 8,
+                    address = "대구광역시 북구 엑스코로 10",
+                    mapInformation = null,
+                    sns = null
+                )
+            )
+
             // 부산 (9)
             storeMongoRepository.save(
                 toStoreDocument(
@@ -239,7 +269,17 @@ class StoreInitializer(
                 toStoreDocument(
                     name = "동래 티씨지샵 셔플",
                     regionNo = 9,
-                    address = "부산 동래구 충렬대로 134-1 제일빌딩 1층",
+                    address = "부산광역시 동래구 충렬대로 134-1 제일빌딩 1층",
+                    mapInformation = null,
+                    sns = null
+                )
+            )
+
+            storeMongoRepository.save(
+                toStoreDocument(
+                    name = "부산 BEXCO",
+                    regionNo = 9,
+                    address = "부산광역시 해운대구 APEC로 55",
                     mapInformation = null,
                     sns = null
                 )
