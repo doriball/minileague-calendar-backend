@@ -62,7 +62,8 @@
                 <td th:text="${stat.count + ((command?.page ?: 1) - 1) * (command?.size ?: 10)}">1</td>
                 <td>
                     <a href="javascript:void(0)" class="text-decoration-none fw-bold text-dark"
-                       th:onclick="|showDetail('${announcement.id}')|"
+                       th:data-id="${announcement.id}"
+                       onclick="showDetail(this.getAttribute('data-id'))"
                        th:text="${announcement.title}">공지사항 제목</a>
                 </td>
                 <td th:text="${#temporals.format(announcement.createdAt, 'yyyy-MM-dd HH:mm')}">2023-01-01 00:00</td>
@@ -72,9 +73,9 @@
     </div>
 
     <!-- 모달 삽입 -->
-    <div th:replace="~{operation/announcement-detail-modal :: modal}"></div>
-    <div th:replace="~{operation/announcement-create-modal :: modal}"></div>
-    <div th:replace="~{operation/announcement-edit-modal :: modal}"></div>
+    <div th:replace="~{operation/announcement_detail_modal :: modal}"></div>
+    <div th:replace="~{operation/announcement_create_modal :: modal}"></div>
+    <div th:replace="~{operation/announcement_edit_modal :: modal}"></div>
 
     <script th:inline="javascript">
         let detailModal, editModal;

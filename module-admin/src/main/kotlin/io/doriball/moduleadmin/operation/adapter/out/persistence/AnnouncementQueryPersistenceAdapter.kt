@@ -7,6 +7,7 @@ import io.doriball.moduleadmin.operation.domain.AnnouncementCreate
 import io.doriball.moduleadmin.operation.domain.AnnouncementUpdate
 import io.doriball.modulecore.domain.operation.Announcement
 import io.doriball.moduleinfrastructure.persistence.entity.AnnouncementDocument
+import io.doriball.moduleinfrastructure.persistence.entity.StoreDocument
 import io.doriball.moduleinfrastructure.persistence.util.DocumentConvertUtil
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
@@ -28,7 +29,8 @@ class AnnouncementQueryPersistenceAdapter(
         searchType: AnnouncementKeywordSearchType?,
         keyword: String?
     ): Pair<List<Announcement>, Long> {
-        val pageable = PageRequest.of(page ?: 0, size ?: 10, Sort.by(Sort.Direction.DESC, "createdAt"))
+        val convertedPage = if (page == null || page <= 0) 0 else page - 1
+        val pageable = PageRequest.of(convertedPage, size ?: 10, Sort.by(Sort.Direction.DESC, "createdAt"))
         val query = Query().with(pageable)
 
         if (searchType != null && !keyword.isNullOrBlank()) {
@@ -39,7 +41,8 @@ class AnnouncementQueryPersistenceAdapter(
             query.addCriteria(Criteria.where(field).regex(keyword, "i"))
         }
 
-        val total = mongoOperations.count(query, AnnouncementDocument::class.java)
+        val countQuery = Query.of(query).limit(0).skip(0)
+        val total = mongoOperations.count(countQuery, AnnouncementDocument::class.java)
         val announcements = mongoOperations.find(query, AnnouncementDocument::class.java)
             .map { DocumentConvertUtil.convertToAnnouncement(it) }
 

@@ -24,6 +24,7 @@ class AnnouncementPageController(val useCase: AnnouncementUseCase) {
         modelMap.addAttribute("announcements", announcements)
         modelMap.addAttribute("searchTypes", searchTypes)
         modelMap.addAttribute("paginationBars", paginationBars)
+        modelMap.addAttribute("command", command)
 
         return "operation/announcements"
     }
