@@ -24,6 +24,7 @@ class StorePageController(
         modelMap.addAttribute("stores", stores)
         modelMap.addAttribute("storeRegions", storeRegions)
         modelMap.addAttribute("paginationBars", paginationBars)
+        modelMap.addAttribute("command", command)
 
         return "store/stores"
     }

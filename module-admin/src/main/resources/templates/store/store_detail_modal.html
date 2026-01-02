@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="modal" class="modal fade" id="storeDetailModal" tabindex="-1" aria-labelledby="storeDetailModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="storeDetailModalLabel">매장 상세 정보</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- 매장 기본 정보 -->
+                <div class="row mb-4">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold">매장명</label>
+                        <div id="modalStoreName" class="form-control-plaintext border-bottom"></div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold">지역</label>
+                        <div id="modalStoreRegion" class="form-control-plaintext border-bottom"></div>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label class="form-label fw-bold">주소</label>
+                        <div id="modalStoreAddress" class="form-control-plaintext border-bottom"></div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold">지도 링크</label>
+                        <div id="modalStoreMap" class="form-control-plaintext border-bottom text-truncate"></div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold">SNS/홈페이지</label>
+                        <div id="modalStoreSns" class="form-control-plaintext border-bottom text-truncate"></div>
+                    </div>
+                </div>
+
+                <!-- 매장 미니리그 일정 규칙 목록 -->
+                <div class="mt-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h6 class="fw-bold mb-0"><i class="bi bi-calendar-event me-2"></i>매장 미니리그 일정</h6>
+                        <button type="button" class="btn btn-sm btn-primary" onclick="toggleRuleForm()">
+                            <i class="bi bi-plus-lg"></i> 일정 등록
+                        </button>
+                    </div>
+
+                    <!-- 일정 등록/수정 폼 (기본 숨김) -->
+                    <div id="ruleFormContainer" class="card bg-light mb-3 d-none">
+                        <div class="card-body p-3">
+                            <form id="ruleForm">
+                                <input type="hidden" id="ruleStoreId">
+                                <input type="hidden" id="ruleId">
+                                <div class="row g-2">
+                                    <div class="col-md-4">
+                                        <label class="small fw-bold">이벤트명</label>
+                                        <input type="text" class="form-control form-control-sm" id="ruleName" required>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="small fw-bold">요일</label>
+                                        <select class="form-select form-select-sm" id="ruleDayOfWeek" required>
+                                            <option value="MON">월요일</option>
+                                            <option value="TUE">화요일</option>
+                                            <option value="WED">수요일</option>
+                                            <option value="THU">목요일</option>
+                                            <option value="FRI">금요일</option>
+                                            <option value="SAT">토요일</option>
+                                            <option value="SUN">일요일</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="small fw-bold">시작 시간 (HH:mm)</label>
+                                        <input type="time" class="form-control form-control-sm" id="ruleScheduledAt"
+                                               required>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="small fw-bold">공인 여부</label>
+                                        <div class="form-check form-switch mt-1">
+                                            <input class="form-check-input" type="checkbox" id="ruleOfficial">
+                                        </div>
+                                    </div>
+                                    <!-- 스테이지 정보 (동적 추가) -->
+                                    <div class="col-12 mt-2 border-top pt-2">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <label class="small fw-bold text-primary mb-0">스테이지 설정 (최소 1개)</label>
+                                            <button type="button" class="btn btn-xs btn-outline-primary" onclick="addStageRow()">
+                                                <i class="bi bi-plus"></i> 스테이지 추가
+                                            </button>
+                                        </div>
+                                        <div id="stageListContainer">
+                                            <!-- JS에서 스테이지 행들이 추가됨 -->
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-2">
+                                        <button type="button" class="btn btn-sm btn-secondary"
+                                                onclick="toggleRuleForm(false)">취소
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-primary" onclick="submitRule()">저장
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-sm table-hover align-middle border-top">
+                            <thead class="table-light">
+                            <tr>
+                                <th style="width: 15%">요일</th>
+                                <th style="width: 20%">시간</th>
+                                <th>이벤트명</th>
+                                <th style="width: 20%">관리</th>
+                            </tr>
+                            </thead>
+                            <tbody id="ruleTableBody">
+                            <!-- JS에서 렌더링 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="me-auto">
+                    <button type="button" class="btn btn-danger" id="btnDeleteStore">삭제</button>
+                    <button type="button" class="btn btn-outline-primary" id="btnEditStore">수정</button>
+                </div>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

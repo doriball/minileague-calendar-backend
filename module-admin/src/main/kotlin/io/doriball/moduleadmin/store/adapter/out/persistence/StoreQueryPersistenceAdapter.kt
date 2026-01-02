@@ -32,7 +32,8 @@ class StoreQueryPersistenceAdapter(
         keyword: String?,
         regionNo: Int?
     ): Pair<List<Store>, Long> {
-        val pageable = PageRequest.of(page ?: 0, size ?: 10)
+        val convertedPage = if (page == null || page <= 0) 0 else page - 1
+        val pageable = PageRequest.of(convertedPage, size ?: 10)
         val query = Query().with(pageable)
         val criteria = mutableListOf<Criteria>()
 
@@ -48,7 +49,8 @@ class StoreQueryPersistenceAdapter(
             query.addCriteria(Criteria().andOperator(*criteria.toTypedArray()))
         }
 
-        val total = mongoOperations.count(query, StoreDocument::class.java)
+        val countQuery = Query.of(query).limit(0).skip(0)
+        val total = mongoOperations.count(countQuery, StoreDocument::class.java)
         val stores = mongoOperations.find(query, StoreDocument::class.java).map { document ->
             val region = storeRegionRepository.findByRegionNo(document.regionNo)
                 ?.let { DocumentConvertUtil.convertToStoreRegion(it) }

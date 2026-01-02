@@ -23,13 +23,13 @@
             <form th:action="@{/events}" method="get" class="row g-3 align-items-center">
                 <!-- 연도/월 선택 -->
                 <div class="col-auto d-flex align-items-center">
-                    <select name="year" class="form-select form-select-sm me-1" onchange="this.form.submit()">
+                    <select name="year" class="form-select form-select-sm me-1">
                         <option th:each="y : ${#numbers.sequence(#temporals.year(#temporals.createNow()) - 1, #temporals.year(#temporals.createNow()) + 2)}"
                                 th:value="${y}" th:text="${y} + '년'"
                                 th:selected="${command != null ? y == command.year : y == #temporals.year(#temporals.createNow())}">
                         </option>
                     </select>
-                    <select name="month" class="form-select form-select-sm" onchange="this.form.submit()">
+                    <select name="month" class="form-select form-select-sm">
                         <option th:each="m : ${#numbers.sequence(1, 12)}"
                                 th:value="${m}" th:text="${m} + '월'"
                                 th:selected="${command != null ? m == command.month : m == #temporals.month(#temporals.createNow())}">
@@ -39,7 +39,7 @@
 
                 <!-- 지역 필터 -->
                 <div class="col-auto border-start ps-3">
-                    <select name="regionNo" class="form-select form-select-sm" onchange="this.form.submit()">
+                    <select name="regionNo" class="form-select form-select-sm">
                         <option value="">전체 지역</option>
                         <option th:each="region : ${storeRegions}"
                                 th:value="${region.regionNo}"
@@ -55,7 +55,7 @@
                         <option th:each="type : ${searchTypes}"
                                 th:value="${type.value}"
                                 th:text="${type.key}"
-                                th:selected="${command != null and command.searchType == type.value}">
+                                th:selected="${command != null and command.search == type.value}">
                         </option>
                     </select>
                     <div class="input-group input-group-sm">
@@ -88,13 +88,9 @@
                 <td colspan="6" class="text-center py-4 text-muted">조회된 이벤트가 없습니다.</td>
             </tr>
             <tr th:each="event : ${events}">
-                <!-- scheduledAt: LocalDateTime -->
                 <td th:text="${#temporals.format(event.scheduledAt, 'MM/dd (E) HH:mm')}">12/31 (수) 14:00</td>
-                <!-- region: String -->
                 <td th:text="${event.region}">서울</td>
-                <!-- storeName: String -->
                 <td th:text="${event.storeName}">매장 A</td>
-                <!-- name: String -->
                 <td>
                     <a th:href="@{/events/{id}(id=${event.id})}" class="text-decoration-none fw-bold text-dark"
                        th:text="${event.name}">
