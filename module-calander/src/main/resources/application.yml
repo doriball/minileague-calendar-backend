@@ -15,9 +15,7 @@ spring:
     resources:
       add-mappings: false
   mongodb:
-    uri: mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_URI}:${MONGO_PORT}/${MONGO_DB}?authSource=admin&authMechanism=SCRAM-SHA-1
-    authentication-database: admin
-    database: ${MONGO_DB}
+    uri: mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_URI}:${MONGO_PORT}/${MONGO_DB}?authSource=${MONGO_DB}&authMechanism=SCRAM-SHA-1
 
 #doriball:
 #  management:

@@ -13,15 +13,15 @@ spring:
         - kubernetes
   web:
     resources:
-      add-mappings: false
+      add-mappings: true
   mongodb:
-    uri: mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_URI}:${MONGO_PORT}/${MONGO_DB}?authSource=admin&authMechanism=SCRAM-SHA-1
-    authentication-database: admin
-    database: ${MONGO_DB}
+    uri: mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_URI}:${MONGO_PORT}/${MONGO_DB}?authSource=${MONGO_DB}&authMechanism=SCRAM-SHA-1
 
-#doriball:
-#  management:
-#    jwt: ${JWT_SECRET}
+
+doriball:
+  management:
+    admin_username: ${ADMIN_USERNAME}
+    admin_password: ${ADMIN_PASSWORD}
 
 ---
 
