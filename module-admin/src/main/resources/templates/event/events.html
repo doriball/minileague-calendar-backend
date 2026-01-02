@@ -11,7 +11,8 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">미니리그 일정 관리</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
-            <button type="button" class="btn btn-sm btn-primary">
+            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#eventCreateModal" onclick="prepareEventCreate()">
                 <i class="bi bi-plus-lg"></i> 신규 등록
             </button>
         </div>
@@ -92,13 +93,12 @@
                 <td th:text="${event.region}">서울</td>
                 <td th:text="${event.storeName}">매장 A</td>
                 <td>
-                    <a th:href="@{/events/{id}(id=${event.id})}" class="text-decoration-none fw-bold text-dark"
-                       th:text="${event.name}">
-                        제 n회 미니리그
-                    </a>
+                    <a href="javascript:void(0)" class="text-decoration-none fw-bold text-dark"
+                       th:data-id="${event.id}" onclick="showEventDetail(this.getAttribute('data-id'))"
+                       th:text="${event.name}">제 n회 미니리그</a>
                 </td>
                 <td>
-                    <span th:text="${#strings.listJoin(event.types, ', ')}">종목</span>
+                    <span th:text="${#strings.listJoin(event.displayTypes, ', ')}">종목</span>
                     <small class="text-muted"
                            th:text="'(' + ${event.roundCount} + 'R' + (${event.gameCount != null} ? ' / ' + ${event.gameCount} + 'G' : '') + ')'"></small>
                 </td>
@@ -111,7 +111,25 @@
             </tbody>
         </table>
     </div>
-</div>
 
+    <!-- 모달 삽입 -->
+    <div th:replace="~{event/event_detail_modal :: modal}"></div>
+    <div th:replace="~{event/event_create_modal :: modal}"></div>
+    <div th:replace="~{event/event_edit_modal :: modal}"></div>
+
+    <script th:src="@{/js/common.js}"></script>
+    <script th:src="@{/js/event/event.js}"></script>
+    <script th:inline="javascript">
+        document.addEventListener('DOMContentLoaded', () => EventManager.init());
+
+        // HTML 태그(모달 포함)에서 직접 호출하는 함수들
+        function showEventDetail(id) { EventManager.showEventDetail(id); }
+        function prepareEventCreate() { EventManager.prepareEventCreate(); }
+        function loadStoresByRegion(regionNo) { EventManager.loadStoresByRegion(regionNo); }
+        function addEventStageRow(mode) { EventManager.addEventStageRow(mode); }
+        function submitEventCreate() { EventManager.submitEventCreate(); }
+        function submitEventEdit() { EventManager.submitEventEdit(); }
+    </script>
+</div>
 </body>
 </html>

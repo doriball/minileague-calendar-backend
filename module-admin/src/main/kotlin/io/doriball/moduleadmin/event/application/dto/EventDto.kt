@@ -29,4 +29,12 @@ class EventDto(
             )
         }
     }
+
+    val displayTypes: List<String> get() = types.map {
+        when(it) {
+            "SWISS" -> "스위스 라운드"
+            "TOURNAMENT" -> "토너먼트"
+            else -> it
+        }
+    }
 }

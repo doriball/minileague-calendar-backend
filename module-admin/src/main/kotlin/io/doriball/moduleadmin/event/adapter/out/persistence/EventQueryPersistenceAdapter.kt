@@ -15,6 +15,7 @@ import io.doriball.moduleinfrastructure.persistence.entity.EventDocument
 import io.doriball.moduleinfrastructure.persistence.entity.StageDocument
 import io.doriball.moduleinfrastructure.persistence.entity.StoreDocument
 import io.doriball.moduleinfrastructure.persistence.util.DocumentConvertUtil
+import org.slf4j.LoggerFactory
 import org.springframework.data.domain.Sort
 import org.springframework.data.mongodb.core.MongoOperations
 import org.springframework.data.mongodb.core.query.Criteria
@@ -30,6 +31,10 @@ class EventQueryPersistenceAdapter(
     val storeRepository: EventStoreMongoRepository,
     val storeRegionRepository: EventStoreRegionMongoRepository,
 ) : EventPort {
+
+    companion object {
+        var log = LoggerFactory.getLogger(EventQueryPersistenceAdapter::class.java)
+    }
 
     override fun getEvents(
         year: Int,
