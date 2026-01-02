@@ -38,3 +38,6 @@ out/
 
 ### Kotlin ###
 .kotlin
+
+database/.env
+database/data
