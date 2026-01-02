@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service
 class CustomUserDetailsService(val repository: AdminUserMongoRepository): UserDetailsService {
 
     override fun loadUserByUsername(username: String): UserDetails {
-        return repository.findByUsername(username) ?: throw UsernameNotFoundException("User not found")
+        return repository.findByAdminUserName(username) ?: throw UsernameNotFoundException("User not found")
     }
 
 }

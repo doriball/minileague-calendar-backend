@@ -7,21 +7,22 @@ import org.springframework.security.core.userdetails.UserDetails
 
 @Document(collection = "admin_user")
 class AdminUserDocument(
-    @Id val id: String,
-    val username: String,
-    val password: String?
+    val adminUserName: String,
+    val adminPassword: String?
 ): UserDetails {
+
+    @Id var id: String? = null
 
     override fun getAuthorities(): Collection<GrantedAuthority> {
         return listOf()
     }
 
     override fun getPassword(): String? {
-        return password
+        return adminPassword
     }
 
     override fun getUsername(): String {
-        return username
+        return adminUserName
     }
 
 }
