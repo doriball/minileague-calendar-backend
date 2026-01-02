@@ -2,13 +2,14 @@ package io.doriball.modulecore.domain.store
 
 import io.doriball.modulecore.enums.DayOfWeekType
 import java.time.LocalDateTime
+import java.time.LocalTime
 
 class StoreEventRule(
     val id: String,
     val storeId: String,
     val name: String,
     val dayOfWeek: DayOfWeekType,
-    val scheduledAt: LocalDateTime,
+    val scheduledAt: LocalTime,
     val official: Boolean,
     val stages: List<StoreEventRuleStage>,
     val createdAt: LocalDateTime? = null,

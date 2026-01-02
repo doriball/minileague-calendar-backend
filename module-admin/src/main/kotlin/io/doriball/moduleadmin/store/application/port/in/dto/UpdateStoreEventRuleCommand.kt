@@ -4,12 +4,12 @@ import io.doriball.modulecore.enums.DayOfWeekType
 import jakarta.validation.Valid
 import jakarta.validation.constraints.NotEmpty
 import jakarta.validation.constraints.NotNull
-import java.time.LocalDateTime
+import java.time.LocalTime
 
 data class UpdateStoreEventRuleCommand(
     @NotEmpty val name: String,
-    @NotEmpty val dayOfWeek: DayOfWeekType,
-    @NotNull val scheduledAt: LocalDateTime,
+    @NotNull val dayOfWeek: DayOfWeekType,
+    @NotNull val scheduledAt: LocalTime,
     @NotNull val official: Boolean,
     @NotEmpty val stages: List<@Valid UpdateStoreEventRuleStageCommand>,
 )

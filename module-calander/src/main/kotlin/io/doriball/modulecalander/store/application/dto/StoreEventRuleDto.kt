@@ -1,10 +1,10 @@
 package io.doriball.modulecalander.store.application.dto
 
 import io.doriball.modulecore.domain.store.StoreEventRule
-import java.time.LocalDateTime
+import java.time.LocalTime
 
 class StoreEventRuleDto(
-    val scheduledAt: LocalDateTime,
+    val scheduledAt: LocalTime,
     val official: Boolean,
     val types: List<String>,
     val roundCount: Int,

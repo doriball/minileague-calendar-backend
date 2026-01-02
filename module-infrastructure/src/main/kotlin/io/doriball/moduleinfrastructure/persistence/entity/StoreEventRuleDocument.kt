@@ -4,13 +4,14 @@ import io.doriball.modulecore.enums.DayOfWeekType
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDateTime
+import java.time.LocalTime
 
 @Document(collection = "store_event_rule")
 class StoreEventRuleDocument(
     val storeId: String,
     val name: String,
     val dayOfWeek: DayOfWeekType,
-    val scheduledAt: LocalDateTime,
+    val scheduledAt: LocalTime,
     val official: Boolean,
     val stages: List<StageDocument>,
 ): BaseTimeDocument() {
