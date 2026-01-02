@@ -62,7 +62,7 @@ class StoreQueryPersistenceAdapter(
     }
 
     override fun getStoreSummaries(regionNo: Int): List<StoreSummary> {
-        return storeRepository.findAll().map { convertToStoreSummary(it) }
+        return storeRepository.findByRegionNo(regionNo).map { convertToStoreSummary(it) }
     }
 
     override fun getStoreDetail(storeId: String): Store? {
