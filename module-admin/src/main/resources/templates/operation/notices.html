@@ -12,7 +12,7 @@
         <h1 class="h2">공지사항 관리</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
             <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#announcementCreateModal">
+                    data-bs-target="#noticeCreateModal">
                 <i class="bi bi-plus-lg"></i> 신규 등록
             </button>
         </div>
@@ -21,7 +21,7 @@
     <!-- 검색 영역 -->
     <div class="card mb-4 shadow-sm">
         <div class="card-body">
-            <form th:action="@{/announcements}" method="get" class="row g-3 align-items-center">
+            <form th:action="@{/notices}" method="get" class="row g-3 align-items-center">
                 <div class="col-auto ms-auto d-flex">
                     <!-- 검색 타입 드롭다운 -->
                     <select name="search" class="form-select form-select-sm me-1" style="width: auto;">
@@ -55,55 +55,55 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:if="${#lists.isEmpty(announcements)}">
+            <tr th:if="${#lists.isEmpty(notices)}">
                 <td colspan="3" class="text-center py-4 text-muted">등록된 공지사항이 없습니다.</td>
             </tr>
-            <tr th:each="announcement, stat : ${announcements}">
+            <tr th:each="notice, stat : ${notices}">
                 <td th:text="${stat.count + ((command?.page ?: 1) - 1) * (command?.size ?: 10)}">1</td>
                 <td>
                     <a href="javascript:void(0)" class="text-decoration-none fw-bold text-dark"
-                       th:data-id="${announcement.id}"
+                       th:data-id="${notice.id}"
                        onclick="showDetail(this.getAttribute('data-id'))"
-                       th:text="${announcement.title}">공지사항 제목</a>
+                       th:text="${notice.title}">공지사항 제목</a>
                 </td>
-                <td th:text="${#temporals.format(announcement.createdAt, 'yyyy-MM-dd HH:mm')}">2023-01-01 00:00</td>
+                <td th:text="${#temporals.format(notice.createdAt, 'yyyy-MM-dd HH:mm')}">2023-01-01 00:00</td>
             </tr>
             </tbody>
         </table>
     </div>
 
     <!-- 모달 삽입 -->
-    <div th:replace="~{operation/announcement_detail_modal :: modal}"></div>
-    <div th:replace="~{operation/announcement_create_modal :: modal}"></div>
-    <div th:replace="~{operation/announcement_edit_modal :: modal}"></div>
+    <div th:replace="~{operation/notice_detail_modal :: modal}"></div>
+    <div th:replace="~{operation/notice_create_modal :: modal}"></div>
+    <div th:replace="~{operation/notice_edit_modal :: modal}"></div>
 
     <!-- 페이지네이션 -->
     <nav th:if="${not #lists.isEmpty(paginationBars)}" aria-label="Page navigation" class="mt-4">
         <ul class="pagination pagination-sm justify-content-center">
             <li class="page-item" th:classappend="${command?.page == null or command.page == 1} ? 'disabled'">
                 <a class="page-link"
-                   th:href="@{/announcements(page=${(command?.page ?: 1) - 1}, search=${command?.search}, keyword=${command?.keyword})}">이전</a>
+                   th:href="@{/notices(page=${(command?.page ?: 1) - 1}, search=${command?.search}, keyword=${command?.keyword})}">이전</a>
             </li>
             <li class="page-item" th:each="bar : ${paginationBars}"
                 th:classappend="${bar + 1 == (command?.page ?: 1)} ? 'active'">
                 <a class="page-link" th:text="${bar + 1}"
-                   th:href="@{/announcements(page=${bar + 1}, search=${command?.search}, keyword=${command?.keyword})}">1</a>
+                   th:href="@{/notices(page=${bar + 1}, search=${command?.search}, keyword=${command?.keyword})}">1</a>
             </li>
             <li class="page-item"
                 th:classappend="${not #lists.isEmpty(paginationBars) and command?.page == paginationBars.get(paginationBars.size() - 1) + 1} ? 'disabled'">
                 <a class="page-link"
-                   th:href="@{/announcements(page=${(command?.page ?: 1) + 1}, search=${command?.search}, keyword=${command?.keyword})}">다음</a>
+                   th:href="@{/notices(page=${(command?.page ?: 1) + 1}, search=${command?.search}, keyword=${command?.keyword})}">다음</a>
             </li>
         </ul>
     </nav>
 
     <script th:src="@{/js/common.js}"></script>
-    <script th:src="@{/js/operation/announcement.js}"></script>
+    <script th:src="@{/js/operation/notice.js}"></script>
     <script th:inline="javascript">
-        document.addEventListener('DOMContentLoaded', () => AnnouncementManager.init());
-        function showDetail(id) { AnnouncementManager.showDetail(id); }
-        function submitCreate() { AnnouncementManager.submitCreate(); }
-        function submitEdit() { AnnouncementManager.submitEdit(); }
+        document.addEventListener('DOMContentLoaded', () => NoticeManager.init());
+        function showDetail(id) { NoticeManager.showDetail(id); }
+        function submitCreate() { NoticeManager.submitCreate(); }
+        function submitEdit() { NoticeManager.submitEdit(); }
     </script>
 </div>
 </body>

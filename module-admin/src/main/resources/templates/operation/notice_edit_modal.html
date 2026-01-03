@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-<div th:fragment="modal" class="modal fade" id="announcementEditModal" tabindex="-1" aria-labelledby="announcementEditModalLabel" aria-hidden="true">
+<div th:fragment="modal" class="modal fade" id="noticeEditModal" tabindex="-1" aria-labelledby="noticeEditModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="announcementEditModalLabel">공지사항 수정</h5>
+                <h5 class="modal-title" id="noticeEditModalLabel">공지사항 수정</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="editForm">
-                    <input type="hidden" id="editAnnouncementId">
+                    <input type="hidden" id="editNoticeId">
                     <div class="mb-3">
                         <label for="editTitle" class="form-label fw-bold">제목</label>
                         <input type="text" class="form-control" id="editTitle" name="title" maxlength="30" required>

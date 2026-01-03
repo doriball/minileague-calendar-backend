@@ -1,6 +1,6 @@
 package io.doriball.moduleadmin.operation.common.enums
 
-enum class AnnouncementKeywordSearchType {
+enum class NoticeKeywordSearchType {
 
     TITLE, CONTENT
 

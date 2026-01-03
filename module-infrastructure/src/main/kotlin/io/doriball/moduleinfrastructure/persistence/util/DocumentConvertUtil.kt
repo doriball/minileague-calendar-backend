@@ -2,13 +2,13 @@ package io.doriball.moduleinfrastructure.persistence.util
 
 import io.doriball.modulecore.domain.event.Event
 import io.doriball.modulecore.domain.event.EventStage
-import io.doriball.modulecore.domain.operation.Announcement
+import io.doriball.modulecore.domain.operation.Notice
 import io.doriball.modulecore.domain.store.Store
 import io.doriball.modulecore.domain.store.StoreEventRule
 import io.doriball.modulecore.domain.store.StoreEventRuleStage
 import io.doriball.modulecore.domain.store.StoreRegion
 import io.doriball.modulecore.enums.StageType
-import io.doriball.moduleinfrastructure.persistence.entity.AnnouncementDocument
+import io.doriball.moduleinfrastructure.persistence.entity.NoticeDocument
 import io.doriball.moduleinfrastructure.persistence.entity.EventDocument
 import io.doriball.moduleinfrastructure.persistence.entity.StageDocument
 import io.doriball.moduleinfrastructure.persistence.entity.StoreDocument
@@ -52,12 +52,12 @@ object DocumentConvertUtil {
     fun convertToStoreRegion(document: StoreRegionDocument): StoreRegion =
         StoreRegion(regionNo = document.regionNo, name = document.name)
 
-    fun convertToAnnouncement(announcementDocument: AnnouncementDocument) = Announcement(
-        id = announcementDocument.id!!,
-        title = announcementDocument.title,
-        content = announcementDocument.content,
-        createdAt = announcementDocument.createdAt,
-        modifiedAt = announcementDocument.modifiedAt
+    fun convertToNotice(noticeDocument: NoticeDocument) = Notice(
+        id = noticeDocument.id!!,
+        title = noticeDocument.title,
+        content = noticeDocument.content,
+        createdAt = noticeDocument.createdAt,
+        modifiedAt = noticeDocument.modifiedAt
     )
 
     fun convertToStoreEventRule(document: StoreEventRuleDocument) = StoreEventRule(
