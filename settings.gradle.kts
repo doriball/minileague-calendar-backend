@@ -4,12 +4,12 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 }
-rootProject.name = "minileague-calander-backend"
+rootProject.name = "minileague-calendar-backend"
 
 include("module-admin")
 include("module-api")
 include("module-auth")
 include("module-batch")
-include("module-calander")
+include("module-calendar")
 include("module-core")
 include("module-infrastructure")
