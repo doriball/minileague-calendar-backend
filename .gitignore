@@ -39,5 +39,5 @@ out/
 ### Kotlin ###
 .kotlin
 
-database/.env
-database/data
+docker/mongodb/.env
+docker/mongodb/data
