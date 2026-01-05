@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  calendar-api:
+    image: mrcocoball/minileague-calendar-calendar-api:latest
+    container_name: calendar-api
+    restart: unless-stopped
+    ports:
+      - "18082:8082"
+    environment:
+      SPRING_PROFILE: local
+      MONGO_USERNAME: ${MONGO_USERNAME}
+      MONGO_PASSWORD: ${MONGO_PASSWORD}
+      MONGO_URI: ${MONGO_URI}
+      MONGO_PORT: ${MONGO_PORT}
+      MONGO_DB: ${MONGO_DB}
+  admin:
+    image: mrcocoball/minileague-calendar-admin:latest
+    container_name: admin
+    restart: unless-stopped
+    ports:
+      - "18083:8083"
+    environment:
+      SPRING_PROFILE: local
+      MONGO_USERNAME: ${MONGO_USERNAME}
+      MONGO_PASSWORD: ${MONGO_PASSWORD}
+      MONGO_URI: ${MONGO_URI}
+      MONGO_PORT: ${MONGO_PORT}
+      MONGO_DB: ${MONGO_DB}
+      ADMIN_USERNAME: ${ADMIN_USERNAME}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
