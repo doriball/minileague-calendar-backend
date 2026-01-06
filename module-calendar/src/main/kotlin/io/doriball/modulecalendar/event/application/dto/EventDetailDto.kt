@@ -10,7 +10,8 @@ class EventDetailDto(
     val storeName: String,
     val scheduledAt: LocalDateTime,
     val official: Boolean,
-    val stages: List<EventDetailStageDto>
+    val entryFee: Long?,
+    val stages: List<EventDetailStageDto>,
 ) {
 
     companion object {
@@ -22,7 +23,8 @@ class EventDetailDto(
                 storeName = event.storeName,
                 scheduledAt = event.scheduledAt,
                 official = event.official,
-                stages = event.stages.map { EventDetailStageDto.from(it) }.toList()
+                entryFee = event.entryFee,
+                stages = event.stages.map { EventDetailStageDto.from(it) }.toList(),
             )
         }
     }

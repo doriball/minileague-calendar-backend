@@ -6,6 +6,7 @@ import java.time.LocalTime
 class StoreEventRuleDto(
     val scheduledAt: LocalTime,
     val official: Boolean,
+    val entryFee: Long?,
     val types: List<String>,
     val roundCount: Int,
     val gameCount: Int?,
@@ -15,6 +16,7 @@ class StoreEventRuleDto(
         fun from(rule: StoreEventRule): StoreEventRuleDto = StoreEventRuleDto(
             scheduledAt = rule.scheduledAt,
             official = rule.official,
+            entryFee = rule.entryFee,
             types = rule.stageTypes,
             roundCount = rule.roundCount,
             gameCount = rule.gameCount,
