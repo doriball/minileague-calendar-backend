@@ -6,7 +6,7 @@ import java.time.LocalDateTime
 class NoticeDto(
     val id: String,
     val title: String,
-    val createdAt: LocalDateTime? = null,
+    val createdAt: LocalDateTime?,
 ) {
 
     companion object {

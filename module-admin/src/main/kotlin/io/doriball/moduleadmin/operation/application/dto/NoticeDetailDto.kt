@@ -7,7 +7,7 @@ class NoticeDetailDto(
     val id: String,
     val title: String,
     val content: String,
-    val createdAt: LocalDateTime? = null,
+    val createdAt: LocalDateTime?,
 ) {
 
     companion object {
