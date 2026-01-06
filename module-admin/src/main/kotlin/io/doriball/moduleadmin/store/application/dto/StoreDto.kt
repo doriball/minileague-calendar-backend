@@ -8,7 +8,7 @@ class StoreDto(
     val name: String,
     val region: String,
     val address: String,
-    val createdAt: LocalDateTime? = null,
+    val createdAt: LocalDateTime?,
 ) {
 
     companion object {

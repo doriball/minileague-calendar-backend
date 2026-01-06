@@ -42,6 +42,7 @@ class StoreEventRuleQueryPersistenceAdapter(val repository: StoreEventRuleMongoR
         dayOfWeek = create.dayOfWeek,
         scheduledAt = create.scheduledAt,
         official = create.official,
+        entryFee = create.entryFee,
         stages = create.stages.map { toStageDocument(it) }
     )
 
@@ -58,6 +59,7 @@ class StoreEventRuleQueryPersistenceAdapter(val repository: StoreEventRuleMongoR
         dayOfWeek = update.dayOfWeek,
         scheduledAt = update.scheduledAt,
         official = update.official,
+        entryFee = update.entryFee,
         stages = update.stages.map { toStageDocument(it) }
     ).apply { id = update.id }
 

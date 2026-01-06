@@ -10,6 +10,7 @@ class StoreEventRuleCreate(
     val dayOfWeek: DayOfWeekType,
     val scheduledAt: LocalTime,
     val official: Boolean,
+    val entryFee: Long?,
     val stages: List<StoreEventRuleStageCreate>,
 ) {
 
@@ -20,6 +21,7 @@ class StoreEventRuleCreate(
             dayOfWeek = command.dayOfWeek,
             scheduledAt = command.scheduledAt,
             official = command.official,
+            entryFee = command.entryFee,
             stages = command.stages.map { StoreEventRuleStageCreate.from(it) }
         )
     }

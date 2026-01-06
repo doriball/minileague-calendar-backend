@@ -137,6 +137,7 @@ class EventQueryPersistenceAdapter(
         name = create.name,
         scheduledAt = create.scheduledAt,
         official = create.official,
+        entryFee = create.entryFee,
         stages = create.stages.map { toEventStageDocument(it) }.toList()
     )
 
@@ -152,6 +153,7 @@ class EventQueryPersistenceAdapter(
         name = update.name,
         scheduledAt = update.scheduledAt,
         official = update.official,
+        entryFee = update.entryFee,
         stages = update.stages.map { toEventStageDocument(it) }.toList()
     ).apply { id = update.id }
 

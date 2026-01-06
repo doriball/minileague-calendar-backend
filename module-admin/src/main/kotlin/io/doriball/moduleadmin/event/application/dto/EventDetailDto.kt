@@ -7,9 +7,11 @@ class EventDetailDto(
     val id: String,
     val name: String,
     val region: String,
+    val storeId: String,
     val storeName: String,
     val scheduledAt: LocalDateTime,
     val official: Boolean,
+    val entryFee: Long?,
     val stages: List<EventDetailStageDto>
 ) {
 
@@ -19,9 +21,11 @@ class EventDetailDto(
                 id = event.id,
                 name = event.name,
                 region = event.regionName,
+                storeId = event.storeId,
                 storeName = event.storeName,
                 scheduledAt = event.scheduledAt,
                 official = event.official,
+                entryFee = event.entryFee,
                 stages = event.stages.map { EventDetailStageDto.from(it) }.toList()
             )
         }

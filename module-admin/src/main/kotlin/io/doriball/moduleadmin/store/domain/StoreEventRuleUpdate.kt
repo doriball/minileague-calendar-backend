@@ -11,6 +11,7 @@ class StoreEventRuleUpdate(
     val dayOfWeek: DayOfWeekType,
     val scheduledAt: LocalTime,
     val official: Boolean,
+    val entryFee: Long?,
     val stages: List<StoreEventRuleStageUpdate>,
 ) {
 
@@ -23,6 +24,7 @@ class StoreEventRuleUpdate(
                 dayOfWeek = command.dayOfWeek,
                 scheduledAt = command.scheduledAt,
                 official = command.official,
+                entryFee = command.entryFee,
                 stages = command.stages.map { StoreEventRuleStageUpdate.from(it) }
             )
     }

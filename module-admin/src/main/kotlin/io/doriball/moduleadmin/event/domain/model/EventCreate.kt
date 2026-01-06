@@ -8,6 +8,7 @@ class EventCreate(
     val storeId: String,
     val scheduledAt: LocalDateTime,
     val official: Boolean,
+    val entryFee: Long?,
     val stages: List<EventStageCreate>,
 ) {
 
@@ -18,6 +19,7 @@ class EventCreate(
                 storeId = command.storeId,
                 scheduledAt = command.scheduledAt,
                 official = command.official,
+                entryFee = command.entryFee,
                 stages = command.stages.map { EventStageCreate.from(it) }.toList(),
             )
     }

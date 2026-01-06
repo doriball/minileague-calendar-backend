@@ -65,6 +65,7 @@ let StoreManager = {
                 <td><span class="badge bg-light text-dark border">${rule.dayOfWeek}</span></td>
                 <td>${displayTime}</td>
                 <td class="fw-bold">${rule.name} ${rule.official ? '<span class="badge bg-primary ms-1" style="font-size: 0.7rem;">공인</span>' : ''}</td>
+                <td>${rule.entryFee && rule.entryFee > 0 ? `${new Intl.NumberFormat('ko-KR').format(rule.entryFee)}원` : '무료'}</td>
                 <td>
                     <button type="button" class="btn btn-sm btn-outline-secondary py-0 px-2 me-1 btn-rule-edit">수정</button>
                     <button type="button" class="btn btn-sm btn-outline-danger py-0 px-2 btn-rule-delete">삭제</button>
@@ -125,6 +126,7 @@ let StoreManager = {
         document.getElementById('ruleDayOfWeek').value = rule.dayOfWeek;
         document.getElementById('ruleScheduledAt').value = AdminCommon.formatTime(rule.scheduledAt);
         document.getElementById('ruleOfficial').checked = rule.official;
+        document.getElementById('ruleEntryFee').value = rule.entryFee;
 
         const stageContainer = document.getElementById('stageListContainer');
         stageContainer.innerHTML = '';
@@ -159,6 +161,7 @@ let StoreManager = {
             dayOfWeek: document.getElementById('ruleDayOfWeek').value,
             scheduledAt: scheduledAt,
             official: document.getElementById('ruleOfficial').checked,
+            entryFee: document.getElementById('ruleEntryFee').value,
             stages: Array.from(stageRows).map((r, i) => ({
                 stageNo: i + 1,
                 type: r.querySelector('.stage-type').value,

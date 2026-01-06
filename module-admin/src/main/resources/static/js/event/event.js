@@ -19,6 +19,7 @@ let EventManager = {
             document.getElementById('modalEventStore').innerText = `${event.storeName} (${event.region})`;
             document.getElementById('modalEventScheduledAt').innerText = event.scheduledAt.replace('T', ' ').substring(0, 16);
             document.getElementById('modalEventOfficial').innerHTML = event.official ? '<span class="badge bg-primary">공인</span>' : '<span class="badge bg-secondary">비공인</span>';
+            document.getElementById('modalEventEntryFee').innerText = event.entryFee && event.entryFee > 0 ? `${new Intl.NumberFormat('ko-KR').format(event.entryFee)}원` : '무료';
 
             const tableBody = document.getElementById('eventStageTableBody');
             tableBody.innerHTML = '';
@@ -59,7 +60,8 @@ let EventManager = {
             storeSelect.innerHTML = '<option value="">매장을 선택하세요</option>';
             res.data.data.forEach(s => {
                 const opt = document.createElement('option');
-                opt.value = s.id; opt.text = s.name;
+                opt.value = s.id;
+                opt.text = s.name;
                 storeSelect.appendChild(opt);
             });
             storeSelect.disabled = false;
@@ -71,7 +73,8 @@ let EventManager = {
         document.getElementById('editEventName').value = event.name;
         document.getElementById('editEventScheduledAt').value = event.scheduledAt.substring(0, 16);
         document.getElementById('editEventOfficial').checked = event.official;
-        document.getElementById('editEventStore').innerHTML = `<option value="${event.id}">${event.storeName} (${event.region})</option>`;
+        document.getElementById('editEventStore').innerHTML = `<option value="${event.storeId}">${event.storeName} (${event.region})</option>`;
+        document.getElementById('editEventEntryFee').value = event.entryFee;
 
         const container = document.getElementById('editEventStageContainer');
         container.innerHTML = '';
@@ -101,9 +104,12 @@ let EventManager = {
             storeId: document.getElementById('createEventStore').value,
             scheduledAt: document.getElementById('createEventScheduledAt').value + ":00",
             official: document.getElementById('createEventOfficial').checked,
+            entryFee: document.getElementById('createEventEntryFee').value,
             stages: Array.from(document.querySelectorAll('#createEventStageContainer .event-stage-row')).map((r, i) => ({
-                stageNo: i + 1, type: r.querySelector('.stage-type').value,
-                roundCount: parseInt(r.querySelector('.stage-round').value), gameCount: parseInt(r.querySelector('.stage-game').value)
+                stageNo: i + 1,
+                type: r.querySelector('.stage-type').value,
+                roundCount: parseInt(r.querySelector('.stage-round').value),
+                gameCount: parseInt(r.querySelector('.stage-game').value)
             }))
         };
         axios.post('/api/v1/events', data).then(() => location.reload()).catch(err => AdminCommon.handleError(err, '등록 실패'));
@@ -115,10 +121,14 @@ let EventManager = {
         if (time.length === 16) time += ":00";
         const data = {
             name: document.getElementById('editEventName').value, scheduledAt: time,
+            storeId: document.getElementById('editEventStore').value,
             official: document.getElementById('editEventOfficial').checked,
+            entryFee: document.getElementById('editEventEntryFee').value,
             stages: Array.from(document.querySelectorAll('#editEventStageContainer .event-stage-row')).map((r, i) => ({
-                stageNo: i + 1, type: r.querySelector('.stage-type').value,
-                roundCount: parseInt(r.querySelector('.stage-round').value), gameCount: parseInt(r.querySelector('.stage-game').value)
+                stageNo: i + 1,
+                type: r.querySelector('.stage-type').value,
+                roundCount: parseInt(r.querySelector('.stage-round').value),
+                gameCount: parseInt(r.querySelector('.stage-game').value)
             }))
         };
         axios.put('/api/v1/events/' + id, data).then(() => location.reload()).catch(err => AdminCommon.handleError(err, '수정 실패'));

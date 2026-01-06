@@ -11,5 +11,6 @@ data class CreateStoreEventRuleCommand(
     @NotNull val dayOfWeek: DayOfWeekType,
     @NotNull val scheduledAt: LocalTime,
     @NotNull val official: Boolean,
+    val entryFee: Long?,
     @NotEmpty val stages: List<@Valid CreateStoreEventRuleStageCommand>,
 )

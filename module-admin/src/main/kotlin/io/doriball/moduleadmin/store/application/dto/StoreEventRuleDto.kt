@@ -11,6 +11,7 @@ class StoreEventRuleDto(
     val dayOfWeek: DayOfWeekType,
     val scheduledAt: LocalTime,
     val official: Boolean,
+    val entryFee: Long?,
     val stages: List<StoreEventRuleStageDto>,
 ) {
 
@@ -22,6 +23,7 @@ class StoreEventRuleDto(
             dayOfWeek = storeEventRule.dayOfWeek,
             scheduledAt = storeEventRule.scheduledAt,
             official = storeEventRule.official,
+            entryFee = storeEventRule.entryFee,
             stages = storeEventRule.stages.map { StoreEventRuleStageDto.from(it) },
         )
     }

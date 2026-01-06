@@ -10,5 +10,6 @@ data class UpdateEventCommand(
     @NotEmpty val storeId: String,
     @NotNull val scheduledAt: LocalDateTime,
     @NotNull val official: Boolean,
+    val entryFee: Long?,
     @NotEmpty val stages: List<@Valid UpdateEventStageCommand>,
 )
