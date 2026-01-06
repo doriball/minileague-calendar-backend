@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: batch
+  profiles:
+    active: ${SPRING_PROFILE}
+    group:
+      dev:
+        - kubernetes
+      prod:
+        - kubernetes
+  mongodb:
+    uri: mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_URI}:${MONGO_PORT}/${MONGO_DB}?authSource=${MONGO_DB}&authMechanism=SCRAM-SHA-1
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: local
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+---
+
