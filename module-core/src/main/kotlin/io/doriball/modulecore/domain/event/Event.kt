@@ -10,10 +10,12 @@ class Event(
     val scheduledAt: LocalDateTime,
     val official: Boolean,
     val stages: List<EventStage>,
-    val createdAt: LocalDateTime? = null,
-    val modifiedAt: LocalDateTime? = null,
+    val entryFee: Long?,
+    val createdAt: LocalDateTime?,
+    val modifiedAt: LocalDateTime?,
 ) {
 
+    val storeId: String get() = store.id
     val storeName: String get() = store.name
     val regionName: String get() = store.regionName
     val stageTypes: List<String> get() = stages.map { it.type.name }

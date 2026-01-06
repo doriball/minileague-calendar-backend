@@ -12,8 +12,9 @@ class StoreEventRule(
     val scheduledAt: LocalTime,
     val official: Boolean,
     val stages: List<StoreEventRuleStage>,
-    val createdAt: LocalDateTime? = null,
-    val modifiedAt: LocalDateTime? = null,
+    val entryFee: Long?,
+    val createdAt: LocalDateTime?,
+    val modifiedAt: LocalDateTime?,
 ) {
 
     val stageTypes: List<String> get() = stages.map { it.type.name }

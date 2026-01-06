@@ -25,6 +25,7 @@ object DocumentConvertUtil {
             scheduledAt = eventDocument.scheduledAt,
             official = eventDocument.official,
             stages = eventDocument.stages.map { convertToEventStage(it) }.toList(),
+            entryFee = eventDocument.entryFee,
             createdAt = eventDocument.createdAt,
             modifiedAt = eventDocument.modifiedAt
         )
@@ -68,6 +69,9 @@ object DocumentConvertUtil {
         scheduledAt = document.scheduledAt,
         official = document.official,
         stages = document.stages.map { convertToStoreEventRuleStage(it) }.toList(),
+        entryFee = document.entryFee,
+        createdAt = document.createdAt,
+        modifiedAt = document.modifiedAt
     )
 
     fun convertToStoreEventRuleStage(document: StageDocument): StoreEventRuleStage =

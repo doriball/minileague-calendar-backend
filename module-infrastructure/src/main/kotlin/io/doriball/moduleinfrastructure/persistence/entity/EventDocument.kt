@@ -11,6 +11,7 @@ class EventDocument(
     val scheduledAt: LocalDateTime,
     val official: Boolean,
     val stages: List<StageDocument> = listOf(),
+    val entryFee: Long?,
 ) : BaseTimeDocument() {
 
     @Id var id: String? = null

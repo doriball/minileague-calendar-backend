@@ -13,6 +13,7 @@ class StoreEventRuleDocument(
     val scheduledAt: LocalTime,
     val official: Boolean,
     val stages: List<StageDocument>,
+    val entryFee: Long?,
 ): BaseTimeDocument() {
 
     @Id var id: String? = null
