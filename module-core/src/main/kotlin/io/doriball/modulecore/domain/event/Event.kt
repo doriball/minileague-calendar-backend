@@ -1,6 +1,7 @@
 package io.doriball.modulecore.domain.event
 
 import io.doriball.modulecore.domain.store.Store
+import io.doriball.modulecore.enums.LeagueCategoryType
 import java.time.LocalDateTime
 
 class Event(
@@ -8,9 +9,10 @@ class Event(
     val store: Store,
     val name: String,
     val scheduledAt: LocalDateTime,
-    val official: Boolean,
+    val category: LeagueCategoryType,
+    val capacity: Int?,
     val stages: List<EventStage>,
-    val entryFee: Long?,
+    val entryFee: Long? = 0L,
     val createdAt: LocalDateTime?,
     val modifiedAt: LocalDateTime?,
 ) {

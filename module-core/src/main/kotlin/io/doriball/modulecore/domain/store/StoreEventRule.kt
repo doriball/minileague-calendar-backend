@@ -1,6 +1,7 @@
 package io.doriball.modulecore.domain.store
 
 import io.doriball.modulecore.enums.DayOfWeekType
+import io.doriball.modulecore.enums.LeagueCategoryType
 import java.time.LocalDateTime
 import java.time.LocalTime
 
@@ -10,7 +11,8 @@ class StoreEventRule(
     val name: String,
     val dayOfWeek: DayOfWeekType,
     val scheduledAt: LocalTime,
-    val official: Boolean,
+    val category: LeagueCategoryType,
+    val capacity: Int?,
     val stages: List<StoreEventRuleStage>,
     val entryFee: Long?,
     val createdAt: LocalDateTime?,
