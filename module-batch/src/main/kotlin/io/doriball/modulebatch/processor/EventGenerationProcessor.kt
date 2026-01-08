@@ -46,7 +46,7 @@ open class EventGenerationProcessor(
                         storeId = item.storeId,
                         name = item.name,
                         scheduledAt = LocalDateTime.of(current, item.scheduledAt),
-                        official = item.official,
+                        category = item.category,
                         entryFee = item.entryFee,
                         stages = item.stages,
                     )
