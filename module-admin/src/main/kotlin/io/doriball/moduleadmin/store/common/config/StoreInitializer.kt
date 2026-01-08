@@ -29,7 +29,11 @@ class StoreInitializer(
                 "부산",
                 "울산",
                 "진주",
-                "창원"
+                "창원",
+                "군포",
+                "대전",
+                "성남",
+                "천안",
             )
             for ((index, region) in list.withIndex()) {
                 storeRegionMongoRepository.save(StoreRegionDocument(regionNo = index, name = region))
@@ -313,6 +317,50 @@ class StoreInitializer(
                     name = "창원 티씨지짐",
                     regionNo = 12,
                     address = "경남 창원시 의창구 남산로17번길 2 2층",
+                    mapInformation = null,
+                    sns = null
+                )
+            )
+
+            // 군포 (13)
+            storeMongoRepository.save(
+                toStoreDocument(
+                    name = "금정 배틀시티",
+                    regionNo = 13,
+                    address = "경기도 군포시 산본천로 199번길5 3층",
+                    mapInformation = null,
+                    sns = null
+                )
+            )
+
+            // 대전 (14)
+            storeMongoRepository.save(
+                toStoreDocument(
+                    name = "대전 듀얼몰",
+                    regionNo = 14,
+                    address = "대전광역시 서구 문정로170번길 193",
+                    mapInformation = null,
+                    sns = null
+                )
+            )
+
+            // 성남 (15)
+            storeMongoRepository.save(
+                toStoreDocument(
+                    name = "수내 카드빈",
+                    regionNo = 15,
+                    address = "경기도 성남시 분당구 황새울로 214번길 8 ,802호",
+                    mapInformation = null,
+                    sns = null
+                )
+            )
+
+            // 천안 (16)
+            storeMongoRepository.save(
+                toStoreDocument(
+                    name = "천안 카드빌리지",
+                    regionNo = 16,
+                    address = "천안시 서북구 불당1길 49, 2층 201호",
                     mapInformation = null,
                     sns = null
                 )
