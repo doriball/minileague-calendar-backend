@@ -1,4 +1,4 @@
-name: Calendar Dev CI / CD Pipeline 
+name: Calendar Dev CI / CD Pipeline
 on:
   push:
     branches:
