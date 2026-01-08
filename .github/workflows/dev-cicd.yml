@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Full CI / CD Step
-        uses: doriball/doriball-github-actions/.github/actions/backend-integration/backend-cicd@main
+        uses: doriball/doriball-github-actions/.github/actions/backend/integration/backend-cicd@main
         with:
           env-name: dev
           service-name: minileague-calendar-api
