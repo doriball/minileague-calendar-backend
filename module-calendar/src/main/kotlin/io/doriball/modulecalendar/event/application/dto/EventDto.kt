@@ -1,6 +1,7 @@
 package io.doriball.modulecalendar.event.application.dto
 
 import io.doriball.modulecore.domain.event.Event
+import io.doriball.modulecore.enums.LeagueCategoryType
 import java.time.LocalDateTime
 
 class EventDto(
@@ -9,7 +10,7 @@ class EventDto(
     val region: String,
     val storeName: String,
     val scheduledAt: LocalDateTime,
-    val official: Boolean,
+    val category: LeagueCategoryType,
     val types: List<String>,
     val roundCount: Int,
     val gameCount: Int?,
@@ -22,7 +23,7 @@ class EventDto(
                 region = event.regionName,
                 storeName = event.storeName,
                 scheduledAt = event.scheduledAt,
-                official = event.official,
+                category = event.category,
                 types = event.stageTypes,
                 roundCount = event.roundCount,
                 gameCount = event.gameCount

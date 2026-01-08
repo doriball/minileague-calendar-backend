@@ -1,6 +1,7 @@
 package io.doriball.modulecalendar.event.application.dto
 
 import io.doriball.modulecore.domain.event.Event
+import io.doriball.modulecore.enums.LeagueCategoryType
 import java.time.LocalDateTime
 
 class EventDetailDto(
@@ -9,7 +10,8 @@ class EventDetailDto(
     val region: String,
     val storeName: String,
     val scheduledAt: LocalDateTime,
-    val official: Boolean,
+    val category: LeagueCategoryType,
+    val capacity: Int?,
     val entryFee: Long?,
     val stages: List<EventDetailStageDto>,
 ) {
@@ -22,7 +24,8 @@ class EventDetailDto(
                 region = event.regionName,
                 storeName = event.storeName,
                 scheduledAt = event.scheduledAt,
-                official = event.official,
+                category = event.category,
+                capacity = event.capacity,
                 entryFee = event.entryFee,
                 stages = event.stages.map { EventDetailStageDto.from(it) }.toList(),
             )

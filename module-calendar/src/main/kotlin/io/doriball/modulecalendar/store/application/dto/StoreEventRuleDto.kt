@@ -1,11 +1,13 @@
 package io.doriball.modulecalendar.store.application.dto
 
 import io.doriball.modulecore.domain.store.StoreEventRule
+import io.doriball.modulecore.enums.LeagueCategoryType
 import java.time.LocalTime
 
 class StoreEventRuleDto(
     val scheduledAt: LocalTime,
-    val official: Boolean,
+    val category: LeagueCategoryType,
+    val capacity: Int?,
     val entryFee: Long?,
     val types: List<String>,
     val roundCount: Int,
@@ -15,7 +17,8 @@ class StoreEventRuleDto(
     companion object {
         fun from(rule: StoreEventRule): StoreEventRuleDto = StoreEventRuleDto(
             scheduledAt = rule.scheduledAt,
-            official = rule.official,
+            category = rule.category,
+            capacity = rule.capacity,
             entryFee = rule.entryFee,
             types = rule.stageTypes,
             roundCount = rule.roundCount,
