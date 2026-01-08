@@ -1,0 +1,32 @@
+name: Calendar Dev CI / CD Pipeline
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - module-calendar/**
+      - .github/workflows/calendar/dev-cicd.yml
+
+jobs:
+  CI-CD:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Full CI / CD Step
+        uses: doriball/doriball-github-actions/.github/actions/backend-integration/backend-cicd@main
+        with:
+          env-name: dev
+          service-name: minileague-calendar-api
+          slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          java-version: 21
+          distribution: temurin
+          working-directory: module-calendar
+          build-command: ./gradlew :module-batch:clean :module-batch:bootJar
+          docker-username: ${{ secrets.DOCKER_USERNAME }}
+          docker-password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+          docker-repository: mrcocoball/minileague-calendar-calendar-api
+          tag-prefix: dev
+          dockerfile-directory: module-calendar
+          gitops-repository: git@github.com:doriball/minileague-calendar-infrastructure.git
+          gitops-branch: main
+          gitops-values-directory: environments/dev/apps/calendar-values.yml
+          ssh-key: ${{ secrets.GITOPS_SSH_KEY }}
