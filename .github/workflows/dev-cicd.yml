@@ -4,8 +4,8 @@ on:
     branches:
       - main
     paths:
-      - module-calendar/**
-      - .github/workflows/calendar/dev-cicd.yml
+      - ../../module-calendar
+      - .github/workflows/dev-cicd.yml
 
 jobs:
   CI-CD:
