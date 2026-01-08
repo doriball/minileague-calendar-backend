@@ -8,8 +8,8 @@ import io.doriball.moduleadmin.event.application.port.`in`.dto.ReadEventDetailCo
 import io.doriball.moduleadmin.event.application.port.`in`.dto.ReadEventsCommand
 import io.doriball.moduleadmin.event.application.port.`in`.dto.UpdateEventCommand
 import io.doriball.moduleadmin.event.application.port.out.EventPort
-import io.doriball.moduleadmin.event.domain.model.EventCreate
-import io.doriball.moduleadmin.event.domain.model.EventUpdate
+import io.doriball.moduleadmin.event.domain.EventCreate
+import io.doriball.moduleadmin.event.domain.EventUpdate
 import io.doriball.moduleadmin.event.common.exception.EventIsPassedException
 import io.doriball.modulecore.exception.NotFoundException
 import org.springframework.stereotype.Service

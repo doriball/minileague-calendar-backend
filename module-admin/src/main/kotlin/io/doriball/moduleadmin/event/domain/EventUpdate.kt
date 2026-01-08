@@ -1,6 +1,7 @@
-package io.doriball.moduleadmin.event.domain.model
+package io.doriball.moduleadmin.event.domain
 
 import io.doriball.moduleadmin.event.application.port.`in`.dto.UpdateEventCommand
+import io.doriball.modulecore.enums.LeagueCategoryType
 import java.time.LocalDateTime
 
 class EventUpdate(
@@ -8,7 +9,8 @@ class EventUpdate(
     val name: String,
     val storeId: String,
     val scheduledAt: LocalDateTime,
-    val official: Boolean,
+    val category: LeagueCategoryType,
+    val capacity: Int?,
     val entryFee: Long?,
     val stages: List<EventStageUpdate>,
 ) {
@@ -20,7 +22,8 @@ class EventUpdate(
                 name = command.name,
                 storeId = command.storeId,
                 scheduledAt = command.scheduledAt,
-                official = command.official,
+                category = command.category,
+                capacity = command.capacity,
                 entryFee = command.entryFee,
                 stages = command.stages.map { EventStageUpdate.from(it) }.toList(),
             )

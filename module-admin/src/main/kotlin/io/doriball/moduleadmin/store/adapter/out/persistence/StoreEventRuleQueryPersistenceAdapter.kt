@@ -7,8 +7,6 @@ import io.doriball.moduleadmin.store.domain.StoreEventRuleStageCreate
 import io.doriball.moduleadmin.store.domain.StoreEventRuleStageUpdate
 import io.doriball.moduleadmin.store.domain.StoreEventRuleUpdate
 import io.doriball.modulecore.domain.store.StoreEventRule
-import io.doriball.modulecore.domain.store.StoreEventRuleStage
-import io.doriball.modulecore.enums.StageType
 import io.doriball.moduleinfrastructure.persistence.entity.StageDocument
 import io.doriball.moduleinfrastructure.persistence.entity.StoreEventRuleDocument
 import io.doriball.moduleinfrastructure.persistence.util.DocumentConvertUtil
@@ -41,7 +39,8 @@ class StoreEventRuleQueryPersistenceAdapter(val repository: StoreEventRuleMongoR
         name = create.name,
         dayOfWeek = create.dayOfWeek,
         scheduledAt = create.scheduledAt,
-        official = create.official,
+        category = create.category,
+        capacity = create.capacity,
         entryFee = create.entryFee,
         stages = create.stages.map { toStageDocument(it) }
     )
@@ -58,7 +57,8 @@ class StoreEventRuleQueryPersistenceAdapter(val repository: StoreEventRuleMongoR
         name = update.name,
         dayOfWeek = update.dayOfWeek,
         scheduledAt = update.scheduledAt,
-        official = update.official,
+        category = update.category,
+        capacity = update.capacity,
         entryFee = update.entryFee,
         stages = update.stages.map { toStageDocument(it) }
     ).apply { id = update.id }

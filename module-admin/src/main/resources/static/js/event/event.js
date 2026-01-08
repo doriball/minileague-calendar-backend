@@ -18,7 +18,8 @@ let EventManager = {
             document.getElementById('modalEventName').innerText = event.name;
             document.getElementById('modalEventStore').innerText = `${event.storeName} (${event.region})`;
             document.getElementById('modalEventScheduledAt').innerText = event.scheduledAt.replace('T', ' ').substring(0, 16);
-            document.getElementById('modalEventOfficial').innerHTML = event.official ? '<span class="badge bg-primary">공인</span>' : '<span class="badge bg-secondary">비공인</span>';
+            document.getElementById('modalEventCategory').innerHTML = `<span class="badge ${event.displayCategoryBadge}">${event.displayCategory}</span>`;
+            document.getElementById('modalEventCapacity').innerText = event.capacity ? `${event.capacity}` : '불명확';
             document.getElementById('modalEventEntryFee').innerText = event.entryFee && event.entryFee > 0 ? `${new Intl.NumberFormat('ko-KR').format(event.entryFee)}원` : '무료';
 
             const tableBody = document.getElementById('eventStageTableBody');
@@ -72,8 +73,9 @@ let EventManager = {
         document.getElementById('editEventId').value = event.id;
         document.getElementById('editEventName').value = event.name;
         document.getElementById('editEventScheduledAt').value = event.scheduledAt.substring(0, 16);
-        document.getElementById('editEventOfficial').checked = event.official;
         document.getElementById('editEventStore').innerHTML = `<option value="${event.storeId}">${event.storeName} (${event.region})</option>`;
+        document.getElementById('editEventCategory').value = event.category;
+        document.getElementById('editEventCapacity').value = event.capacity;
         document.getElementById('editEventEntryFee').value = event.entryFee;
 
         const container = document.getElementById('editEventStageContainer');
@@ -103,7 +105,8 @@ let EventManager = {
             name: document.getElementById('createEventName').value,
             storeId: document.getElementById('createEventStore').value,
             scheduledAt: document.getElementById('createEventScheduledAt').value + ":00",
-            official: document.getElementById('createEventOfficial').checked,
+            category: document.getElementById('createEventCategory').value,
+            capacity: document.getElementById('createEventCapacity').value,
             entryFee: document.getElementById('createEventEntryFee').value,
             stages: Array.from(document.querySelectorAll('#createEventStageContainer .event-stage-row')).map((r, i) => ({
                 stageNo: i + 1,
@@ -122,7 +125,8 @@ let EventManager = {
         const data = {
             name: document.getElementById('editEventName').value, scheduledAt: time,
             storeId: document.getElementById('editEventStore').value,
-            official: document.getElementById('editEventOfficial').checked,
+            category: document.getElementById('editEventCategory').value,
+            capacity: document.getElementById('editEventCapacity').value,
             entryFee: document.getElementById('editEventEntryFee').value,
             stages: Array.from(document.querySelectorAll('#editEventStageContainer .event-stage-row')).map((r, i) => ({
                 stageNo: i + 1,

@@ -15,12 +15,6 @@
                             <label for="createEventName" class="form-label fw-bold">이벤트명</label>
                             <input type="text" class="form-control" id="createEventName" required>
                         </div>
-                        <div class="col-md-4 mb-3">
-                            <label class="form-label fw-bold">공인 여부</label>
-                            <div class="form-check form-switch mt-2">
-                                <input class="form-check-input" type="checkbox" id="createEventOfficial">
-                            </div>
-                        </div>
                         <div class="col-md-6 mb-3">
                             <label for="createEventRegion" class="form-label fw-bold">지역 선택</label>
                             <select class="form-select" id="createEventRegion" onchange="loadStoresByRegion(this.value)" required>
@@ -38,8 +32,19 @@
                             <label for="createEventScheduledAt" class="form-label fw-bold">일시</label>
                             <input type="datetime-local" class="form-control" id="createEventScheduledAt" required>
                         </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="createEventCategory" class="form-label fw-bold">카테고리 선택</label>
+                            <select class="form-select" id="createEventCategory" required>
+                                <option value="">카테고리를 선택하세요</option>
+                                <option th:each="category : ${eventCategories}" th:value="${category.value.name()}" th:text="${category.key}"></option>
+                            </select>
+                        </div>
                         <div class="col-md-6 mb-3">
-                            <label for="createEventScheduledAt" class="form-label fw-bold">참가비</label>
+                            <label for="createEventCapacity" class="form-label fw-bold">정원</label>
+                            <input type="number" class="form-control" id="createEventCapacity">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="createEventEntryFee" class="form-label fw-bold">참가비</label>
                             <input type="number" class="form-control" id="createEventEntryFee">
                         </div>
                     </div>

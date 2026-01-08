@@ -16,12 +16,6 @@
                             <label for="editEventName" class="form-label fw-bold">이벤트명</label>
                             <input type="text" class="form-control" id="editEventName" required>
                         </div>
-                        <div class="col-md-4 mb-3">
-                            <label class="form-label fw-bold">공인 여부</label>
-                            <div class="form-check form-switch mt-2">
-                                <input class="form-check-input" type="checkbox" id="editEventOfficial">
-                            </div>
-                        </div>
                         <div class="col-md-6 mb-3">
                             <label for="editEventStore" class="form-label fw-bold">매장</label>
                             <select class="form-select" id="editEventStore" disabled>
@@ -32,8 +26,22 @@
                             <label for="editEventScheduledAt" class="form-label fw-bold">일시</label>
                             <input type="datetime-local" class="form-control" id="editEventScheduledAt" required>
                         </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="editEventCategory" class="form-label fw-bold">카테고리 선택</label>
+                            <select class="form-select" id="editEventCategory" required>
+                                <option th:each="category : ${eventCategories}"
+                                        th:value="${category.value.name()}"
+                                        th:text="${category.key}"
+                                        th:selected="${event != null and category.value == event.category}">
+                                </option>
+                            </select>
+                        </div>
                         <div class="col-md-6 mb-3">
-                            <label for="editEventScheduledAt" class="form-label fw-bold">참가비</label>
+                            <label for="editEventCapacity" class="form-label fw-bold">정원</label>
+                            <input type="number" class="form-control" id="editEventCapacity">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="editEventEntryFee" class="form-label fw-bold">참가비</label>
                             <input type="number" class="form-control" id="editEventEntryFee">
                         </div>
                     </div>

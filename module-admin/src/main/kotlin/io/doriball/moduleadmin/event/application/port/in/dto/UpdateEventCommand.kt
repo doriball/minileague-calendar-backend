@@ -1,5 +1,6 @@
 package io.doriball.moduleadmin.event.application.port.`in`.dto
 
+import io.doriball.modulecore.enums.LeagueCategoryType
 import jakarta.validation.Valid
 import jakarta.validation.constraints.NotEmpty
 import jakarta.validation.constraints.NotNull
@@ -9,7 +10,8 @@ data class UpdateEventCommand(
     @NotEmpty val name: String,
     @NotEmpty val storeId: String,
     @NotNull val scheduledAt: LocalDateTime,
-    @NotNull val official: Boolean,
+    @NotNull val category: LeagueCategoryType,
+    val capacity: Int?,
     val entryFee: Long?,
     @NotEmpty val stages: List<@Valid UpdateEventStageCommand>,
 )

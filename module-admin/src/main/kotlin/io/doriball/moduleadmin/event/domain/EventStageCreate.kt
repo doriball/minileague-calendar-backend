@@ -1,9 +1,9 @@
-package io.doriball.moduleadmin.event.domain.model
+package io.doriball.moduleadmin.event.domain
 
-import io.doriball.moduleadmin.event.application.port.`in`.dto.UpdateEventStageCommand
+import io.doriball.moduleadmin.event.application.port.`in`.dto.CreateEventStageCommand
 import io.doriball.modulecore.enums.StageType
 
-class EventStageUpdate(
+class EventStageCreate(
     val stageNo: Int,
     val type: StageType,
     val roundCount: Int,
@@ -11,8 +11,8 @@ class EventStageUpdate(
 ) {
 
     companion object {
-        fun from(command: UpdateEventStageCommand): EventStageUpdate =
-            EventStageUpdate(
+        fun from(command: CreateEventStageCommand): EventStageCreate =
+            EventStageCreate(
                 stageNo = command.stageNo,
                 type = command.type,
                 roundCount = command.roundCount,

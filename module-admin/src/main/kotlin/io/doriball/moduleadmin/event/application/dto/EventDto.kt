@@ -1,6 +1,7 @@
 package io.doriball.moduleadmin.event.application.dto
 
 import io.doriball.modulecore.domain.event.Event
+import io.doriball.modulecore.enums.LeagueCategoryType
 import java.time.LocalDateTime
 
 class EventDto(
@@ -9,7 +10,7 @@ class EventDto(
     val region: String,
     val storeName: String,
     val scheduledAt: LocalDateTime,
-    val official: Boolean,
+    val category: LeagueCategoryType,
     val types: List<String>,
     val roundCount: Int,
     val gameCount: Int?,
@@ -22,13 +23,29 @@ class EventDto(
                 region = event.regionName,
                 storeName = event.storeName,
                 scheduledAt = event.scheduledAt,
-                official = event.official,
+                category = event.category,
                 types = event.stageTypes,
                 roundCount = event.roundCount,
                 gameCount = event.gameCount
             )
         }
     }
+
+    val displayCategory: String
+        get() = when (category) {
+            LeagueCategoryType.OFFICIAL -> "공인"
+            LeagueCategoryType.PRIVATE -> "사설"
+            LeagueCategoryType.EVENT -> "이벤트"
+            LeagueCategoryType.KOREAN_LEAGUE -> "코리안 리그"
+        }
+
+    val displayCategoryBadge: String
+        get() = when (category) {
+            LeagueCategoryType.OFFICIAL -> "bg-success"
+            LeagueCategoryType.PRIVATE -> "bg-secondary"
+            LeagueCategoryType.EVENT -> "bg-warning"
+            LeagueCategoryType.KOREAN_LEAGUE -> "bg-primary"
+        }
 
     val displayTypes: List<String> get() = types.map {
         when(it) {

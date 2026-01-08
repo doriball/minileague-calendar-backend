@@ -47,7 +47,7 @@ let StoreManager = {
         tableBody.innerHTML = '';
 
         if (!rules || rules.length === 0) {
-            tableBody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-3">등록된 정기 일정이 없습니다.</td></tr>';
+            tableBody.innerHTML = '<tr><td colspan="7" class="text-center text-muted py-3">등록된 정기 일정이 없습니다.</td></tr>';
             return;
         }
 
@@ -64,7 +64,9 @@ let StoreManager = {
                 </td>
                 <td><span class="badge bg-light text-dark border">${rule.dayOfWeek}</span></td>
                 <td>${displayTime}</td>
-                <td class="fw-bold">${rule.name} ${rule.official ? '<span class="badge bg-primary ms-1" style="font-size: 0.7rem;">공인</span>' : ''}</td>
+                <td class="fw-bold">${rule.name}</td>
+                <td><span class="badge ${rule.displayCategoryBadge}" style="font-size: 0.7rem;">${rule.displayCategory}</span></td>
+                <td>${rule.capacity ? rule.capacity : '불명확'}</td>
                 <td>${rule.entryFee && rule.entryFee > 0 ? `${new Intl.NumberFormat('ko-KR').format(rule.entryFee)}원` : '무료'}</td>
                 <td>
                     <button type="button" class="btn btn-sm btn-outline-secondary py-0 px-2 me-1 btn-rule-edit">수정</button>
@@ -78,7 +80,17 @@ let StoreManager = {
             detailTr.setAttribute('data-detail-id', rule.id);
 
             const stagesHtml = rule.stages.map(s => `<span class="badge border text-dark me-1">${s.stageNo}. ${s.type} (${s.roundCount}R/${s.gameCount}G)</span>`).join('');
-            detailTr.innerHTML = `<td colspan="5" class="p-0"><div class="detail-content-area p-3"><div class="rule-info-display"><div class="small"><strong>구성:</strong> ${stagesHtml || '없음'}</div></div></div></td>`;
+            detailTr.innerHTML = `
+                <td colspan="8" class="p-0">
+                    <div class="detail-content-area p-3">
+                        <div class="rule-info-display">
+                            <div class="small">
+                                <strong>구성:</strong> ${stagesHtml || '없음'}
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            `;
 
             const icon = tr.querySelector('i.bi');
             detailTr.addEventListener('show.bs.collapse', () => icon.classList.replace('bi-chevron-down', 'bi-chevron-up'));
@@ -125,7 +137,8 @@ let StoreManager = {
         document.getElementById('ruleName').value = rule.name;
         document.getElementById('ruleDayOfWeek').value = rule.dayOfWeek;
         document.getElementById('ruleScheduledAt').value = AdminCommon.formatTime(rule.scheduledAt);
-        document.getElementById('ruleOfficial').checked = rule.official;
+        document.getElementById('ruleCategory').value = rule.category;
+        document.getElementById('ruleCapacity').value = rule.capacity;
         document.getElementById('ruleEntryFee').value = rule.entryFee;
 
         const stageContainer = document.getElementById('stageListContainer');
@@ -160,7 +173,8 @@ let StoreManager = {
             name: document.getElementById('ruleName').value,
             dayOfWeek: document.getElementById('ruleDayOfWeek').value,
             scheduledAt: scheduledAt,
-            official: document.getElementById('ruleOfficial').checked,
+            category: document.getElementById('ruleCategory').value,
+            capacity: document.getElementById('ruleCapacity').value,
             entryFee: document.getElementById('ruleEntryFee').value,
             stages: Array.from(stageRows).map((r, i) => ({
                 stageNo: i + 1,

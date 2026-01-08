@@ -5,17 +5,16 @@ import io.doriball.moduleadmin.event.adapter.out.persistence.repository.EventSto
 import io.doriball.moduleadmin.event.adapter.out.persistence.repository.EventStoreRegionMongoRepository
 import io.doriball.moduleadmin.event.application.port.out.EventPort
 import io.doriball.moduleadmin.event.common.enums.EventKeywordSearchType
-import io.doriball.moduleadmin.event.domain.model.EventCreate
-import io.doriball.moduleadmin.event.domain.model.EventStageCreate
-import io.doriball.moduleadmin.event.domain.model.EventStageUpdate
-import io.doriball.moduleadmin.event.domain.model.EventUpdate
+import io.doriball.moduleadmin.event.domain.EventCreate
+import io.doriball.moduleadmin.event.domain.EventStageCreate
+import io.doriball.moduleadmin.event.domain.EventStageUpdate
+import io.doriball.moduleadmin.event.domain.EventUpdate
 import io.doriball.modulecore.domain.event.Event
 import io.doriball.modulecore.exception.NotFoundException
 import io.doriball.moduleinfrastructure.persistence.entity.EventDocument
 import io.doriball.moduleinfrastructure.persistence.entity.StageDocument
 import io.doriball.moduleinfrastructure.persistence.entity.StoreDocument
 import io.doriball.moduleinfrastructure.persistence.util.DocumentConvertUtil
-import org.slf4j.LoggerFactory
 import org.springframework.data.domain.Sort
 import org.springframework.data.mongodb.core.MongoOperations
 import org.springframework.data.mongodb.core.query.Criteria
@@ -31,10 +30,6 @@ class EventQueryPersistenceAdapter(
     val storeRepository: EventStoreMongoRepository,
     val storeRegionRepository: EventStoreRegionMongoRepository,
 ) : EventPort {
-
-    companion object {
-        var log = LoggerFactory.getLogger(EventQueryPersistenceAdapter::class.java)
-    }
 
     override fun getEvents(
         year: Int,
@@ -136,7 +131,8 @@ class EventQueryPersistenceAdapter(
         storeId = create.storeId,
         name = create.name,
         scheduledAt = create.scheduledAt,
-        official = create.official,
+        category = create.category,
+        capacity = create.capacity,
         entryFee = create.entryFee,
         stages = create.stages.map { toEventStageDocument(it) }.toList()
     )
@@ -152,7 +148,8 @@ class EventQueryPersistenceAdapter(
         storeId = update.storeId,
         name = update.name,
         scheduledAt = update.scheduledAt,
-        official = update.official,
+        category = update.category,
+        capacity = update.capacity,
         entryFee = update.entryFee,
         stages = update.stages.map { toEventStageDocument(it) }.toList()
     ).apply { id = update.id }

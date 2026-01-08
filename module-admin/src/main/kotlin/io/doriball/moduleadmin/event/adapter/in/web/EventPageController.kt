@@ -4,6 +4,7 @@ import io.doriball.moduleadmin.event.application.port.`in`.EventUseCase
 import io.doriball.moduleadmin.event.application.port.`in`.dto.ReadEventsCommand
 import io.doriball.moduleadmin.event.common.enums.EventKeywordSearchType
 import io.doriball.moduleadmin.store.application.port.`in`.StoreRegionUseCase
+import io.doriball.modulecore.enums.LeagueCategoryType
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Controller
 import org.springframework.ui.ModelMap
@@ -47,10 +48,17 @@ class EventPageController(
             "매장명" to EventKeywordSearchType.STORE
         )
         val storeRegions = storeRegionUseCase.getStoreRegions()
+        val eventCategories = mapOf(
+            "공인" to LeagueCategoryType.OFFICIAL,
+            "사설" to LeagueCategoryType.PRIVATE,
+            "이벤트" to LeagueCategoryType.EVENT,
+            "코리안리그" to LeagueCategoryType.KOREAN_LEAGUE,
+        )
 
         modelMap.addAttribute("events", events)
         modelMap.addAttribute("searchTypes", searchTypes)
         modelMap.addAttribute("storeRegions", storeRegions)
+        modelMap.addAttribute("eventCategories", eventCategories)
         modelMap.addAttribute("command", command)
 
         return "event/events"

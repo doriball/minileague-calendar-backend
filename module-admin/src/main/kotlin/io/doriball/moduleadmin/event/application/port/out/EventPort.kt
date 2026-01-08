@@ -1,8 +1,8 @@
 package io.doriball.moduleadmin.event.application.port.out
 
 import io.doriball.moduleadmin.event.common.enums.EventKeywordSearchType
-import io.doriball.moduleadmin.event.domain.model.EventCreate
-import io.doriball.moduleadmin.event.domain.model.EventUpdate
+import io.doriball.moduleadmin.event.domain.EventCreate
+import io.doriball.moduleadmin.event.domain.EventUpdate
 import io.doriball.modulecore.domain.event.Event
 
 interface EventPort {
