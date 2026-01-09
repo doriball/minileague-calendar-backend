@@ -4,7 +4,7 @@ on:
     branches:
       - main
     paths:
-      - module-admin
+      - module-admin/**
       - .github/workflows/dev-admin-cicd.yml
 
 jobs:
