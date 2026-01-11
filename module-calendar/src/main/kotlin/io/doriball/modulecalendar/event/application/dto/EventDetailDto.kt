@@ -13,7 +13,7 @@ class EventDetailDto(
     val category: LeagueCategoryType,
     val capacity: Int?,
     val entryFee: Long?,
-    val stages: List<EventDetailStageDto>,
+    val stages: List<EventStageDto>,
 ) {
 
     companion object {
@@ -27,7 +27,7 @@ class EventDetailDto(
                 category = event.category,
                 capacity = event.capacity,
                 entryFee = event.entryFee,
-                stages = event.stages.map { EventDetailStageDto.from(it) }.toList(),
+                stages = event.stages.map { EventStageDto.from(it) }.toList(),
             )
         }
     }
