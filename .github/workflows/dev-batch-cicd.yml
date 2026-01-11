@@ -4,7 +4,7 @@ on:
     branches:
       - main
     paths:
-      - module-batch
+      - module-batch/**
       - .github/workflows/dev-batch-cicd.yml
 
 jobs:
