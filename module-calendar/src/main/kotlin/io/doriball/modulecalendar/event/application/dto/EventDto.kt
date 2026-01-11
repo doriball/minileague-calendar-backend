@@ -11,9 +11,9 @@ class EventDto(
     val storeName: String,
     val scheduledAt: LocalDateTime,
     val category: LeagueCategoryType,
-    val types: List<String>,
-    val roundCount: Int,
-    val gameCount: Int?,
+    val capacity: Int?,
+    val entryFee: Long?,
+    val stages: List<EventStageDto>,
 ) {
     companion object {
         fun from(event: Event): EventDto {
@@ -24,9 +24,9 @@ class EventDto(
                 storeName = event.storeName,
                 scheduledAt = event.scheduledAt,
                 category = event.category,
-                types = event.stageTypes,
-                roundCount = event.roundCount,
-                gameCount = event.gameCount
+                capacity = event.capacity,
+                entryFee = event.entryFee,
+                stages = event.stages.map { EventStageDto.from(it) }.toList(),
             )
         }
     }
