@@ -69,7 +69,7 @@ class SecurityConfig(val customUserDetailsService: CustomUserDetailsService) {
     fun corsConfigurationSource(): CorsConfigurationSource {
         val corsConfigurationSource = CorsConfiguration().apply {
             allowedOrigins = listOf(
-                "http://dev-admin.doriball.com:9427", "https://dev-admin.doriball.com"
+                "https://dev-admin.doriball.com"
             )
             allowedMethods = listOf("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
             allowedHeaders = listOf("*")

@@ -47,7 +47,7 @@ let StoreManager = {
         tableBody.innerHTML = '';
 
         if (!rules || rules.length === 0) {
-            tableBody.innerHTML = '<tr><td colspan="7" class="text-center text-muted py-3">등록된 정기 일정이 없습니다.</td></tr>';
+            tableBody.innerHTML = '<tr><td colspan="8" class="text-center text-muted py-3">등록된 정기 일정이 없습니다.</td></tr>';
             return;
         }
 
@@ -204,5 +204,10 @@ let StoreManager = {
                 this.renderRules(storeId);
             });
         }
+    },
+
+    deleteStore: function (id) {
+        if (!confirm('정말 삭제하시겠습니까?')) return;
+        axios.delete('/api/v1/stores/' + id).then(() => location.reload()).catch(err => AdminCommon.handleError(err, '삭제 실패'));
     }
 };
