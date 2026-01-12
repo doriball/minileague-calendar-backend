@@ -50,7 +50,7 @@ class EventPageController(
         val storeRegions = storeRegionUseCase.getStoreRegions()
         val eventCategories = mapOf(
             "공인" to LeagueCategoryType.OFFICIAL,
-            "사설" to LeagueCategoryType.PRIVATE,
+            "비공인" to LeagueCategoryType.UNOFFICIAL,
             "이벤트" to LeagueCategoryType.EVENT,
             "코리안리그" to LeagueCategoryType.KOREAN_LEAGUE,
         )

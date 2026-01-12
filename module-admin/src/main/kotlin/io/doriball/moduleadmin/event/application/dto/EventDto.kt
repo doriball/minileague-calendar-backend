@@ -34,7 +34,7 @@ class EventDto(
     val displayCategory: String
         get() = when (category) {
             LeagueCategoryType.OFFICIAL -> "공인"
-            LeagueCategoryType.PRIVATE -> "사설"
+            LeagueCategoryType.UNOFFICIAL -> "비공인"
             LeagueCategoryType.EVENT -> "이벤트"
             LeagueCategoryType.KOREAN_LEAGUE -> "코리안 리그"
         }
@@ -42,7 +42,7 @@ class EventDto(
     val displayCategoryBadge: String
         get() = when (category) {
             LeagueCategoryType.OFFICIAL -> "bg-success"
-            LeagueCategoryType.PRIVATE -> "bg-secondary"
+            LeagueCategoryType.UNOFFICIAL -> "bg-secondary"
             LeagueCategoryType.EVENT -> "bg-warning"
             LeagueCategoryType.KOREAN_LEAGUE -> "bg-primary"
         }
