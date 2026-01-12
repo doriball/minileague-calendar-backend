@@ -11,6 +11,11 @@ spring:
   mongodb:
     uri: mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_URI}:${MONGO_PORT}/${MONGO_DB}?authSource=${MONGO_DB}&authMechanism=SCRAM-SHA-1
 
+doriball:
+  management:
+    window_days: ${WINDOW_DAYS}
+    chunk_size: ${CHUNK_SIZE}
+
 ---
 
 spring:

@@ -13,6 +13,7 @@ import org.springframework.batch.core.repository.JobRepository
 import org.springframework.batch.core.step.Step
 import org.springframework.batch.core.step.builder.StepBuilder
 import org.springframework.batch.infrastructure.support.transaction.ResourcelessTransactionManager
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.mongodb.core.MongoTemplate
@@ -20,13 +21,12 @@ import org.springframework.transaction.PlatformTransactionManager
 
 @Configuration
 class BatchConfiguration(
-    val mongoTemplate: MongoTemplate
+    val mongoTemplate: MongoTemplate,
+    @Value("\${doriball.management.window_days}")
+    var windowDays: Long,
+    @Value("\${doriball.management.chunk_size}")
+    var chunkSize: Int,
 ) {
-
-    companion object {
-        const val CHUNK_SIZE = 100
-        const val WINDOW_DAYS = 7L
-    }
 
     // TODO :: 추후 ReplicaSet + Transaction 처리를 하게 된다면 MongoTransactionManager로 변경
     @Bean
@@ -47,7 +47,7 @@ class BatchConfiguration(
         jobRepository: JobRepository,
         transactionManager: PlatformTransactionManager,
     ): Step = StepBuilder("eventCreateStep", jobRepository)
-        .chunk<StoreEventRuleDocument, List<EventDocument>>(CHUNK_SIZE)
+        .chunk<StoreEventRuleDocument, List<EventDocument>>(chunkSize)
         .reader(eventRuleReader())
         .processor(eventGenerationProcessor())
         .writer(eventWriter())
@@ -56,11 +56,11 @@ class BatchConfiguration(
 
     @Bean
     @StepScope
-    fun eventRuleReader(): EventRuleReader = EventRuleReader(CHUNK_SIZE, mongoTemplate)
+    fun eventRuleReader(): EventRuleReader = EventRuleReader(chunkSize, mongoTemplate)
 
     @Bean
     @StepScope
-    fun eventGenerationProcessor(): EventGenerationProcessor = EventGenerationProcessor(WINDOW_DAYS, mongoTemplate)
+    fun eventGenerationProcessor(): EventGenerationProcessor = EventGenerationProcessor(windowDays, mongoTemplate)
 
     @Bean
     @StepScope
