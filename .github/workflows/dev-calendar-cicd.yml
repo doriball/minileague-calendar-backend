@@ -30,3 +30,4 @@ jobs:
           gitops-branch: main
           gitops-values-directory: environments/dev/apps/calendar-values.yml
           ssh-key: ${{ secrets.GITOPS_SSH_KEY }}
+          commit-message: "chore: calendar dev image update"
