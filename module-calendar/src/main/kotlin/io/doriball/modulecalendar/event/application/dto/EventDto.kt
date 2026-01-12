@@ -15,6 +15,7 @@ class EventDto(
     val entryFee: Long?,
     val stages: List<EventStageDto>,
 ) {
+
     companion object {
         fun from(event: Event): EventDto {
             return EventDto(
