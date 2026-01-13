@@ -16,6 +16,7 @@ open class EventGenerationProcessor(
     private val mongoTemplate: MongoTemplate,
 ) : ItemProcessor<StoreEventRuleDocument, List<EventDocument>> {
 
+    // TODO :: 추후 단순 Insert가 아닌 Update도 고려
     override fun process(item: StoreEventRuleDocument): List<EventDocument>? {
         val today = LocalDate.now()
         val nDaysLater = today.plusDays(windowDays)
