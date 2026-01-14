@@ -8,7 +8,7 @@ class StoreEventRuleDto(
     val scheduledAt: LocalTime,
     val category: LeagueCategoryType,
     val capacity: Int?,
-    val entryFee: Long?,
+    val entryFee: Long? = 0L,
     val types: List<String>,
     val roundCount: Int,
     val gameCount: Int?,

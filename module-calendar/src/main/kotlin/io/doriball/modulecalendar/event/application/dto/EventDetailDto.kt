@@ -12,7 +12,7 @@ class EventDetailDto(
     val scheduledAt: LocalDateTime,
     val category: LeagueCategoryType,
     val capacity: Int?,
-    val entryFee: Long?,
+    val entryFee: Long? = 0L,
     val stages: List<EventStageDto>,
 ) {
 
