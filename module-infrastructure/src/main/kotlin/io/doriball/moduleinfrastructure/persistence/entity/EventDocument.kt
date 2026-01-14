@@ -13,7 +13,7 @@ class EventDocument(
     val category: LeagueCategoryType,
     val capacity: Int?,
     val stages: List<StageDocument> = listOf(),
-    val entryFee: Long?,
+    val entryFee: Long? = 0L,
 ) : BaseTimeDocument() {
 
     @Id var id: String? = null

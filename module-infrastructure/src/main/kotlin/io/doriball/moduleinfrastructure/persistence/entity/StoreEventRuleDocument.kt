@@ -15,7 +15,7 @@ class StoreEventRuleDocument(
     val category: LeagueCategoryType,
     val capacity: Int?,
     val stages: List<StageDocument>,
-    val entryFee: Long?,
+    val entryFee: Long? = 0L,
 ): BaseTimeDocument() {
 
     @Id var id: String? = null
