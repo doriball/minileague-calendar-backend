@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController
 class NoticeController(val noticeUseCase: NoticeUseCase) {
 
     companion object {
-        const val BASE_PATH = "/api/v1/notices"
+        const val BASE_PATH = "/v1/notices"
     }
 
     @GetMapping(BASE_PATH)

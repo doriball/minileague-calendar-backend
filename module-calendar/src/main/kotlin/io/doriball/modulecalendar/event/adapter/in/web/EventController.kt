@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController
 class EventController(val eventUseCase: EventUseCase) {
 
     companion object {
-        const val BASE_PATH = "/api/v1/events"
+        const val BASE_PATH = "/v1/events"
     }
 
     @GetMapping(BASE_PATH)

@@ -21,7 +21,7 @@ class SecurityConfig {
     fun corsConfigurationSource(): CorsConfigurationSource {
         val corsConfigurationSource = CorsConfiguration().apply {
             allowedOrigins = listOf(
-                "https://api.doriball.com", "https://dev-api.doriball.com", "https://dev-api2.doriball.com",
+                "https://api.doriball.com", "https://dev-api.doriball.com",
                 "http://localhost:3000", "http://localhost:8080"
             )
             allowedMethods = listOf("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")

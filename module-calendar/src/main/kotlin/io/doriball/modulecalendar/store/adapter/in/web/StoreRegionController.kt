@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 class StoreRegionController(val storeRegionUseCase: StoreRegionUseCase) {
 
     companion object {
-        const val BASE_PATH = "/api/v1/store-regions"
+        const val BASE_PATH = "/v1/store-regions"
     }
 
     @GetMapping(BASE_PATH)
