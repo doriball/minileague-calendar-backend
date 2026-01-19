@@ -2,7 +2,7 @@ name: Batch Dev CI / CD Pipeline
 on:
   push:
     branches:
-      - main
+      - dev
     paths:
       - module-batch/**
       - .github/workflows/dev-batch-cicd.yml
