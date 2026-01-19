@@ -92,16 +92,6 @@ class StoreInitializer(
 
             storeMongoRepository.save(
                 toStoreDocument(
-                    name = "장한평 카드킹덤 마린포드",
-                    regionNo = 0,
-                    address = "서울시 동대문구 장한로 37 3층",
-                    mapInformation = null,
-                    sns = null
-                )
-            )
-
-            storeMongoRepository.save(
-                toStoreDocument(
                     name = "이수 듀얼파크",
                     regionNo = 0,
                     address = "서울시 동작구 동작대로33가길 5 삼정빌딩 지하 1층",

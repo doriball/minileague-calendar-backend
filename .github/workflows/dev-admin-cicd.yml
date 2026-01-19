@@ -2,7 +2,7 @@ name: Admin Dev CI / CD Pipeline
 on:
   push:
     branches:
-      - main
+      - dev
     paths:
       - module-admin/**
       - .github/workflows/dev-admin-cicd.yml
