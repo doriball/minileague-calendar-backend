@@ -2,7 +2,7 @@ name: Calendar Dev CI / CD Pipeline
 on:
   push:
     branches:
-      - main
+      - dev
     paths:
       - module-calendar/**
       - .github/workflows/dev-calendar-cicd.yml

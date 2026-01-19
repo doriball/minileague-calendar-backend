@@ -1,11 +1,11 @@
-name: Batch Dev CI / CD Pipeline
+name: Admin Prod CI / CD Pipeline
 on:
   push:
     branches:
-      - dev
+      - main
     paths:
-      - module-batch/**
-      - .github/workflows/dev-batch-cicd.yml
+      - module-admin/**
+      - .github/workflows/prod-admin-cicd.yml
 
 jobs:
   CI-CD:
@@ -14,20 +14,20 @@ jobs:
       - name: Full CI / CD Step
         uses: doriball/doriball-github-actions/.github/actions/backend/integration/backend-cicd@main
         with:
-          env-name: dev
-          service-name: minileague-calendar-batch
+          env-name: prod
+          service-name: minileague-calendar-admin
           slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
           java-version: 21
           distribution: temurin
-          working-directory: module-batch
-          build-command: ./gradlew :module-batch:clean :module-batch:bootJar
+          working-directory: module-admin
+          build-command: ./gradlew :module-admin:clean :module-admin:bootJar
           docker-username: ${{ secrets.DOCKER_USERNAME }}
           docker-password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
-          docker-repository: mrcocoball/minileague-calendar-batch
-          tag-prefix: dev
-          dockerfile-directory: module-batch
+          docker-repository: mrcocoball/minileague-calendar-admin
+          tag-prefix: prod
+          dockerfile-directory: module-admin
           gitops-repository: git@github.com:doriball/minileague-calendar-infrastructure.git
           gitops-branch: main
-          gitops-values-directory: environments/dev/apps/batch-values.yml
+          gitops-values-directory: environments/prod/apps/admin-values.yml
           ssh-key: ${{ secrets.GITOPS_SSH_KEY }}
-          commit-message: "chore: batch dev image update"
+          commit-message: "chore: admin prod image update"

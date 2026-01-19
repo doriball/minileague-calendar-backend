@@ -64,3 +64,18 @@ logging:
 
 ---
 
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb:
+            core:
+              MongoTemplate: DEBUG
+
+---
