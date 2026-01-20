@@ -69,18 +69,18 @@ let EventManager = {
         });
     },
 
-    openEditModal: function (event) {
-        document.getElementById('editEventId').value = event.id;
-        document.getElementById('editEventName').value = event.name;
-        document.getElementById('editEventScheduledAt').value = event.scheduledAt.substring(0, 16);
-        document.getElementById('editEventStore').innerHTML = `<option value="${event.storeId}">${event.storeName} (${event.region})</option>`;
-        document.getElementById('editEventCategory').value = event.category;
-        document.getElementById('editEventCapacity').value = event.capacity;
-        document.getElementById('editEventEntryFee').value = event.entryFee;
+    openEditModal: function (data) {
+        document.getElementById('editEventId').value = data.id;
+        document.getElementById('editEventName').value = data.name;
+        document.getElementById('editEventScheduledAt').value = data.scheduledAt.substring(0, 16);
+        document.getElementById('editEventStore').innerHTML = `<option value="${data.storeId}">${data.storeName} (${data.region})</option>`;
+        document.getElementById('editEventCategory').value = data.category;
+        document.getElementById('editEventCapacity').value = data.capacity;
+        document.getElementById('editEventEntryFee').value = data.entryFee;
 
         const container = document.getElementById('editEventStageContainer');
         container.innerHTML = '';
-        if (event.stages?.length > 0) event.stages.forEach(s => this.addEventStageRow('edit', s));
+        if (data.stages?.length > 0) data.stages.forEach(s => this.addEventStageRow('edit', s));
         else this.addEventStageRow('edit');
 
         this.modals.detail.hide();
