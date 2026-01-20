@@ -41,7 +41,7 @@ class StoreRestController(
         return APIResponseUtil.successResponse()
     }
 
-    @PostMapping("$BASE_PATH/{storeId}")
+    @PutMapping("$BASE_PATH/{storeId}")
     fun updateStore(@PathVariable storeId: String, @Valid @RequestBody command: UpdateStoreCommand): CommonResponse {
         storeUseCase.updateStore(storeId, command)
         return APIResponseUtil.successResponse()

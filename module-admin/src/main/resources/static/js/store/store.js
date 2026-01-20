@@ -35,7 +35,7 @@ let StoreManager = {
             this.innerRenderRules(id, this.currentStoreRules);
 
             document.getElementById('btnDeleteStore').onclick = () => this.deleteStore(id);
-            document.getElementById('btnEditStore').onclick = () => this.openEditModal(id);
+            document.getElementById('btnEditStore').onclick = () => this.openEditModal(store);
 
             this.modals.detail.show();
         }).catch(err => AdminCommon.handleError(err, '정보를 불러오지 못했습니다.'));
@@ -204,6 +204,50 @@ let StoreManager = {
                 this.renderRules(storeId);
             });
         }
+    },
+
+    openEditModal: function (data) {
+        document.getElementById('editStoreId').value = data.id;
+        document.getElementById('editStoreName').value = data.name;
+        document.getElementById('editStoreAddress').value = data.address;
+        document.getElementById('editStoreMap').value = data.map;
+        document.getElementById('editStoreSns').value = data.sns;
+
+        const select = document.getElementById('editStoreRegionNo');
+        const options = select.options;
+
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].text === data.region) { // data.region: REST API에서 온 지역 이름
+                options[i].selected = true;
+                break;
+            }
+        }
+
+        this.modals.detail.hide();
+        this.modals.edit.show();
+    },
+
+    submitStoreCreate: function () {
+        const data = {
+            name: document.getElementById('createStoreName').value,
+            regionNo: document.getElementById('createStoreRegionNo').value,
+            address: document.getElementById('createStoreAddress').value,
+            map: document.getElementById('createStoreMap').value,
+            sns: document.getElementById('createStoreSns').value
+        };
+        axios.post('/api/v1/stores', data).then(() => location.reload()).catch(err => AdminCommon.handleError(err, '등록 실패'));
+    },
+
+    submitStoreEdit: function () {
+        const id = document.getElementById('editStoreId').value;
+        const data = {
+            name: document.getElementById('editStoreName').value,
+            regionNo: document.getElementById('editStoreRegionNo').value,
+            address: document.getElementById('editStoreAddress').value,
+            map: document.getElementById('editStoreMap').value,
+            sns: document.getElementById('editStoreSns').value
+        };
+        axios.put('/api/v1/stores/' + id, data).then(() => location.reload()).catch(err => AdminCommon.handleError(err, '수정 실패'));
     },
 
     deleteStore: function (id) {
