@@ -33,6 +33,7 @@ class SecurityConfig(val customUserDetailsService: CustomUserDetailsService) {
                 auth
                     .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                     .requestMatchers("/login").permitAll()
+                    .requestMatchers("/api/v1/probe/**").permitAll()
                     .anyRequest().authenticated()
             }
             .formLogin { form ->
