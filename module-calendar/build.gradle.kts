@@ -35,6 +35,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-testcontainers")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testImplementation("org.testcontainers:testcontainers-junit-jupiter")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.4.0")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
@@ -44,6 +45,13 @@ kotlin {
     }
 }
 
+val mockkAgent = configurations.create("mockitoAgent")
+dependencies {
+    mockkAgent("org.mockito:mockito-core") { isTransitive = false }
+}
+
 tasks.withType<Test> {
     useJUnitPlatform()
+    // Mockito를 Java Agent로 등록
+    jvmArgs("-javaagent:${mockkAgent.asPath}")
 }
