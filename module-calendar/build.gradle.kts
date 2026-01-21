@@ -54,4 +54,10 @@ tasks.withType<Test> {
     useJUnitPlatform()
     // Mockito를 Java Agent로 등록
     jvmArgs("-javaagent:${mockkAgent.asPath}")
+
+    testLogging {
+        events("passed", "skipped", "failed", "standardOut", "standardError")
+        showStandardStreams = true
+        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+    }
 }
