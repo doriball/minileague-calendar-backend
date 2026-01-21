@@ -15,11 +15,11 @@ class StoreQueryPersistenceAdapter(
     val storeRegionRepository: StoreRegionMongoRepository
 ) : StorePort {
 
-    override fun getStores(regionId: Int?): List<Store> {
-        val stores = if (regionId == null) storeRepository.findAll() else storeRepository.findByRegionNo(regionId)
+    override fun getStores(regionNo: Int?): List<Store> {
+        val stores = if (regionNo == null) storeRepository.findAll() else storeRepository.findByRegionNo(regionNo)
         if (stores.isEmpty()) return emptyList()
 
-        return if (regionId == null) {
+        return if (regionNo == null) {
             val regionNos = stores.map { it.regionNo }.distinct()
             val regionMap = storeRegionRepository.findByRegionNoIn(regionNos)
                 .associateBy { it.regionNo }
@@ -32,7 +32,7 @@ class StoreQueryPersistenceAdapter(
                 )
             }
         } else {
-            val regionDocument = storeRegionRepository.findByRegionNo(regionId) ?: return emptyList()
+            val regionDocument = storeRegionRepository.findByRegionNo(regionNo) ?: return emptyList()
             val region = DocumentConvertUtil.convertToStoreRegion(regionDocument)
             stores.map { DocumentConvertUtil.convertToStore(it, region) }
         }

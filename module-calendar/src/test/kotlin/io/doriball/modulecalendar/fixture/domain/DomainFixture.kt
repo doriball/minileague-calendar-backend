@@ -2,6 +2,7 @@ package io.doriball.modulecalendar.fixture.domain
 
 import io.doriball.modulecore.domain.event.Event
 import io.doriball.modulecore.domain.event.EventStage
+import io.doriball.modulecore.domain.operation.Notice
 import io.doriball.modulecore.domain.store.Store
 import io.doriball.modulecore.domain.store.StoreEventRule
 import io.doriball.modulecore.domain.store.StoreEventRuleStage
@@ -100,4 +101,16 @@ fun storeEventRuleStageFixture(
     type = type,
     roundCount = roundCount,
     gameCountPerRound = gameCountPerRound
+)
+
+fun noticeFixture(
+    id: String = "notice-1",
+    title: String = "신규 매장 오픈 안내",
+    content: String = "용산역 아이파크몰에 새로운 카드샵이 오픈했습니다."
+): Notice = Notice(
+    id = id,
+    title = title,
+    content = content,
+    createdAt = LocalDateTime.now(),
+    modifiedAt = LocalDateTime.now()
 )
