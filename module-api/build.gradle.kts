@@ -23,6 +23,7 @@ repositories {
 
 dependencies {
     api("org.springframework.boot:spring-boot-starter-web")
+    implementation(project(":module-core"))
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("tools.jackson.module:jackson-module-kotlin")
     implementation("io.jsonwebtoken:jjwt-api:0.13.0")

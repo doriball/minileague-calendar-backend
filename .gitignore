@@ -42,3 +42,4 @@ out/
 docker/mongodb/.env
 docker/mongodb/data
 docker/temp-docker-compose/.env
+docker/redis/.env
