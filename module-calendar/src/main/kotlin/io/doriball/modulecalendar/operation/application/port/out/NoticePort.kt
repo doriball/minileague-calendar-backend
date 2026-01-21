@@ -6,6 +6,6 @@ interface NoticePort {
 
     fun getNotices(page: Int?, size: Int?): Pair<List<Notice>, Long>
 
-    fun getNoticeDetail(announcementId: String): Notice?
+    fun getNoticeDetail(noticeId: String): Notice?
 
 }
