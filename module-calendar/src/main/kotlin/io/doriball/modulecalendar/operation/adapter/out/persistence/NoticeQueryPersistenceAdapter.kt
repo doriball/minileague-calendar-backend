@@ -26,8 +26,8 @@ class NoticeQueryPersistenceAdapter(val repository: NoticeMongoRepository) : Not
         )
     }
 
-    override fun getNoticeDetail(announcementId: String): Notice? {
-        val announcementDocument = repository.findByIdOrNull(announcementId) ?: return null
+    override fun getNoticeDetail(noticeId: String): Notice? {
+        val announcementDocument = repository.findByIdOrNull(noticeId) ?: return null
         return DocumentConvertUtil.convertToNotice(announcementDocument)
     }
 

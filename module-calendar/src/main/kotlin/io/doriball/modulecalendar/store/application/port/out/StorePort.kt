@@ -4,7 +4,7 @@ import io.doriball.modulecore.domain.store.Store
 
 interface StorePort {
 
-    fun getStores(regionId: Int?): List<Store>
+    fun getStores(regionNo: Int?): List<Store>
 
     fun getStoreDetail(storeId: String): Store?
 
