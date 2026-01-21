@@ -20,7 +20,7 @@ jobs:
           java-version: 21
           distribution: temurin
           working-directory: module-calendar
-          build-command: ./gradlew :module-calendar:clean :module-calendar:bootJar
+          build-command: ./gradlew :module-calendar:clean :module-calendar:test :module-calendar:bootJar
           docker-username: ${{ secrets.DOCKER_USERNAME }}
           docker-password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
           docker-repository: mrcocoball/minileague-calendar-calendar-api

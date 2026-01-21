@@ -42,8 +42,15 @@ kotlin {
     }
 }
 
+val mockkAgent = configurations.create("mockitoAgent")
+dependencies {
+    mockkAgent("org.mockito:mockito-core") { isTransitive = false }
+}
+
 tasks.withType<Test> {
     useJUnitPlatform()
+    // Mockito를 Java Agent로 등록
+    jvmArgs("-javaagent:${mockkAgent.asPath}")
 }
 
 tasks.getByName<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
