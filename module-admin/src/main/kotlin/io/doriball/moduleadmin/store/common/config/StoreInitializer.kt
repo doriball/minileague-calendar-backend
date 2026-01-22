@@ -5,8 +5,10 @@ import io.doriball.moduleadmin.store.adapter.out.persistence.repository.StoreReg
 import io.doriball.moduleinfrastructure.persistence.entity.StoreDocument
 import io.doriball.moduleinfrastructure.persistence.entity.StoreRegionDocument
 import jakarta.annotation.PostConstruct
+import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Component
 
+@Profile("!test")
 @Component
 class StoreInitializer(
     val storeMongoRepository: StoreMongoRepository,
