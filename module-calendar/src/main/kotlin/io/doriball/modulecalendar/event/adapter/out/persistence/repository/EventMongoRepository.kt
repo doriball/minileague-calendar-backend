@@ -8,6 +8,6 @@ interface EventMongoRepository : MongoRepository<EventDocument, String> {
 
     fun findByScheduledAtBetween(start: LocalDateTime, end: LocalDateTime): List<EventDocument>
 
-    fun findByScheduledAtBetweenAndStoreIdIn(start: LocalDateTime, end: LocalDateTime, storeIds: List<String>): List<EventDocument>
+    fun findByScheduledAtBetweenAndPlaceIdIn(start: LocalDateTime, end: LocalDateTime, placeIds: List<String>): List<EventDocument>
 
 }
