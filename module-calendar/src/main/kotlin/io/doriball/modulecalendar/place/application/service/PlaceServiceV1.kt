@@ -14,12 +14,12 @@ import org.springframework.stereotype.Service
 class PlaceServiceV1(val placePort: PlacePort, val placeEventRulePort: PlaceEventRulePort) : PlaceUseCase {
 
     override fun getStores(command: ReadStoresCommand): List<StoreDto> {
-        val stores = placePort.getStores(command.regionNo)
+        val stores = placePort.getStorePlaces(command.regionNo)
         return stores.map { StoreDto.from(it) }
     }
 
     override fun getStoreDetail(command: ReadStoreDetailCommand): StoreDetailDto {
-        val store = placePort.getStoreDetail(command.storeId) ?: throw NotFoundException();
+        val store = placePort.getStorePlaceDetail(command.storeId) ?: throw NotFoundException();
         return StoreDetailDto.from(store, placeEventRulePort.getPlaceEventRules(store.id))
     }
 

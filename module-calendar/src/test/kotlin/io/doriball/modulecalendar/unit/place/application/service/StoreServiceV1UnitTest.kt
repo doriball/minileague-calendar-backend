@@ -35,7 +35,7 @@ class StoreServiceV1UnitTest {
 
         // given
         val command = ReadStoresCommand(1)
-        given(placePort.getStores(command.regionNo)).willReturn(listOf(placeFixture()))
+        given(placePort.getStorePlaces(command.regionNo)).willReturn(listOf(placeFixture()))
 
         // when
         val result = sut.getStores(command)
@@ -53,7 +53,7 @@ class StoreServiceV1UnitTest {
 
         // given
         val command = ReadStoreDetailCommand("place-1")
-        given(placePort.getStoreDetail(command.storeId)).willReturn(placeFixture())
+        given(placePort.getStorePlaceDetail(command.storeId)).willReturn(placeFixture())
         given(placeEventRulePort.getPlaceEventRules(command.storeId)).willReturn(listOf(placeEventRuleFixture()))
 
         // when
@@ -83,7 +83,7 @@ class StoreServiceV1UnitTest {
 
         // given
         val command = ReadStoreDetailCommand("place-2")
-        given(placePort.getStoreDetail(command.storeId)).willReturn(null)
+        given(placePort.getStorePlaceDetail(command.storeId)).willReturn(null)
 
         // when & then
         assertThrows<NotFoundException> {

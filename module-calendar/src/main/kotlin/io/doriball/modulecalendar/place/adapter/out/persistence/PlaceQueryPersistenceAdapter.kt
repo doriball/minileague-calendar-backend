@@ -16,7 +16,7 @@ class PlaceQueryPersistenceAdapter(
     val placeRegionRepository: PlaceRegionMongoRepository
 ) : PlacePort {
 
-    override fun getStores(regionNo: Int?): List<Place> {
+    override fun getStorePlaces(regionNo: Int?): List<Place> {
         val stores = if (regionNo == null) placeRepository.findAllByType(PlaceType.STORE) else placeRepository.findByRegionNoAndType(regionNo, PlaceType.STORE)
         if (stores.isEmpty()) return emptyList()
 
@@ -39,7 +39,7 @@ class PlaceQueryPersistenceAdapter(
         }
     }
 
-    override fun getStoreDetail(storeId: String): Place? {
+    override fun getStorePlaceDetail(storeId: String): Place? {
         val store = placeRepository.findByIdOrNull(storeId) ?: return null
         val storeRegion = placeRegionRepository.findByRegionNo(store.regionNo) ?: return null
         return DocumentConvertUtil.convertToPlace(store, DocumentConvertUtil.convertToPlaceRegion(storeRegion))

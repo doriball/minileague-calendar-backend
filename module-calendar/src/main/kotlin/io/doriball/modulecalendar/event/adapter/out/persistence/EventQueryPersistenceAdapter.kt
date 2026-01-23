@@ -35,11 +35,11 @@ class EventQueryPersistenceAdapter(
             val regions = placeRegionRepository.findByRegionNoIn(regionNos)
             Triple(events, places, regions)
         } else {
-            val stores = placeRepository.findByRegionNo(regionNo)
+            val places = placeRepository.findByRegionNo(regionNo)
             val region = placeRegionRepository.findByRegionNo(regionNo) ?: return emptyList()
-            val storeIds = stores.mapNotNull { it.id }
-            val events = eventRepository.findByScheduledAtBetweenAndPlaceIdIn(startedAt, endedAt, storeIds)
-            Triple(events, stores, listOf(region))
+            val placeIds = places.mapNotNull { it.id }
+            val events = eventRepository.findByScheduledAtBetweenAndPlaceIdIn(startedAt, endedAt, placeIds)
+            Triple(events, places, listOf(region))
         }
 
         if (eventDocuments.isEmpty()) return emptyList()
