@@ -16,7 +16,7 @@ let EventManager = {
         axios.get('/api/v1/events/' + id).then(res => {
             const event = res.data.data;
             document.getElementById('modalEventName').innerText = event.name;
-            document.getElementById('modalEventStore').innerText = `${event.storeName} (${event.region})`;
+            document.getElementById('modalEventPlace').innerText = `${event.placeName} (${event.region})`;
             document.getElementById('modalEventScheduledAt').innerText = event.scheduledAt.replace('T', ' ').substring(0, 16);
             document.getElementById('modalEventCategory').innerHTML = `<span class="badge ${event.displayCategoryBadge}">${event.displayCategory}</span>`;
             document.getElementById('modalEventCapacity').innerText = event.capacity ? `${event.capacity}` : '불명확';
@@ -43,29 +43,29 @@ let EventManager = {
 
     prepareEventCreate: function () {
         document.getElementById('eventCreateForm').reset();
-        const storeSelect = document.getElementById('createEventStore');
-        storeSelect.innerHTML = '<option value="">지역을 먼저 선택하세요</option>';
-        storeSelect.disabled = true;
+        const placeSelect = document.getElementById('createEventPlace');
+        placeSelect.innerHTML = '<option value="">지역을 먼저 선택하세요</option>';
+        placeSelect.disabled = true;
         document.getElementById('createEventStageContainer').innerHTML = '';
         this.addEventStageRow('create');
     },
 
-    loadStoresByRegion: function (regionNo) {
-        const storeSelect = document.getElementById('createEventStore');
+    loadPlacesByRegion: function (regionNo) {
+        const placeSelect = document.getElementById('createEventPlace');
         if (!regionNo) {
-            storeSelect.innerHTML = '<option value="">지역을 먼저 선택하세요</option>';
-            storeSelect.disabled = true;
+            placeSelect.innerHTML = '<option value="">지역을 먼저 선택하세요</option>';
+            placeSelect.disabled = true;
             return;
         }
-        axios.get('/api/v1/stores/summaries?regionNo=' + regionNo).then(res => {
-            storeSelect.innerHTML = '<option value="">매장을 선택하세요</option>';
+        axios.get('/api/v1/places/summaries?regionNo=' + regionNo).then(res => {
+            placeSelect.innerHTML = '<option value="">매장을 선택하세요</option>';
             res.data.data.forEach(s => {
                 const opt = document.createElement('option');
                 opt.value = s.id;
                 opt.text = s.name;
-                storeSelect.appendChild(opt);
+                placeSelect.appendChild(opt);
             });
-            storeSelect.disabled = false;
+            placeSelect.disabled = false;
         });
     },
 
@@ -73,7 +73,7 @@ let EventManager = {
         document.getElementById('editEventId').value = data.id;
         document.getElementById('editEventName').value = data.name;
         document.getElementById('editEventScheduledAt').value = data.scheduledAt.substring(0, 16);
-        document.getElementById('editEventStore').innerHTML = `<option value="${data.storeId}">${data.storeName} (${data.region})</option>`;
+        document.getElementById('editEventPlace').innerHTML = `<option value="${data.placeId}">${data.placeName} (${data.region})</option>`;
         document.getElementById('editEventCategory').value = data.category;
         document.getElementById('editEventCapacity').value = data.capacity;
         document.getElementById('editEventEntryFee').value = data.entryFee;
@@ -103,7 +103,7 @@ let EventManager = {
     submitEventCreate: function () {
         const data = {
             name: document.getElementById('createEventName').value,
-            storeId: document.getElementById('createEventStore').value,
+            placeId: document.getElementById('createEventPlace').value,
             scheduledAt: document.getElementById('createEventScheduledAt').value + ":00",
             category: document.getElementById('createEventCategory').value,
             capacity: document.getElementById('createEventCapacity').value,
@@ -124,7 +124,7 @@ let EventManager = {
         if (time.length === 16) time += ":00";
         const data = {
             name: document.getElementById('editEventName').value, scheduledAt: time,
-            storeId: document.getElementById('editEventStore').value,
+            placeId: document.getElementById('editEventPlace').value,
             category: document.getElementById('editEventCategory').value,
             capacity: document.getElementById('editEventCapacity').value,
             entryFee: document.getElementById('editEventEntryFee').value,

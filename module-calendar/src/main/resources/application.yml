@@ -76,6 +76,6 @@ logging:
         data:
           mongodb:
             core:
-              MongoTemplate: DEBUG
+              MongoTemplate: WARN
 
 ---

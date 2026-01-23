@@ -15,12 +15,12 @@ class EventUnitTest {
         val event = fixtureEvent()
 
         // when
-        val storeId = event.storeId
-        val storeName = event.storeName
+        val placeId = event.placeId
+        val storeName = event.placeName
         val regionName = event.regionName
 
         // then
-        assert(storeId == "1")
+        assert(placeId == "1")
         assert(storeName == "포켓몬 카드샵 용산")
         assert(regionName == "서울")
 

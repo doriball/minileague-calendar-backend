@@ -4,9 +4,11 @@ import io.doriball.moduleadmin.auth.adapter.out.persistence.entity.AdminUserDocu
 import io.doriball.moduleadmin.auth.adapter.out.persistence.repository.AdminUserMongoRepository
 import jakarta.annotation.PostConstruct
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.context.annotation.Profile
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
 
+@Profile("!test")
 @Component
 class AdminUserInitializer(
     val repository: AdminUserMongoRepository,

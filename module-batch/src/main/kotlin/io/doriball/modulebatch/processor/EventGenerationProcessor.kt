@@ -2,7 +2,7 @@ package io.doriball.modulebatch.processor
 
 import io.doriball.modulebatch.dto.EventTimeKey
 import io.doriball.moduleinfrastructure.persistence.entity.EventDocument
-import io.doriball.moduleinfrastructure.persistence.entity.StoreEventRuleDocument
+import io.doriball.moduleinfrastructure.persistence.entity.PlaceEventRuleDocument
 import org.springframework.batch.infrastructure.item.ItemProcessor
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.core.query.Criteria
@@ -14,16 +14,16 @@ import java.time.LocalTime
 open class EventGenerationProcessor(
     private val windowDays: Long,
     private val mongoTemplate: MongoTemplate,
-) : ItemProcessor<StoreEventRuleDocument, List<EventDocument>> {
+) : ItemProcessor<PlaceEventRuleDocument, List<EventDocument>> {
 
     // TODO :: 추후 단순 Insert가 아닌 Update도 고려
-    override fun process(item: StoreEventRuleDocument): List<EventDocument>? {
+    override fun process(item: PlaceEventRuleDocument): List<EventDocument>? {
         val today = LocalDate.now()
         val nDaysLater = today.plusDays(windowDays)
 
         val query = Query.query(
             Criteria
-                .where("storeId").`is`(item.storeId)
+                .where("placeId").`is`(item.placeId)
                 .and("scheduledAt").gte(today.atStartOfDay()).lte(nDaysLater.atTime(LocalTime.MAX))
         )
 
@@ -44,7 +44,7 @@ open class EventGenerationProcessor(
             if (itemDayOfWeek == current.dayOfWeek.name.substring(0, 3) && ruleKey !in existingKeys) {
                 targetEvents.add(
                     EventDocument(
-                        storeId = item.storeId,
+                        placeId = item.placeId,
                         name = item.name,
                         scheduledAt = LocalDateTime.of(current, item.scheduledAt),
                         category = item.category,

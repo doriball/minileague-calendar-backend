@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="modal" class="modal fade" id="placeCreateModal" tabindex="-1" aria-labelledby="placeCreateModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="placeCreateModalLabel">매장 신규 등록</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="placeCreateForm">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="createPlaceName" class="form-label fw-bold">매장명</label>
+                            <input type="text" class="form-control" id="createPlaceName" name="name" placeholder="매장명을 입력하세요" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="createPlaceRegionNo" class="form-label fw-bold">지역</label>
+                            <select class="form-select" id="createPlaceRegionNo" name="regionNo" required>
+                                <option value="">지역 선택</option>
+                                <option th:each="region : ${placeRegions}" th:value="${region.regionNo}" th:text="${region.name}"></option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="createPlaceType" class="form-label fw-bold">분류</label>
+                            <select class="form-select" id="createPlaceType" name="type" required>
+                                <option value="">분류 선택</option>
+                                <option th:each="type : ${placeTypes}" th:value="${type.value.name()}" th:text="${type.key}"></option>
+                            </select>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="createPlaceAddress" class="form-label fw-bold">주소</label>
+                            <input type="text" class="form-control" id="createPlaceAddress" name="address" placeholder="매장 상세 주소를 입력하세요" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="createPlaceMap" class="form-label fw-bold">지도 링크 (URL)</label>
+                            <input type="text" class="form-control" id="createPlaceMap" name="map" placeholder="네이버/구글 지도 링크">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="createPlaceSns" class="form-label fw-bold">SNS/홈페이지 (URL)</label>
+                            <input type="text" class="form-control" id="createPlaceSns" name="sns" placeholder="인스타그램, 카페 등">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                <button type="button" class="btn btn-primary" onclick="submitPlaceCreate()">등록 완료</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

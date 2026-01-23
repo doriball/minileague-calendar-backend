@@ -6,7 +6,7 @@ import java.time.LocalDateTime
 
 class EventCreate(
     val name: String,
-    val storeId: String,
+    val placeId: String,
     val scheduledAt: LocalDateTime,
     val category: LeagueCategoryType,
     val capacity: Int?,
@@ -18,7 +18,7 @@ class EventCreate(
         fun from(command: CreateEventCommand): EventCreate =
             EventCreate(
                 name = command.name,
-                storeId = command.storeId,
+                placeId = command.placeId,
                 scheduledAt = command.scheduledAt,
                 category = command.category,
                 capacity = command.capacity,
