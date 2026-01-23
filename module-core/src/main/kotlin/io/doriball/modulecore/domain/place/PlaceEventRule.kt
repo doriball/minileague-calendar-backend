@@ -7,7 +7,7 @@ import java.time.LocalTime
 
 class PlaceEventRule(
     val id: String,
-    val storeId: String,
+    val placeId: String,
     val name: String,
     val dayOfWeek: DayOfWeekType,
     val scheduledAt: LocalTime,

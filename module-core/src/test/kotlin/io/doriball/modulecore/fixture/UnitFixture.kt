@@ -48,7 +48,7 @@ fun fixturePlace() = Place(
 
 fun fixturePlaceEventRule() = PlaceEventRule(
     id = "1",
-    storeId = "1",
+    placeId = "1",
     name = "용산 월요일 미니리그",
     dayOfWeek = DayOfWeekType.MON,
     scheduledAt = LocalTime.of(19, 0),
