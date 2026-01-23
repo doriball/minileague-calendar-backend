@@ -6,12 +6,12 @@ import org.springframework.data.mongodb.core.mapping.Document
 
 @Document(collection = "place")
 class PlaceDocument(
-    val name: String,
-    val regionNo: Int,
-    val type: PlaceType,
-    val address: String,
-    val mapInformation: String?,
-    val sns: String?,
+    var name: String,
+    var regionNo: Int,
+    var type: PlaceType,
+    var address: String,
+    var mapInformation: String?,
+    var sns: String?,
 ) : BaseTimeDocument() {
 
     @Id var id: String? = null

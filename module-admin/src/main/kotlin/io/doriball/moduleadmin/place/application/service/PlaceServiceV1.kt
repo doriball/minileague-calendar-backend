@@ -31,8 +31,8 @@ class PlaceServiceV1(val placePort: PlacePort) : PlaceUseCase {
     }
 
     override fun getPlaceDetail(command: ReadPlaceDetailCommand): PlaceDetailDto {
-        val store = placePort.getPlaceDetail(command.placeId) ?: throw NotFoundException()
-        return PlaceDetailDto.from(store)
+        val place = placePort.getPlaceDetail(command.placeId) ?: throw NotFoundException()
+        return PlaceDetailDto.from(place)
     }
 
     @Transactional

@@ -51,11 +51,12 @@ class PlaceQueryPersistenceAdapter(
 
         val countQuery = Query.of(query).limit(0).skip(0)
         val total = mongoOperations.count(countQuery, PlaceDocument::class.java)
-        val places = mongoOperations.find(query, PlaceDocument::class.java).map { document ->
-            val region = placeRegionRepository.findByRegionNo(document.regionNo)
-                ?.let { DocumentConvertUtil.convertToPlaceRegion(it) }
-                ?: throw NotFoundException()
-            DocumentConvertUtil.convertToPlace(document, region)
+        val placeDocuments = mongoOperations.find(query, PlaceDocument::class.java)
+        val regionNos = placeDocuments.map { it.regionNo }.distinct()
+        val regionMap = placeRegionRepository.findByRegionNoIn(regionNos).associateBy { it.regionNo }
+        val places = placeDocuments.map { doc ->
+            val regionDocument = regionMap[doc.regionNo] ?: throw NotFoundException()
+            DocumentConvertUtil.convertToPlace(doc, DocumentConvertUtil.convertToPlaceRegion(regionDocument))
         }
 
         return Pair(places, total)
@@ -77,8 +78,15 @@ class PlaceQueryPersistenceAdapter(
     }
 
     override fun updatePlace(placeId: String, update: PlaceUpdate) {
-        val document = toPlaceDocument(update)
-        placeRepository.save(document)
+        val place = placeRepository.findByIdOrNull(placeId) ?: throw NotFoundException()
+        place.apply {
+            name = update.name
+            regionNo = update.regionNo
+            type = update.type
+            address = update.address
+            mapInformation = update.map
+        }
+        placeRepository.save(place)
     }
 
     override fun deletePlace(placeId: String) {
@@ -99,14 +107,5 @@ class PlaceQueryPersistenceAdapter(
         mapInformation = create.map,
         sns = create.sns,
     )
-
-    private fun toPlaceDocument(update: PlaceUpdate): PlaceDocument = PlaceDocument(
-        name = update.name,
-        regionNo = update.regionNo,
-        type = update.type,
-        address = update.address,
-        mapInformation = update.map,
-        sns = update.sns,
-    ).apply { id = update.id }
 
 }

@@ -53,7 +53,7 @@ fun placeRegionDocumentFixture(
     name = name
 ).apply { this.id = id }
 
-fun storeEventRuleDocumentFixture(
+fun placeEventRuleDocumentFixture(
     id: String = "rule-1",
     placeId: String = "place-1",
     name: String = "토요일 미니리그",

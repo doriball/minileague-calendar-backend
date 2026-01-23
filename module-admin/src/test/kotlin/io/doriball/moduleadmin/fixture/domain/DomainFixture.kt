@@ -1,5 +1,6 @@
 package io.doriball.moduleadmin.fixture.domain
 
+import io.doriball.moduleadmin.place.domain.PlaceSummary
 import io.doriball.modulecore.domain.event.Event
 import io.doriball.modulecore.domain.event.EventStage
 import io.doriball.modulecore.domain.operation.Notice
@@ -63,6 +64,14 @@ fun placeFixture(
     eventRules = eventRules,
     createdAt = LocalDateTime.now(),
     modifiedAt = LocalDateTime.now()
+)
+
+fun placeSummaryFixture(
+    id: String = "place-1",
+    name: String = "포켓몬 카드샵 용산",
+): PlaceSummary = PlaceSummary(
+    id = id,
+    name = name
 )
 
 fun placeRegionFixture(
