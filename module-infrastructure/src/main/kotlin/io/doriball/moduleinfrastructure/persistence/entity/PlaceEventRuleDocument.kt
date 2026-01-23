@@ -8,14 +8,14 @@ import java.time.LocalTime
 
 @Document(collection = "place_event_rule")
 class PlaceEventRuleDocument(
-    val placeId: String,
-    val name: String,
-    val dayOfWeek: DayOfWeekType,
-    val scheduledAt: LocalTime,
-    val category: LeagueCategoryType,
-    val capacity: Int?,
-    val stages: List<StageDocument>,
-    val entryFee: Long? = 0L,
+    var placeId: String,
+    var name: String,
+    var dayOfWeek: DayOfWeekType,
+    var scheduledAt: LocalTime,
+    var category: LeagueCategoryType,
+    var capacity: Int?,
+    var stages: List<StageDocument>,
+    var entryFee: Long? = 0L,
 ): BaseTimeDocument() {
 
     @Id var id: String? = null

@@ -5,8 +5,8 @@ import org.springframework.data.mongodb.core.mapping.Document
 
 @Document(collection = "notice")
 class NoticeDocument(
-    val title: String,
-    val content: String,
+    var title: String,
+    var content: String,
 ) : BaseTimeDocument() {
 
     @Id var id: String? = null

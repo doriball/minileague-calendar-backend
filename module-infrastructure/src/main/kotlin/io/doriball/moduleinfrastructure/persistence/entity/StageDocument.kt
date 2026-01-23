@@ -1,9 +1,9 @@
 package io.doriball.moduleinfrastructure.persistence.entity
 
 class StageDocument(
-    val stageNo: Int,
-    val type: String,
-    val roundCount: Int,
-    val gameCountPerRound: Int,
+    var stageNo: Int,
+    var type: String,
+    var roundCount: Int,
+    var gameCountPerRound: Int,
 ) {
 }
