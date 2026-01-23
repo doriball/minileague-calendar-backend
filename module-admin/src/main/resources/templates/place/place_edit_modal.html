@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="modal" class="modal fade" id="placeEditModal" tabindex="-1" aria-labelledby="placeEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="placeEditModalLabel">매장 정보 수정</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="placeEditForm">
+                    <input type="hidden" id="editPlaceId">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="editPlaceName" class="form-label fw-bold">매장명</label>
+                            <input type="text" class="form-control" id="editPlaceName" name="name" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="editPlaceRegionNo" class="form-label fw-bold">지역</label>
+                            <select class="form-select" id="editPlaceRegionNo" name="regionNo" required>
+                                <option th:each="region : ${placeRegions}" th:value="${region.regionNo}" th:text="${region.name}"></option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="editPlaceType" class="form-label fw-bold">분류</label>
+                            <select class="form-select" id="editPlaceType" name="type" required>
+                                <option th:each="type : ${placeTypes}"
+                                        th:value="${type.value.name()}"
+                                        th:text="${type.key}"
+                                        th:selected="${place != null and type.value == place.type}">
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="editPlaceAddress" class="form-label fw-bold">주소</label>
+                            <input type="text" class="form-control" id="editPlaceAddress" name="address" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="editPlaceMap" class="form-label fw-bold">지도 링크 (URL)</label>
+                            <input type="text" class="form-control" id="editPlaceMap" name="map">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="editPlaceSns" class="form-label fw-bold">SNS/홈페이지 (URL)</label>
+                            <input type="text" class="form-control" id="editPlaceSns" name="sns">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCancelPlaceEdit">취소</button>
+                <button type="button" class="btn btn-primary" onclick="submitPlaceEdit()">수정 완료</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
