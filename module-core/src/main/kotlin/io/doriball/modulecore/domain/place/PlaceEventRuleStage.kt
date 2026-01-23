@@ -1,8 +1,8 @@
-package io.doriball.modulecore.domain.store
+package io.doriball.modulecore.domain.place
 
 import io.doriball.modulecore.enums.StageType
 
-class StoreEventRuleStage(
+class PlaceEventRuleStage(
     val stageNo: Int,
     val type: StageType,
     val roundCount: Int,

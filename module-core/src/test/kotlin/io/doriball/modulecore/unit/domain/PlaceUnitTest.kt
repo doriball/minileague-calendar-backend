@@ -1,21 +1,21 @@
 package io.doriball.modulecore.unit.domain
 
-import io.doriball.modulecore.fixture.fixtureStore
+import io.doriball.modulecore.fixture.fixturePlace
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.junit.jupiter.MockitoExtension
 
 @ExtendWith(MockitoExtension::class)
-class StoreUnitTest {
+class PlaceUnitTest {
 
     @Test
-    fun 상점_지역_정보_조회_성공() {
+    fun 장소_지역_정보_조회_성공() {
 
         // given
-        val store = fixtureStore()
+        val place = fixturePlace()
 
         // when
-        val regionName = store.regionName
+        val regionName = place.regionName
 
         // then
         assert("서울" == regionName)

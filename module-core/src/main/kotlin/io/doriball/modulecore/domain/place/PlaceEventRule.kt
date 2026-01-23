@@ -1,11 +1,11 @@
-package io.doriball.modulecore.domain.store
+package io.doriball.modulecore.domain.place
 
 import io.doriball.modulecore.enums.DayOfWeekType
 import io.doriball.modulecore.enums.LeagueCategoryType
 import java.time.LocalDateTime
 import java.time.LocalTime
 
-class StoreEventRule(
+class PlaceEventRule(
     val id: String,
     val storeId: String,
     val name: String,
@@ -13,7 +13,7 @@ class StoreEventRule(
     val scheduledAt: LocalTime,
     val category: LeagueCategoryType,
     val capacity: Int?,
-    val stages: List<StoreEventRuleStage>,
+    val stages: List<PlaceEventRuleStage>,
     val entryFee: Long?,
     val createdAt: LocalDateTime?,
     val modifiedAt: LocalDateTime?,

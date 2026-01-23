@@ -1,15 +1,17 @@
-package io.doriball.modulecore.domain.store
+package io.doriball.modulecore.domain.place
 
+import io.doriball.modulecore.enums.PlaceType
 import java.time.LocalDateTime
 
-class Store(
+class Place(
     val id: String,
     val name: String,
-    val region: StoreRegion,
+    val region: PlaceRegion,
+    val type: PlaceType,
     val address: String,
     val mapInformation: String?,
     val sns: String?,
-    val eventRules: List<StoreEventRule>? = listOf(),
+    val eventRules: List<PlaceEventRule>? = listOf(),
     val createdAt: LocalDateTime?,
     val modifiedAt: LocalDateTime?,
 ) {

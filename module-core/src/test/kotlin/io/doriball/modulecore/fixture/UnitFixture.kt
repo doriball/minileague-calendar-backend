@@ -2,19 +2,20 @@ package io.doriball.modulecore.fixture
 
 import io.doriball.modulecore.domain.event.Event
 import io.doriball.modulecore.domain.event.EventStage
-import io.doriball.modulecore.domain.store.Store
-import io.doriball.modulecore.domain.store.StoreEventRule
-import io.doriball.modulecore.domain.store.StoreEventRuleStage
-import io.doriball.modulecore.domain.store.StoreRegion
+import io.doriball.modulecore.domain.place.Place
+import io.doriball.modulecore.domain.place.PlaceEventRule
+import io.doriball.modulecore.domain.place.PlaceEventRuleStage
+import io.doriball.modulecore.domain.place.PlaceRegion
 import io.doriball.modulecore.enums.DayOfWeekType
 import io.doriball.modulecore.enums.LeagueCategoryType
 import io.doriball.modulecore.enums.StageType
+import io.doriball.modulecore.enums.PlaceType
 import java.time.LocalDateTime
 import java.time.LocalTime
 
 fun fixtureEvent() = Event(
     id = "1",
-    store = fixtureStore(),
+    place = fixturePlace(),
     name = "비크티니 쟁탈전",
     scheduledAt = LocalDateTime.now(),
     category = LeagueCategoryType.OFFICIAL,
@@ -32,10 +33,11 @@ fun fixtureEventStage() = EventStage(
     gameCountPerRound = 1
 )
 
-fun fixtureStore() = Store(
+fun fixturePlace() = Place(
     id = "1",
     name = "포켓몬 카드샵 용산",
-    region = StoreRegion(regionNo = 1, name = "서울"),
+    region = PlaceRegion(regionNo = 1, name = "서울"),
+    type = PlaceType.STORE,
     address = "address",
     mapInformation = null,
     sns = null,
@@ -44,7 +46,7 @@ fun fixtureStore() = Store(
     modifiedAt = null
 )
 
-fun fixtureStoreEventRule() = StoreEventRule(
+fun fixturePlaceEventRule() = PlaceEventRule(
     id = "1",
     storeId = "1",
     name = "용산 월요일 미니리그",
@@ -52,13 +54,13 @@ fun fixtureStoreEventRule() = StoreEventRule(
     scheduledAt = LocalTime.of(19, 0),
     category = LeagueCategoryType.OFFICIAL,
     capacity = 64,
-    stages = listOf(fixtureStoreEventRuleStage()),
+    stages = listOf(fixturePlaceEventRuleStage()),
     entryFee = 0L,
     createdAt = null,
     modifiedAt = null
 )
 
-fun fixtureStoreEventRuleStage() = StoreEventRuleStage(
+fun fixturePlaceEventRuleStage() = PlaceEventRuleStage(
     stageNo = 1,
     type = StageType.SWISS,
     roundCount = 4,
