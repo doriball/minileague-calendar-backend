@@ -36,7 +36,7 @@ class PlaceQueryPersistenceAdapterUnitTest {
         given(placeRegionRepository.findByRegionNoIn(anyList())).willReturn(listOf(placeRegionDocumentFixture()))
         
         // when
-        val result = sut.getStores(regionNo)
+        val result = sut.getStorePlaces(regionNo)
         
         // then
         assert(result.size == 1)
@@ -55,7 +55,7 @@ class PlaceQueryPersistenceAdapterUnitTest {
         given(placeRegionRepository.findByRegionNo(regionNo)).willReturn(placeRegionDocumentFixture())
 
         // when
-        val result = sut.getStores(regionNo)
+        val result = sut.getStorePlaces(regionNo)
         
         // then
         assert(result.size == 1)
@@ -74,7 +74,7 @@ class PlaceQueryPersistenceAdapterUnitTest {
         given(placeRegionRepository.findByRegionNo(placeDocumentFixture().regionNo)).willReturn(placeRegionDocumentFixture())
 
         // when
-        val result = sut.getStoreDetail(storeId)!!
+        val result = sut.getStorePlaceDetail(storeId)!!
         
         // then
         assert(result.id == "place-1")
@@ -90,7 +90,7 @@ class PlaceQueryPersistenceAdapterUnitTest {
         val storeId = "place-2"
         
         // when
-        val result = sut.getStoreDetail(storeId)
+        val result = sut.getStorePlaceDetail(storeId)
         
         // then
         assert(result == null)
@@ -104,7 +104,7 @@ class PlaceQueryPersistenceAdapterUnitTest {
         val storeId = "place-1"
         
         // when
-        val result = sut.getStoreDetail(storeId)
+        val result = sut.getStorePlaceDetail(storeId)
         
         // then
         assert(result == null)

@@ -3,7 +3,7 @@ package io.doriball.moduleadmin.event.adapter.`in`.web
 import io.doriball.moduleadmin.event.application.port.`in`.EventUseCase
 import io.doriball.moduleadmin.event.application.port.`in`.dto.ReadEventsCommand
 import io.doriball.moduleadmin.event.common.enums.EventKeywordSearchType
-import io.doriball.moduleadmin.store.application.port.`in`.StoreRegionUseCase
+import io.doriball.moduleadmin.place.application.port.`in`.PlaceRegionUseCase
 import io.doriball.modulecore.enums.LeagueCategoryType
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Controller
@@ -15,7 +15,7 @@ import java.time.LocalDate
 @Controller
 class EventPageController(
     val eventUseCase: EventUseCase,
-    val storeRegionUseCase: StoreRegionUseCase
+    val placeRegionUseCase: PlaceRegionUseCase
 ) {
 
     companion object {
@@ -47,7 +47,7 @@ class EventPageController(
             "이벤트명" to EventKeywordSearchType.EVENT,
             "매장명" to EventKeywordSearchType.STORE
         )
-        val storeRegions = storeRegionUseCase.getStoreRegions()
+        val placeRegions = placeRegionUseCase.getPlaceRegions()
         val eventCategories = mapOf(
             "공인" to LeagueCategoryType.OFFICIAL,
             "비공인" to LeagueCategoryType.UNOFFICIAL,
@@ -57,7 +57,7 @@ class EventPageController(
 
         modelMap.addAttribute("events", events)
         modelMap.addAttribute("searchTypes", searchTypes)
-        modelMap.addAttribute("storeRegions", storeRegions)
+        modelMap.addAttribute("placeRegions", placeRegions)
         modelMap.addAttribute("eventCategories", eventCategories)
         modelMap.addAttribute("command", command)
 

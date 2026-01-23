@@ -7,6 +7,6 @@ interface EventPlaceMongoRepository : MongoRepository<PlaceDocument, String> {
 
     fun findByRegionNo(regionNo: Int): List<PlaceDocument>
 
-    fun findByIdIn(storeIds: List<String>): List<PlaceDocument>
+    fun findByIdIn(placeIds: List<String>): List<PlaceDocument>
 
 }

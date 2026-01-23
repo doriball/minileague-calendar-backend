@@ -4,8 +4,8 @@ import io.doriball.modulecore.domain.place.Place
 
 interface PlacePort {
 
-    fun getStores(regionNo: Int?): List<Place>
+    fun getStorePlaces(regionNo: Int?): List<Place>
 
-    fun getStoreDetail(storeId: String): Place?
+    fun getStorePlaceDetail(storeId: String): Place?
 
 }

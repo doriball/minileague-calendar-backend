@@ -22,7 +22,7 @@ class EventDto(
                 id = event.id,
                 name = event.name,
                 region = event.regionName,
-                place = event.storeName,
+                place = event.placeName,
                 scheduledAt = event.scheduledAt,
                 category = event.category,
                 capacity = event.capacity,

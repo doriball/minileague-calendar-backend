@@ -17,8 +17,8 @@ class Event(
     val modifiedAt: LocalDateTime?,
 ) {
 
-    val storeId: String get() = place.id
-    val storeName: String get() = place.name
+    val placeId: String get() = place.id
+    val placeName: String get() = place.name
     val regionName: String get() = place.regionName
     val stageTypes: List<String> get() = stages.map { it.type.name }
     val roundCount: Int get() = stages.sumOf { it.roundCount }

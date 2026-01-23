@@ -1,13 +1,13 @@
 package io.doriball.moduleadmin.common.adapter.`in`.web
 
-import io.doriball.moduleadmin.store.adapter.out.persistence.repository.StoreMongoRepository
+import io.doriball.moduleadmin.place.adapter.out.persistence.repository.PlaceMongoRepository
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RequestMapping(ProbeController.BASE_PATH)
 @RestController
-class ProbeController(val repository: StoreMongoRepository) {
+class ProbeController(val repository: PlaceMongoRepository) {
 
     companion object {
         const val BASE_PATH = "/api/v1/probe"

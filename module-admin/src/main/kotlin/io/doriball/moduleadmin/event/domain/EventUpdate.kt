@@ -7,7 +7,7 @@ import java.time.LocalDateTime
 class EventUpdate(
     val id: String,
     val name: String,
-    val storeId: String,
+    val placeId: String,
     val scheduledAt: LocalDateTime,
     val category: LeagueCategoryType,
     val capacity: Int?,
@@ -20,7 +20,7 @@ class EventUpdate(
             EventUpdate(
                 id = eventId,
                 name = command.name,
-                storeId = command.storeId,
+                placeId = command.placeId,
                 scheduledAt = command.scheduledAt,
                 category = command.category,
                 capacity = command.capacity,

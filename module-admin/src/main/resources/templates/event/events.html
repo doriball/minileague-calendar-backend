@@ -42,7 +42,7 @@
                 <div class="col-auto border-start ps-3">
                     <select name="regionNo" class="form-select form-select-sm">
                         <option value="">전체 지역</option>
-                        <option th:each="region : ${storeRegions}"
+                        <option th:each="region : ${placeRegions}"
                                 th:value="${region.regionNo}"
                                 th:text="${region.name}"
                                 th:selected="${command != null and command.regionNo == region.regionNo}">
@@ -91,7 +91,7 @@
             <tr th:each="event : ${events}">
                 <td th:text="${#temporals.format(event.scheduledAt, 'MM/dd (E) HH:mm')}">12/31 (수) 14:00</td>
                 <td th:text="${event.region}">서울</td>
-                <td th:text="${event.storeName}">매장 A</td>
+                <td th:text="${event.placeName}">매장 A</td>
                 <td>
                     <a href="javascript:void(0)" class="text-decoration-none fw-bold text-dark"
                        th:data-id="${event.id}" onclick="showEventDetail(this.getAttribute('data-id'))"
@@ -125,7 +125,7 @@
         // HTML 태그(모달 포함)에서 직접 호출하는 함수들
         function showEventDetail(id) { EventManager.showEventDetail(id); }
         function prepareEventCreate() { EventManager.prepareEventCreate(); }
-        function loadStoresByRegion(regionNo) { EventManager.loadStoresByRegion(regionNo); }
+        function loadPlacesByRegion(regionNo) { EventManager.loadPlacesByRegion(regionNo); }
         function addEventStageRow(mode) { EventManager.addEventStageRow(mode); }
         function submitEventCreate() { EventManager.submitEventCreate(); }
         function submitEventEdit() { EventManager.submitEventEdit(); }

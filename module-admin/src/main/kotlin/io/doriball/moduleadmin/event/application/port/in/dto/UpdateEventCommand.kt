@@ -8,7 +8,7 @@ import java.time.LocalDateTime
 
 data class UpdateEventCommand(
     @NotEmpty val name: String,
-    @NotEmpty val storeId: String,
+    @NotEmpty val placeId: String,
     @NotNull val scheduledAt: LocalDateTime,
     @NotNull val category: LeagueCategoryType,
     val capacity: Int?,
