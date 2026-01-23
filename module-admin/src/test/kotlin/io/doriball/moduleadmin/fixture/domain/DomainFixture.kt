@@ -3,26 +3,27 @@ package io.doriball.moduleadmin.fixture.domain
 import io.doriball.modulecore.domain.event.Event
 import io.doriball.modulecore.domain.event.EventStage
 import io.doriball.modulecore.domain.operation.Notice
-import io.doriball.modulecore.domain.store.Store
-import io.doriball.modulecore.domain.store.StoreEventRule
-import io.doriball.modulecore.domain.store.StoreEventRuleStage
-import io.doriball.modulecore.domain.store.StoreRegion
+import io.doriball.modulecore.domain.place.Place
+import io.doriball.modulecore.domain.place.PlaceEventRule
+import io.doriball.modulecore.domain.place.PlaceEventRuleStage
+import io.doriball.modulecore.domain.place.PlaceRegion
 import io.doriball.modulecore.enums.DayOfWeekType
 import io.doriball.modulecore.enums.LeagueCategoryType
 import io.doriball.modulecore.enums.StageType
+import io.doriball.modulecore.enums.PlaceType
 import java.time.LocalDateTime
 import java.time.LocalTime
 
 fun eventFixture(
     id: String = "event-1",
-    store: Store = storeFixture(),
+    place: Place = placeFixture(),
     name: String = "토요일 미니리그",
     scheduledAt: LocalDateTime = LocalDateTime.now(),
     category: LeagueCategoryType = LeagueCategoryType.OFFICIAL,
     stages: List<EventStage> = listOf(eventStageFixture())
 ): Event = Event(
     id = id,
-    store = store,
+    place = place,
     name = name,
     scheduledAt = scheduledAt,
     category = category,
@@ -45,15 +46,17 @@ fun eventStageFixture(
     gameCountPerRound = gameCountPerRound
 )
 
-fun storeFixture(
-    id: String = "store-1",
+fun placeFixture(
+    id: String = "place-1",
     name: String = "포켓몬 카드샵 용산",
-    region: StoreRegion = storeRegionFixture(),
-    eventRules: List<StoreEventRule> = listOf(storeEventRuleFixture())
-): Store = Store(
+    region: PlaceRegion = placeRegionFixture(),
+    type: PlaceType = PlaceType.STORE,
+    eventRules: List<PlaceEventRule> = listOf(placeEventRuleFixture())
+): Place = Place(
     id = id,
     name = name,
     region = region,
+    type = type,
     address = "서울시 용산구 한강대로23길 55 아이파크몰 리빙파크 8F",
     mapInformation = "37.529, 126.967",
     sns = "@pokemon_card_shop",
@@ -62,24 +65,24 @@ fun storeFixture(
     modifiedAt = LocalDateTime.now()
 )
 
-fun storeRegionFixture(
+fun placeRegionFixture(
     regionNo: Int = 1,
     name: String = "서울"
-): StoreRegion = StoreRegion(
+): PlaceRegion = PlaceRegion(
     regionNo = regionNo,
     name = name
 )
 
-fun storeEventRuleFixture(
+fun placeEventRuleFixture(
     id: String = "rule-1",
-    storeId: String = "store-1",
+    placeId: String = "place-1",
     name: String = "토요일 미니리그",
     dayOfWeek: DayOfWeekType = DayOfWeekType.SAT,
     category: LeagueCategoryType = LeagueCategoryType.OFFICIAL,
-    stages: List<StoreEventRuleStage> = listOf(storeEventRuleStageFixture())
-): StoreEventRule = StoreEventRule(
+    stages: List<PlaceEventRuleStage> = listOf(placeEventRuleStageFixture())
+): PlaceEventRule = PlaceEventRule(
     id = id,
-    storeId = storeId,
+    placeId = placeId,
     name = name,
     dayOfWeek = dayOfWeek,
     scheduledAt = LocalTime.of(14, 0),
@@ -91,12 +94,12 @@ fun storeEventRuleFixture(
     modifiedAt = LocalDateTime.now()
 )
 
-fun storeEventRuleStageFixture(
+fun placeEventRuleStageFixture(
     stageNo: Int = 1,
     type: StageType = StageType.SWISS,
     roundCount: Int = 3,
     gameCountPerRound: Int = 1
-): StoreEventRuleStage = StoreEventRuleStage(
+): PlaceEventRuleStage = PlaceEventRuleStage(
     stageNo = stageNo,
     type = type,
     roundCount = roundCount,
