@@ -20,7 +20,7 @@ jobs:
           java-version: 21
           distribution: temurin
           working-directory: module-admin
-          build-command: ./gradlew :module-admin:clean :module-admin:bootJar
+          build-command: ./gradlew :module-admin:clean :module-admin:test :module-admin:bootJar
           docker-username: ${{ secrets.DOCKER_USERNAME }}
           docker-password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
           docker-repository: mrcocoball/minileague-calendar-admin

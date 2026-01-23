@@ -7,13 +7,13 @@ import java.time.LocalDateTime
 
 @Document(collection = "event")
 class EventDocument(
-    val placeId: String,
-    val name: String,
-    val scheduledAt: LocalDateTime,
-    val category: LeagueCategoryType,
-    val capacity: Int?,
-    val stages: List<StageDocument> = listOf(),
-    val entryFee: Long? = 0L,
+    var placeId: String,
+    var name: String,
+    var scheduledAt: LocalDateTime,
+    var category: LeagueCategoryType,
+    var capacity: Int?,
+    var stages: List<StageDocument> = listOf(),
+    var entryFee: Long? = 0L,
 ) : BaseTimeDocument() {
 
     @Id var id: String? = null
