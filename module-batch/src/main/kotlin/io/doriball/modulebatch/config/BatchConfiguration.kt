@@ -4,7 +4,7 @@ import io.doriball.modulebatch.processor.EventGenerationProcessor
 import io.doriball.modulebatch.reader.EventRuleReader
 import io.doriball.modulebatch.writer.EventWriter
 import io.doriball.moduleinfrastructure.persistence.entity.EventDocument
-import io.doriball.moduleinfrastructure.persistence.entity.StoreEventRuleDocument
+import io.doriball.moduleinfrastructure.persistence.entity.PlaceEventRuleDocument
 import org.springframework.batch.core.configuration.annotation.StepScope
 import org.springframework.batch.core.job.Job
 import org.springframework.batch.core.job.builder.JobBuilder
@@ -47,7 +47,7 @@ class BatchConfiguration(
         jobRepository: JobRepository,
         transactionManager: PlatformTransactionManager,
     ): Step = StepBuilder("eventCreateStep", jobRepository)
-        .chunk<StoreEventRuleDocument, List<EventDocument>>(chunkSize)
+        .chunk<PlaceEventRuleDocument, List<EventDocument>>(chunkSize)
         .reader(eventRuleReader())
         .processor(eventGenerationProcessor())
         .writer(eventWriter())
