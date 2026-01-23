@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: test
+
+doriball:
+  management:
+    admin_username: wow
+    admin_password: wow

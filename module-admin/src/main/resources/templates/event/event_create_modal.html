@@ -17,14 +17,14 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="createEventRegion" class="form-label fw-bold">지역 선택</label>
-                            <select class="form-select" id="createEventRegion" onchange="loadStoresByRegion(this.value)" required>
+                            <select class="form-select" id="createEventRegion" onchange="loadPlacesByRegion(this.value)" required>
                                 <option value="">지역을 선택하세요</option>
-                                <option th:each="region : ${storeRegions}" th:value="${region.regionNo}" th:text="${region.name}"></option>
+                                <option th:each="region : ${placeRegions}" th:value="${region.regionNo}" th:text="${region.name}"></option>
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="createEventStore" class="form-label fw-bold">매장 선택</label>
-                            <select class="form-select" id="createEventStore" required>
+                            <label for="createEventPlace" class="form-label fw-bold">매장 선택</label>
+                            <select class="form-select" id="createEventPlace" required>
                                 <option value="">매장을 선택하세요</option>
                             </select>
                         </div>

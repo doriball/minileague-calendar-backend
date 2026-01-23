@@ -1,8 +1,8 @@
 package io.doriball.moduleadmin.event.adapter.out.persistence
 
 import io.doriball.moduleadmin.event.adapter.out.persistence.repository.EventMongoRepository
-import io.doriball.moduleadmin.event.adapter.out.persistence.repository.EventStoreMongoRepository
-import io.doriball.moduleadmin.event.adapter.out.persistence.repository.EventStoreRegionMongoRepository
+import io.doriball.moduleadmin.event.adapter.out.persistence.repository.EventPlaceMongoRepository
+import io.doriball.moduleadmin.event.adapter.out.persistence.repository.EventPlaceRegionMongoRepository
 import io.doriball.moduleadmin.event.application.port.out.EventPort
 import io.doriball.moduleadmin.event.common.enums.EventKeywordSearchType
 import io.doriball.moduleadmin.event.domain.EventCreate
@@ -13,7 +13,7 @@ import io.doriball.modulecore.domain.event.Event
 import io.doriball.modulecore.exception.NotFoundException
 import io.doriball.moduleinfrastructure.persistence.entity.EventDocument
 import io.doriball.moduleinfrastructure.persistence.entity.StageDocument
-import io.doriball.moduleinfrastructure.persistence.entity.StoreDocument
+import io.doriball.moduleinfrastructure.persistence.entity.PlaceDocument
 import io.doriball.moduleinfrastructure.persistence.util.DocumentConvertUtil
 import org.springframework.data.domain.Sort
 import org.springframework.data.mongodb.core.MongoOperations
@@ -27,8 +27,8 @@ import java.time.LocalDateTime
 class EventQueryPersistenceAdapter(
     val mongoOperations: MongoOperations,
     val eventRepository: EventMongoRepository,
-    val storeRepository: EventStoreMongoRepository,
-    val storeRegionRepository: EventStoreRegionMongoRepository,
+    val placeRepository: EventPlaceMongoRepository,
+    val placeRegionRepository: EventPlaceRegionMongoRepository,
 ) : EventPort {
 
     override fun getEvents(
@@ -55,17 +55,17 @@ class EventQueryPersistenceAdapter(
 
         // Region 및 Keyword (Store 검색) 처리
         if (regionNo != null || (searchType == EventKeywordSearchType.STORE && !keyword.isNullOrBlank())) {
-            val storeQuery = Query()
-            regionNo?.let { storeQuery.addCriteria(Criteria.where("regionNo").`is`(it)) }
+            val placeQuery = Query()
+            regionNo?.let { placeQuery.addCriteria(Criteria.where("regionNo").`is`(it)) }
             if (searchType == EventKeywordSearchType.STORE && !keyword.isNullOrBlank()) {
-                storeQuery.addCriteria(Criteria.where("name").regex(keyword, "i"))
+                placeQuery.addCriteria(Criteria.where("name").regex(keyword, "i"))
             }
 
-            val matchingStoreIds = mongoOperations.find(storeQuery, StoreDocument::class.java)
+            val matchingPlaceIds = mongoOperations.find(placeQuery, PlaceDocument::class.java)
                 .mapNotNull { it.id }
 
-            if (matchingStoreIds.isEmpty()) return emptyList()
-            query.addCriteria(Criteria.where("storeId").`in`(matchingStoreIds))
+            if (matchingPlaceIds.isEmpty()) return emptyList()
+            query.addCriteria(Criteria.where("placeId").`in`(matchingPlaceIds))
         }
 
         // Keyword 조건 (Event 검색)
@@ -81,30 +81,30 @@ class EventQueryPersistenceAdapter(
         val eventDocuments = mongoOperations.find(query, EventDocument::class.java)
         if (eventDocuments.isEmpty()) return emptyList()
 
-        val storeIds = eventDocuments.map { it.storeId }.distinct()
-        val stores = storeRepository.findByIdIn(storeIds)
+        val placeIds = eventDocuments.map { it.placeId }.distinct()
+        val places = placeRepository.findByIdIn(placeIds)
         val regions =
-            storeRegionRepository.findByRegionNoIn(stores.map { it.regionNo }.distinct()).associateBy { it.regionNo }
-        val storeMap = stores.associateBy(
+            placeRegionRepository.findByRegionNoIn(places.map { it.regionNo }.distinct()).associateBy { it.regionNo }
+        val placeMap = places.associateBy(
             { it.id },
-            { storeDocument ->
-                val regionDoc = regions[storeDocument.regionNo] ?: throw NotFoundException()
-                DocumentConvertUtil.convertToStore(storeDocument, DocumentConvertUtil.convertToStoreRegion(regionDoc))
+            { placeDocument ->
+                val regionDoc = regions[placeDocument.regionNo] ?: throw NotFoundException()
+                DocumentConvertUtil.convertToPlace(placeDocument, DocumentConvertUtil.convertToPlaceRegion(regionDoc))
             }
         )
 
         return eventDocuments.map { eventDocument ->
-            val store = storeMap[eventDocument.storeId] ?: throw NotFoundException()
+            val store = placeMap[eventDocument.placeId] ?: throw NotFoundException()
             DocumentConvertUtil.convertToEvent(eventDocument, store)
         }
     }
 
     override fun getEventDetail(eventId: String): Event? {
         val eventDocument = eventRepository.findByIdOrNull(eventId) ?: return null
-        val storeDocument = storeRepository.findByIdOrNull(eventDocument.storeId) ?: return null
-        val storeRegion = storeRegionRepository.findByRegionNo(storeDocument.regionNo) ?: return null
+        val storeDocument = placeRepository.findByIdOrNull(eventDocument.placeId) ?: return null
+        val storeRegion = placeRegionRepository.findByRegionNo(storeDocument.regionNo) ?: return null
         val store =
-            DocumentConvertUtil.convertToStore(storeDocument, DocumentConvertUtil.convertToStoreRegion(storeRegion))
+            DocumentConvertUtil.convertToPlace(storeDocument, DocumentConvertUtil.convertToPlaceRegion(storeRegion))
         return DocumentConvertUtil.convertToEvent(eventDocument, store)
     }
 
@@ -128,7 +128,7 @@ class EventQueryPersistenceAdapter(
     }
 
     private fun toEventDocument(create: EventCreate) = EventDocument(
-        storeId = create.storeId,
+        placeId = create.placeId,
         name = create.name,
         scheduledAt = create.scheduledAt,
         category = create.category,
@@ -145,7 +145,7 @@ class EventQueryPersistenceAdapter(
     )
 
     private fun toEventDocument(update: EventUpdate) = EventDocument(
-        storeId = update.storeId,
+        placeId = update.placeId,
         name = update.name,
         scheduledAt = update.scheduledAt,
         category = update.category,

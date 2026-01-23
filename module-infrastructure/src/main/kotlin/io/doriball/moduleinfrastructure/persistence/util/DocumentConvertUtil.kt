@@ -3,24 +3,24 @@ package io.doriball.moduleinfrastructure.persistence.util
 import io.doriball.modulecore.domain.event.Event
 import io.doriball.modulecore.domain.event.EventStage
 import io.doriball.modulecore.domain.operation.Notice
-import io.doriball.modulecore.domain.store.Store
-import io.doriball.modulecore.domain.store.StoreEventRule
-import io.doriball.modulecore.domain.store.StoreEventRuleStage
-import io.doriball.modulecore.domain.store.StoreRegion
+import io.doriball.modulecore.domain.place.Place
+import io.doriball.modulecore.domain.place.PlaceEventRule
+import io.doriball.modulecore.domain.place.PlaceEventRuleStage
+import io.doriball.modulecore.domain.place.PlaceRegion
 import io.doriball.modulecore.enums.StageType
 import io.doriball.moduleinfrastructure.persistence.entity.NoticeDocument
 import io.doriball.moduleinfrastructure.persistence.entity.EventDocument
 import io.doriball.moduleinfrastructure.persistence.entity.StageDocument
-import io.doriball.moduleinfrastructure.persistence.entity.StoreDocument
-import io.doriball.moduleinfrastructure.persistence.entity.StoreEventRuleDocument
-import io.doriball.moduleinfrastructure.persistence.entity.StoreRegionDocument
+import io.doriball.moduleinfrastructure.persistence.entity.PlaceDocument
+import io.doriball.moduleinfrastructure.persistence.entity.PlaceEventRuleDocument
+import io.doriball.moduleinfrastructure.persistence.entity.PlaceRegionDocument
 
 object DocumentConvertUtil {
 
-    fun convertToEvent(eventDocument: EventDocument, store: Store): Event =
+    fun convertToEvent(eventDocument: EventDocument, place: Place): Event =
         Event(
             id = eventDocument.id!!,
-            store = store,
+            place = place,
             name = eventDocument.name,
             scheduledAt = eventDocument.scheduledAt,
             category = eventDocument.category,
@@ -39,20 +39,21 @@ object DocumentConvertUtil {
             gameCountPerRound = document.gameCountPerRound
         )
 
-    fun convertToStore(storeDocument: StoreDocument, storeRegion: StoreRegion): Store =
-        Store(
-            id = storeDocument.id!!,
-            name = storeDocument.name,
-            region = storeRegion,
-            address = storeDocument.address,
-            mapInformation = storeDocument.mapInformation,
-            sns = storeDocument.sns,
-            createdAt = storeDocument.createdAt,
-            modifiedAt = storeDocument.modifiedAt
+    fun convertToPlace(placeDocument: PlaceDocument, placeRegion: PlaceRegion): Place =
+        Place(
+            id = placeDocument.id!!,
+            name = placeDocument.name,
+            region = placeRegion,
+            type = placeDocument.type,
+            address = placeDocument.address,
+            mapInformation = placeDocument.mapInformation,
+            sns = placeDocument.sns,
+            createdAt = placeDocument.createdAt,
+            modifiedAt = placeDocument.modifiedAt
         )
 
-    fun convertToStoreRegion(document: StoreRegionDocument): StoreRegion =
-        StoreRegion(regionNo = document.regionNo, name = document.name)
+    fun convertToPlaceRegion(document: PlaceRegionDocument): PlaceRegion =
+        PlaceRegion(regionNo = document.regionNo, name = document.name)
 
     fun convertToNotice(noticeDocument: NoticeDocument) = Notice(
         id = noticeDocument.id!!,
@@ -62,22 +63,22 @@ object DocumentConvertUtil {
         modifiedAt = noticeDocument.modifiedAt
     )
 
-    fun convertToStoreEventRule(document: StoreEventRuleDocument) = StoreEventRule(
+    fun convertToPlaceEventRule(document: PlaceEventRuleDocument) = PlaceEventRule(
         id = document.id!!,
-        storeId = document.storeId,
+        placeId = document.placeId,
         name = document.name,
         dayOfWeek = document.dayOfWeek,
         scheduledAt = document.scheduledAt,
         category = document.category,
         capacity = document.capacity,
-        stages = document.stages.map { convertToStoreEventRuleStage(it) }.toList(),
+        stages = document.stages.map { convertToPlaceEventRuleStage(it) }.toList(),
         entryFee = document.entryFee,
         createdAt = document.createdAt,
         modifiedAt = document.modifiedAt
     )
 
-    fun convertToStoreEventRuleStage(document: StageDocument): StoreEventRuleStage =
-        StoreEventRuleStage(
+    fun convertToPlaceEventRuleStage(document: StageDocument): PlaceEventRuleStage =
+        PlaceEventRuleStage(
             stageNo = document.stageNo,
             type = StageType.valueOf(document.type),
             roundCount = document.roundCount,

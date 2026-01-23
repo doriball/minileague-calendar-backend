@@ -7,7 +7,7 @@ import java.time.LocalDateTime
 
 @Document(collection = "event")
 class EventDocument(
-    val storeId: String,
+    val placeId: String,
     val name: String,
     val scheduledAt: LocalDateTime,
     val category: LeagueCategoryType,
