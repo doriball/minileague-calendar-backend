@@ -51,11 +51,12 @@ class PlaceQueryPersistenceAdapter(
 
         val countQuery = Query.of(query).limit(0).skip(0)
         val total = mongoOperations.count(countQuery, PlaceDocument::class.java)
-        val places = mongoOperations.find(query, PlaceDocument::class.java).map { document ->
-            val region = placeRegionRepository.findByRegionNo(document.regionNo)
-                ?.let { DocumentConvertUtil.convertToPlaceRegion(it) }
-                ?: throw NotFoundException()
-            DocumentConvertUtil.convertToPlace(document, region)
+        val placeDocuments = mongoOperations.find(query, PlaceDocument::class.java)
+        val regionNos = placeDocuments.map { it.regionNo }.distinct()
+        val regionMap = placeRegionRepository.findByRegionNoIn(regionNos).associateBy { it.regionNo }
+        val places = placeDocuments.map { doc ->
+            val regionDocument = regionMap[doc.regionNo] ?: throw NotFoundException()
+            DocumentConvertUtil.convertToPlace(doc, DocumentConvertUtil.convertToPlaceRegion(regionDocument))
         }
 
         return Pair(places, total)
