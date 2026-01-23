@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: test
+
+doriball:
+  management:
+    window_days: 7
+    chunk_size: 100
