@@ -2,11 +2,11 @@ package io.doriball.modulecalendar.unit.event.adapter.out.persistence
 
 import io.doriball.modulecalendar.event.adapter.out.persistence.EventQueryPersistenceAdapter
 import io.doriball.modulecalendar.event.adapter.out.persistence.repository.EventMongoRepository
-import io.doriball.modulecalendar.event.adapter.out.persistence.repository.EventStoreMongoRepository
-import io.doriball.modulecalendar.event.adapter.out.persistence.repository.EventStoreRegionMongoRepository
+import io.doriball.modulecalendar.event.adapter.out.persistence.repository.EventPlaceMongoRepository
+import io.doriball.modulecalendar.event.adapter.out.persistence.repository.EventPlaceRegionMongoRepository
 import io.doriball.modulecalendar.fixture.document.eventDocumentFixture
-import io.doriball.modulecalendar.fixture.document.storeDocumentFixture
-import io.doriball.modulecalendar.fixture.document.storeRegionDocumentFixture
+import io.doriball.modulecalendar.fixture.document.placeDocumentFixture
+import io.doriball.modulecalendar.fixture.document.placeRegionDocumentFixture
 import io.doriball.modulecore.enums.LeagueCategoryType
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -28,10 +28,10 @@ class EventQueryPersistenceAdapterUnitTest {
     lateinit var eventRepository: EventMongoRepository
 
     @Mock
-    lateinit var storeRegionRepository: EventStoreRegionMongoRepository
+    lateinit var storeRegionRepository: EventPlaceRegionMongoRepository
 
     @Mock
-    lateinit var storeRepository: EventStoreMongoRepository
+    lateinit var storeRepository: EventPlaceMongoRepository
 
     @Test
     fun 이벤트_일정_목록_조회_성공_지역_필터링_미적용() {
@@ -42,8 +42,8 @@ class EventQueryPersistenceAdapterUnitTest {
         val regionNo = null
         given(eventRepository.findByScheduledAtBetween(any(), any()))
             .willReturn(listOf(eventDocumentFixture()))
-        given(storeRepository.findByIdIn(anyList())).willReturn(listOf(storeDocumentFixture()))
-        given(storeRegionRepository.findByRegionNoIn(anyList())).willReturn(listOf(storeRegionDocumentFixture()))
+        given(storeRepository.findByIdIn(anyList())).willReturn(listOf(placeDocumentFixture()))
+        given(storeRegionRepository.findByRegionNoIn(anyList())).willReturn(listOf(placeRegionDocumentFixture()))
 
         // when
         val result = sut.getEvents(year, month, regionNo)
@@ -53,7 +53,7 @@ class EventQueryPersistenceAdapterUnitTest {
         assert(result[0].id == "event-1")
         assert(result[0].name == "토요일 미니리그")
         assert(result[0].regionName == "서울")
-        assert(result[0].storeId == "store-1")
+        assert(result[0].storeId == "place-1")
         assert(result[0].storeName == "포켓몬 카드샵 용산")
         assert(result[0].category == LeagueCategoryType.OFFICIAL)
         assert(result[0].capacity == 64)
@@ -73,9 +73,9 @@ class EventQueryPersistenceAdapterUnitTest {
         val year = 2026
         val month = 1
         val regionNo = 1
-        given(storeRepository.findByRegionNo(regionNo)).willReturn(listOf(storeDocumentFixture()))
-        given(storeRegionRepository.findByRegionNo(any())).willReturn(storeRegionDocumentFixture())
-        given(eventRepository.findByScheduledAtBetweenAndStoreIdIn(any(), any(), anyList()))
+        given(storeRepository.findByRegionNo(regionNo)).willReturn(listOf(placeDocumentFixture()))
+        given(storeRegionRepository.findByRegionNo(any())).willReturn(placeRegionDocumentFixture())
+        given(eventRepository.findByScheduledAtBetweenAndPlaceIdIn(any(), any(), anyList()))
             .willReturn(listOf(eventDocumentFixture()))
 
         // when
@@ -86,7 +86,7 @@ class EventQueryPersistenceAdapterUnitTest {
         assert(result[0].id == "event-1")
         assert(result[0].name == "토요일 미니리그")
         assert(result[0].regionName == "서울")
-        assert(result[0].storeId == "store-1")
+        assert(result[0].storeId == "place-1")
         assert(result[0].storeName == "포켓몬 카드샵 용산")
         assert(result[0].category == LeagueCategoryType.OFFICIAL)
         assert(result[0].capacity == 64)
@@ -105,9 +105,9 @@ class EventQueryPersistenceAdapterUnitTest {
         // given
         val eventId = "event-1"
         given(eventRepository.findById(eventId)).willReturn(Optional.of(eventDocumentFixture()))
-        given(storeRepository.findById(eventDocumentFixture().storeId)).willReturn(Optional.of(storeDocumentFixture()))
-        given(storeRegionRepository.findByRegionNo(storeDocumentFixture().regionNo)).willReturn(
-            storeRegionDocumentFixture()
+        given(storeRepository.findById(eventDocumentFixture().placeId)).willReturn(Optional.of(placeDocumentFixture()))
+        given(storeRegionRepository.findByRegionNo(placeDocumentFixture().regionNo)).willReturn(
+            placeRegionDocumentFixture()
         )
 
         // when
@@ -117,7 +117,7 @@ class EventQueryPersistenceAdapterUnitTest {
         assert(result.id == "event-1")
         assert(result.name == "토요일 미니리그")
         assert(result.regionName == "서울")
-        assert(result.storeId == "store-1")
+        assert(result.storeId == "place-1")
         assert(result.storeName == "포켓몬 카드샵 용산")
         assert(result.category == LeagueCategoryType.OFFICIAL)
         assert(result.capacity == 64)
@@ -151,7 +151,7 @@ class EventQueryPersistenceAdapterUnitTest {
         // given
         val eventId = "event-1"
         given(eventRepository.findById(eventId)).willReturn(Optional.of(eventDocumentFixture()))
-        given(storeRepository.findById(eventDocumentFixture().storeId)).willReturn(Optional.empty())
+        given(storeRepository.findById(eventDocumentFixture().placeId)).willReturn(Optional.empty())
 
         // when
         val result = sut.getEventDetail(eventId)
@@ -167,8 +167,8 @@ class EventQueryPersistenceAdapterUnitTest {
         // given
         val eventId = "event-1"
         given(eventRepository.findById(eventId)).willReturn(Optional.of(eventDocumentFixture()))
-        given(storeRepository.findById(eventDocumentFixture().storeId)).willReturn(Optional.of(storeDocumentFixture()))
-        given(storeRegionRepository.findByRegionNo(storeDocumentFixture().regionNo)).willReturn(null)
+        given(storeRepository.findById(eventDocumentFixture().placeId)).willReturn(Optional.of(placeDocumentFixture()))
+        given(storeRegionRepository.findByRegionNo(placeDocumentFixture().regionNo)).willReturn(null)
 
         // when
         val result = sut.getEventDetail(eventId)

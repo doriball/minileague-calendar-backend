@@ -3,24 +3,25 @@ package io.doriball.modulecalendar.fixture.document
 import io.doriball.modulecore.enums.DayOfWeekType
 import io.doriball.modulecore.enums.LeagueCategoryType
 import io.doriball.modulecore.enums.StageType
+import io.doriball.modulecore.enums.PlaceType
 import io.doriball.moduleinfrastructure.persistence.entity.EventDocument
 import io.doriball.moduleinfrastructure.persistence.entity.NoticeDocument
 import io.doriball.moduleinfrastructure.persistence.entity.StageDocument
-import io.doriball.moduleinfrastructure.persistence.entity.StoreDocument
-import io.doriball.moduleinfrastructure.persistence.entity.StoreEventRuleDocument
-import io.doriball.moduleinfrastructure.persistence.entity.StoreRegionDocument
+import io.doriball.moduleinfrastructure.persistence.entity.PlaceDocument
+import io.doriball.moduleinfrastructure.persistence.entity.PlaceEventRuleDocument
+import io.doriball.moduleinfrastructure.persistence.entity.PlaceRegionDocument
 import java.time.LocalDateTime
 import java.time.LocalTime
 
 fun eventDocumentFixture(
     id: String = "event-1",
-    storeId: String = "store-1",
+    placeId: String = "place-1",
     name: String = "토요일 미니리그",
     scheduledAt: LocalDateTime = LocalDateTime.now(),
     category: LeagueCategoryType = LeagueCategoryType.OFFICIAL,
     stages: List<StageDocument> = listOf(stageDocumentFixture())
 ): EventDocument = EventDocument(
-    storeId = storeId,
+    placeId = placeId,
     name = name,
     scheduledAt = scheduledAt,
     category = category,
@@ -29,36 +30,38 @@ fun eventDocumentFixture(
     entryFee = 0L
 ).apply { this.id = id }
 
-fun storeDocumentFixture(
-    id: String = "store-1",
+fun placeDocumentFixture(
+    id: String = "place-1",
     name: String = "포켓몬 카드샵 용산",
-    regionNo: Int = 1
-): StoreDocument = StoreDocument(
+    regionNo: Int = 1,
+    type: PlaceType = PlaceType.STORE,
+): PlaceDocument = PlaceDocument(
     name = name,
     regionNo = regionNo,
+    type = type,
     address = "서울시 용산구 한강대로23길 55 아이파크몰 리빙파크 8F",
     mapInformation = "37.529, 126.967",
     sns = "@pokemon_card_shop"
 ).apply { this.id = id }
 
-fun storeRegionDocumentFixture(
+fun placeRegionDocumentFixture(
     id: String = "region-1",
     regionNo: Int = 1,
     name: String = "서울"
-): StoreRegionDocument = StoreRegionDocument(
+): PlaceRegionDocument = PlaceRegionDocument(
     regionNo = regionNo,
     name = name
 ).apply { this.id = id }
 
-fun storeEventRuleDocumentFixture(
+fun placeEventRuleDocumentFixture(
     id: String = "rule-1",
-    storeId: String = "store-1",
+    placeId: String = "place-1",
     name: String = "토요일 미니리그",
     dayOfWeek: DayOfWeekType = DayOfWeekType.SAT,
     category: LeagueCategoryType = LeagueCategoryType.OFFICIAL,
     stages: List<StageDocument> = listOf(stageDocumentFixture())
-): StoreEventRuleDocument = StoreEventRuleDocument(
-    storeId = storeId,
+): PlaceEventRuleDocument = PlaceEventRuleDocument(
+    placeId = placeId,
     name = name,
     dayOfWeek = dayOfWeek,
     scheduledAt = LocalTime.of(14, 0),
