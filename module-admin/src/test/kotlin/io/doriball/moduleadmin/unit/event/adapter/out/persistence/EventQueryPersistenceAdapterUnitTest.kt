@@ -186,6 +186,7 @@ class EventQueryPersistenceAdapterUnitTest {
             entryFee = 0L,
             stages = listOf(EventStageUpdate(stageNo = 1, type = StageType.SWISS, roundCount = 4, gameCount = 1))
         )
+        given(eventRepository.findById(update.id)).willReturn(Optional.of(eventDocumentFixture()))
 
         // when
         sut.updateEvent(update)

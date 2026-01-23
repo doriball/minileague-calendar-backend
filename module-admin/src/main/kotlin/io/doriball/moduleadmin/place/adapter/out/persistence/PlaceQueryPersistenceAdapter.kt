@@ -77,8 +77,15 @@ class PlaceQueryPersistenceAdapter(
     }
 
     override fun updatePlace(placeId: String, update: PlaceUpdate) {
-        val document = toPlaceDocument(update)
-        placeRepository.save(document)
+        val place = placeRepository.findByIdOrNull(placeId) ?: throw NotFoundException()
+        place.apply {
+            name = update.name
+            regionNo = update.regionNo
+            type = update.type
+            address = update.address
+            mapInformation = update.map
+        }
+        placeRepository.save(place)
     }
 
     override fun deletePlace(placeId: String) {
@@ -99,14 +106,5 @@ class PlaceQueryPersistenceAdapter(
         mapInformation = create.map,
         sns = create.sns,
     )
-
-    private fun toPlaceDocument(update: PlaceUpdate): PlaceDocument = PlaceDocument(
-        name = update.name,
-        regionNo = update.regionNo,
-        type = update.type,
-        address = update.address,
-        mapInformation = update.map,
-        sns = update.sns,
-    ).apply { id = update.id }
 
 }
