@@ -39,7 +39,7 @@ object DocumentConvertUtil {
             gameCountPerRound = document.gameCountPerRound
         )
 
-    fun convertToStore(placeDocument: PlaceDocument, placeRegion: PlaceRegion): Place =
+    fun convertToPlace(placeDocument: PlaceDocument, placeRegion: PlaceRegion): Place =
         Place(
             id = placeDocument.id!!,
             name = placeDocument.name,
@@ -52,7 +52,7 @@ object DocumentConvertUtil {
             modifiedAt = placeDocument.modifiedAt
         )
 
-    fun convertToStoreRegion(document: PlaceRegionDocument): PlaceRegion =
+    fun convertToPlaceRegion(document: PlaceRegionDocument): PlaceRegion =
         PlaceRegion(regionNo = document.regionNo, name = document.name)
 
     fun convertToNotice(noticeDocument: NoticeDocument) = Notice(
@@ -63,21 +63,21 @@ object DocumentConvertUtil {
         modifiedAt = noticeDocument.modifiedAt
     )
 
-    fun convertToStoreEventRule(document: PlaceEventRuleDocument) = PlaceEventRule(
+    fun convertToPlaceEventRule(document: PlaceEventRuleDocument) = PlaceEventRule(
         id = document.id!!,
-        storeId = document.storeId,
+        placeId = document.placeId,
         name = document.name,
         dayOfWeek = document.dayOfWeek,
         scheduledAt = document.scheduledAt,
         category = document.category,
         capacity = document.capacity,
-        stages = document.stages.map { convertToStoreEventRuleStage(it) }.toList(),
+        stages = document.stages.map { convertToPlaceEventRuleStage(it) }.toList(),
         entryFee = document.entryFee,
         createdAt = document.createdAt,
         modifiedAt = document.modifiedAt
     )
 
-    fun convertToStoreEventRuleStage(document: StageDocument): PlaceEventRuleStage =
+    fun convertToPlaceEventRuleStage(document: StageDocument): PlaceEventRuleStage =
         PlaceEventRuleStage(
             stageNo = document.stageNo,
             type = StageType.valueOf(document.type),

@@ -8,7 +8,7 @@ import java.time.LocalTime
 
 @Document(collection = "place_event_rule")
 class PlaceEventRuleDocument(
-    val storeId: String,
+    val placeId: String,
     val name: String,
     val dayOfWeek: DayOfWeekType,
     val scheduledAt: LocalTime,
