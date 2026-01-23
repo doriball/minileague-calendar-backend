@@ -6,8 +6,8 @@ import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalTime
 
-@Document(collection = "store_event_rule")
-class StoreEventRuleDocument(
+@Document(collection = "place_event_rule")
+class PlaceEventRuleDocument(
     val storeId: String,
     val name: String,
     val dayOfWeek: DayOfWeekType,
