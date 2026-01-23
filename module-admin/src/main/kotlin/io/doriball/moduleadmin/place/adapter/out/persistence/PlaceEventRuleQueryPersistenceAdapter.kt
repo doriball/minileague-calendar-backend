@@ -7,9 +7,11 @@ import io.doriball.moduleadmin.place.domain.PlaceEventRuleStageCreate
 import io.doriball.moduleadmin.place.domain.PlaceEventRuleStageUpdate
 import io.doriball.moduleadmin.place.domain.PlaceEventRuleUpdate
 import io.doriball.modulecore.domain.place.PlaceEventRule
+import io.doriball.modulecore.exception.NotFoundException
 import io.doriball.moduleinfrastructure.persistence.entity.StageDocument
 import io.doriball.moduleinfrastructure.persistence.entity.PlaceEventRuleDocument
 import io.doriball.moduleinfrastructure.persistence.util.DocumentConvertUtil
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -26,8 +28,17 @@ class PlaceEventRuleQueryPersistenceAdapter(val repository: PlaceEventRuleMongoR
     }
 
     override fun updatePlaceEventRule(update: PlaceEventRuleUpdate) {
-        val document = toPlaceEventRuleDocument(update)
-        repository.save(document)
+        val place = repository.findByIdOrNull(update.id) ?: throw NotFoundException()
+        place.apply {
+            name = update.name
+            dayOfWeek = update.dayOfWeek
+            scheduledAt = update.scheduledAt
+            category = update.category
+            capacity = update.capacity
+            entryFee = update.entryFee
+            stages = update.stages.map { toStageDocument(it) }.toList()
+        }
+        repository.save(place)
     }
 
     override fun deletePlaceEventRule(placeId: String, ruleId: String) {
@@ -51,17 +62,6 @@ class PlaceEventRuleQueryPersistenceAdapter(val repository: PlaceEventRuleMongoR
         roundCount = create.roundCount,
         gameCountPerRound = create.gameCount
     )
-
-    private fun toPlaceEventRuleDocument(update: PlaceEventRuleUpdate): PlaceEventRuleDocument = PlaceEventRuleDocument(
-        placeId = update.placeId,
-        name = update.name,
-        dayOfWeek = update.dayOfWeek,
-        scheduledAt = update.scheduledAt,
-        category = update.category,
-        capacity = update.capacity,
-        entryFee = update.entryFee,
-        stages = update.stages.map { toStageDocument(it) }
-    ).apply { id = update.id }
 
     private fun toStageDocument(update: PlaceEventRuleStageUpdate): StageDocument = StageDocument(
         stageNo = update.stageNo,

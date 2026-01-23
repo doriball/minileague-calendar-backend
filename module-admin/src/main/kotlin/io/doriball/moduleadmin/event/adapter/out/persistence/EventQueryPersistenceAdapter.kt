@@ -119,8 +119,17 @@ class EventQueryPersistenceAdapter(
     }
 
     override fun updateEvent(update: EventUpdate) {
-        val document = toEventDocument(update)
-        eventRepository.save(document)
+        val event = eventRepository.findByIdOrNull(update.id) ?: throw NotFoundException()
+        event.apply {
+            name = update.name
+            placeId = update.placeId
+            scheduledAt = update.scheduledAt
+            category = update.category
+            capacity = update.capacity
+            entryFee = update.entryFee
+            stages = update.stages.map { toEventStageDocument(it) }.toList()
+        }
+        eventRepository.save(event)
     }
 
     override fun deleteEvent(eventId: String) {
@@ -143,16 +152,6 @@ class EventQueryPersistenceAdapter(
         roundCount = create.roundCount,
         gameCountPerRound = create.gameCount
     )
-
-    private fun toEventDocument(update: EventUpdate) = EventDocument(
-        placeId = update.placeId,
-        name = update.name,
-        scheduledAt = update.scheduledAt,
-        category = update.category,
-        capacity = update.capacity,
-        entryFee = update.entryFee,
-        stages = update.stages.map { toEventStageDocument(it) }.toList()
-    ).apply { id = update.id }
 
     private fun toEventStageDocument(update: EventStageUpdate) = StageDocument(
         stageNo = update.stageNo,

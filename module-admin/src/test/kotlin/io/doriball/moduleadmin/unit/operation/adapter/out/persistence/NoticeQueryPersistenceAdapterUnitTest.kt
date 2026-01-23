@@ -102,6 +102,7 @@ class NoticeQueryPersistenceAdapterUnitTest {
 
         // given
         val update = NoticeUpdate(id="notice-1", title="title", content="content")
+        given(repository.findById(update.id)).willReturn(Optional.of(noticeDocumentFixture()))
 
         // when
         sut.updateNotice(update)
