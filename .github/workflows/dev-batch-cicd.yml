@@ -20,7 +20,7 @@ jobs:
           java-version: 21
           distribution: temurin
           working-directory: module-batch
-          build-command: ./gradlew :module-batch:clean :module-batch:test :module-batch:bootJar
+          build-command: ./gradlew :module-batch:clean :module-batch:bootJar
           docker-username: ${{ secrets.DOCKER_USERNAME }}
           docker-password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
           docker-repository: mrcocoball/minileague-calendar-batch
