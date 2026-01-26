@@ -6,8 +6,8 @@ import io.doriball.moduleadmin.place.application.port.`in`.dto.*
 import io.doriball.moduleadmin.place.application.port.out.PlacePort
 import io.doriball.moduleadmin.place.application.service.PlaceServiceV1
 import io.doriball.moduleadmin.place.common.exception.EventExistException
-import io.doriball.modulecore.enums.PlaceType
-import io.doriball.modulecore.exception.NotFoundException
+import io.doriball.modulecore.domain.enums.PlaceType
+import io.doriball.modulecore.shared.exception.NotFoundException
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtendWith

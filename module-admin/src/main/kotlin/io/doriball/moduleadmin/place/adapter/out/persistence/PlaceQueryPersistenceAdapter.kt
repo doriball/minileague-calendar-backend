@@ -8,7 +8,7 @@ import io.doriball.moduleadmin.place.domain.PlaceCreate
 import io.doriball.moduleadmin.place.domain.PlaceSummary
 import io.doriball.moduleadmin.place.domain.PlaceUpdate
 import io.doriball.modulecore.domain.place.Place
-import io.doriball.modulecore.exception.NotFoundException
+import io.doriball.modulecore.shared.exception.NotFoundException
 import io.doriball.moduleinfrastructure.persistence.entity.PlaceDocument
 import io.doriball.moduleinfrastructure.persistence.util.DocumentConvertUtil
 import org.springframework.data.domain.PageRequest

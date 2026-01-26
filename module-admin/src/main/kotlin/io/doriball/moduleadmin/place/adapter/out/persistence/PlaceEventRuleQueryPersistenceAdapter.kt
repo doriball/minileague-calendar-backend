@@ -7,7 +7,7 @@ import io.doriball.moduleadmin.place.domain.PlaceEventRuleStageCreate
 import io.doriball.moduleadmin.place.domain.PlaceEventRuleStageUpdate
 import io.doriball.moduleadmin.place.domain.PlaceEventRuleUpdate
 import io.doriball.modulecore.domain.place.PlaceEventRule
-import io.doriball.modulecore.exception.NotFoundException
+import io.doriball.modulecore.shared.exception.NotFoundException
 import io.doriball.moduleinfrastructure.persistence.entity.StageDocument
 import io.doriball.moduleinfrastructure.persistence.entity.PlaceEventRuleDocument
 import io.doriball.moduleinfrastructure.persistence.util.DocumentConvertUtil

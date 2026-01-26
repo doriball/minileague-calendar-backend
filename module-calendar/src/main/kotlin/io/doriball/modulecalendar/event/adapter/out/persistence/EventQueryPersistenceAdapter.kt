@@ -5,7 +5,7 @@ import io.doriball.modulecalendar.event.adapter.out.persistence.repository.Event
 import io.doriball.modulecalendar.event.adapter.out.persistence.repository.EventPlaceRegionMongoRepository
 import io.doriball.modulecalendar.event.application.port.out.EventPort
 import io.doriball.modulecore.domain.event.Event
-import io.doriball.modulecore.exception.NotFoundException
+import io.doriball.modulecore.shared.exception.NotFoundException
 import io.doriball.moduleinfrastructure.persistence.util.DocumentConvertUtil
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Repository

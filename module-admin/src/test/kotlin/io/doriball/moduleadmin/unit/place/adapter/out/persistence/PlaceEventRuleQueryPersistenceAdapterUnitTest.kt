@@ -7,10 +7,10 @@ import io.doriball.moduleadmin.place.domain.PlaceEventRuleCreate
 import io.doriball.moduleadmin.place.domain.PlaceEventRuleStageCreate
 import io.doriball.moduleadmin.place.domain.PlaceEventRuleStageUpdate
 import io.doriball.moduleadmin.place.domain.PlaceEventRuleUpdate
-import io.doriball.modulecore.enums.DayOfWeekType
-import io.doriball.modulecore.enums.LeagueCategoryType
-import io.doriball.modulecore.enums.StageType
-import io.doriball.modulecore.exception.NotFoundException
+import io.doriball.modulecore.domain.enums.DayOfWeekType
+import io.doriball.modulecore.domain.enums.LeagueCategoryType
+import io.doriball.modulecore.domain.enums.StageType
+import io.doriball.modulecore.shared.exception.NotFoundException
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtendWith

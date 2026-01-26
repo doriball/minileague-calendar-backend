@@ -1,7 +1,7 @@
 package io.doriball.modulecalendar.event.application.dto
 
 import io.doriball.modulecore.domain.event.Event
-import io.doriball.modulecore.enums.LeagueCategoryType
+import io.doriball.modulecore.domain.enums.LeagueCategoryType
 import java.time.LocalDateTime
 
 class EventDto(

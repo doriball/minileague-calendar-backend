@@ -1,4 +1,4 @@
-package io.doriball.modulecore.exception
+package io.doriball.modulecore.shared.exception
 
 class NotFoundException : RuntimeException()
 

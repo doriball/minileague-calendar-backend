@@ -1,8 +1,8 @@
 package io.doriball.moduleadmin.place.application.dto
 
 import io.doriball.modulecore.domain.place.PlaceEventRule
-import io.doriball.modulecore.enums.DayOfWeekType
-import io.doriball.modulecore.enums.LeagueCategoryType
+import io.doriball.modulecore.domain.enums.DayOfWeekType
+import io.doriball.modulecore.domain.enums.LeagueCategoryType
 import java.time.LocalTime
 
 class PlaceEventRuleDto(

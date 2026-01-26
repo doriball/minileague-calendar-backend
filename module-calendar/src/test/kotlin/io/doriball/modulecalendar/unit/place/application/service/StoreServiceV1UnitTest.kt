@@ -7,9 +7,9 @@ import io.doriball.modulecalendar.place.application.port.`in`.dto.ReadStoresComm
 import io.doriball.modulecalendar.place.application.port.out.PlaceEventRulePort
 import io.doriball.modulecalendar.place.application.port.out.PlacePort
 import io.doriball.modulecalendar.place.application.service.PlaceServiceV1
-import io.doriball.modulecore.enums.DayOfWeekType
-import io.doriball.modulecore.enums.LeagueCategoryType
-import io.doriball.modulecore.exception.NotFoundException
+import io.doriball.modulecore.domain.enums.DayOfWeekType
+import io.doriball.modulecore.domain.enums.LeagueCategoryType
+import io.doriball.modulecore.shared.exception.NotFoundException
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtendWith

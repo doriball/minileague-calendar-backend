@@ -9,7 +9,7 @@ import io.doriball.moduleadmin.place.application.port.out.PlacePort
 import io.doriball.moduleadmin.place.common.exception.EventExistException
 import io.doriball.moduleadmin.place.domain.PlaceCreate
 import io.doriball.moduleadmin.place.domain.PlaceUpdate
-import io.doriball.modulecore.exception.NotFoundException
+import io.doriball.modulecore.shared.exception.NotFoundException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 

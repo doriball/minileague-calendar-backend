@@ -10,7 +10,7 @@ import io.doriball.moduleadmin.event.domain.EventStageCreate
 import io.doriball.moduleadmin.event.domain.EventStageUpdate
 import io.doriball.moduleadmin.event.domain.EventUpdate
 import io.doriball.modulecore.domain.event.Event
-import io.doriball.modulecore.exception.NotFoundException
+import io.doriball.modulecore.shared.exception.NotFoundException
 import io.doriball.moduleinfrastructure.persistence.entity.EventDocument
 import io.doriball.moduleinfrastructure.persistence.entity.StageDocument
 import io.doriball.moduleinfrastructure.persistence.entity.PlaceDocument

@@ -1,4 +1,4 @@
-package io.doriball.modulecalendar.common.config
+package io.doriball.modulecalendar.common.adapter.out.security.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
