@@ -1,7 +1,7 @@
 package io.doriball.modulecore.domain.match
 
-import io.doriball.modulecore.enums.ResultType
-import io.doriball.modulecore.enums.StageType
+import io.doriball.modulecore.domain.enums.ResultType
+import io.doriball.modulecore.domain.enums.StageType
 
 class MatchRecordStage(
     val stageNo: Int,

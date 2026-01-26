@@ -1,6 +1,6 @@
 package io.doriball.modulecore.domain.place
 
-import io.doriball.modulecore.enums.PlaceType
+import io.doriball.modulecore.domain.enums.PlaceType
 import java.time.LocalDateTime
 
 class Place(

@@ -6,10 +6,10 @@ import io.doriball.modulecore.domain.place.Place
 import io.doriball.modulecore.domain.place.PlaceEventRule
 import io.doriball.modulecore.domain.place.PlaceEventRuleStage
 import io.doriball.modulecore.domain.place.PlaceRegion
-import io.doriball.modulecore.enums.DayOfWeekType
-import io.doriball.modulecore.enums.LeagueCategoryType
-import io.doriball.modulecore.enums.StageType
-import io.doriball.modulecore.enums.PlaceType
+import io.doriball.modulecore.domain.enums.DayOfWeekType
+import io.doriball.modulecore.domain.enums.LeagueCategoryType
+import io.doriball.modulecore.domain.enums.StageType
+import io.doriball.modulecore.domain.enums.PlaceType
 import java.time.LocalDateTime
 import java.time.LocalTime
 

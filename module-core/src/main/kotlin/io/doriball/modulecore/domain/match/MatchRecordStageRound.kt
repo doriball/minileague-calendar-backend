@@ -1,6 +1,6 @@
 package io.doriball.modulecore.domain.match
 
-import io.doriball.modulecore.enums.ResultType
+import io.doriball.modulecore.domain.enums.ResultType
 
 class MatchRecordStageRound(
     val roundNo: Int,
