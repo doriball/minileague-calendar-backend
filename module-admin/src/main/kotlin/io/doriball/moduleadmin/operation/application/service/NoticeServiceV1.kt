@@ -9,7 +9,10 @@ import io.doriball.moduleadmin.operation.application.port.`in`.dto.UpdateNoticeC
 import io.doriball.moduleadmin.operation.application.port.out.NoticePort
 import io.doriball.moduleadmin.operation.domain.NoticeCreate
 import io.doriball.moduleadmin.operation.domain.NoticeUpdate
+import io.doriball.modulecore.shared.codes.SharedCacheName
 import io.doriball.modulecore.shared.exception.NotFoundException
+import org.springframework.cache.annotation.CacheEvict
+import org.springframework.cache.annotation.Caching
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -26,16 +29,29 @@ class NoticeServiceV1(val port: NoticePort): NoticeUseCase {
         return NoticeDetailDto.from(notice)
     }
 
+    @CacheEvict(value = [SharedCacheName.NOTICES], allEntries = true)
     @Transactional
     override fun createNotice(command: CreateNoticeCommand) {
         port.createNotice(NoticeCreate.from(command))
     }
 
+    @Caching(
+        evict = [
+            CacheEvict(value = [SharedCacheName.NOTICES], allEntries = true),
+            CacheEvict(value = [SharedCacheName.NOTICE_DETAIL], key = "#noticeId")
+        ]
+    )
     @Transactional
     override fun updateNotice(noticeId: String, command: UpdateNoticeCommand) {
         port.updateNotice(NoticeUpdate.from(noticeId, command))
     }
 
+    @Caching(
+        evict = [
+            CacheEvict(value = [SharedCacheName.NOTICES], allEntries = true),
+            CacheEvict(value = [SharedCacheName.NOTICE_DETAIL], key = "#noticeId")
+        ]
+    )
     @Transactional
     override fun deleteNotice(noticeId: String) {
         port.deleteNotice(noticeId)
