@@ -1,6 +1,6 @@
 package io.doriball.moduleinfrastructure.persistence.entity
 
-import io.doriball.modulecore.enums.PlaceType
+import io.doriball.modulecore.domain.enums.PlaceType
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 
