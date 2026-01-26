@@ -1,7 +1,7 @@
 package io.doriball.moduleadmin.event.domain
 
 import io.doriball.moduleadmin.event.application.port.`in`.dto.CreateEventCommand
-import io.doriball.modulecore.enums.LeagueCategoryType
+import io.doriball.modulecore.domain.enums.LeagueCategoryType
 import java.time.LocalDateTime
 
 class EventCreate(

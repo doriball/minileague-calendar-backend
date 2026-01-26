@@ -6,7 +6,7 @@ import io.doriball.modulecalendar.operation.application.port.`in`.NoticeUseCase
 import io.doriball.modulecalendar.operation.application.port.`in`.dto.ReadNoticeDetailCommand
 import io.doriball.modulecalendar.operation.application.port.`in`.dto.ReadNoticesCommand
 import io.doriball.modulecalendar.operation.application.port.out.NoticePort
-import io.doriball.modulecore.exception.NotFoundException
+import io.doriball.modulecore.shared.exception.NotFoundException
 import org.springframework.stereotype.Service
 
 @Service

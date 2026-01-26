@@ -4,7 +4,7 @@ import io.doriball.moduleadmin.event.application.port.`in`.EventUseCase
 import io.doriball.moduleadmin.event.application.port.`in`.dto.ReadEventsCommand
 import io.doriball.moduleadmin.event.common.enums.EventKeywordSearchType
 import io.doriball.moduleadmin.place.application.port.`in`.PlaceRegionUseCase
-import io.doriball.modulecore.enums.LeagueCategoryType
+import io.doriball.modulecore.domain.enums.LeagueCategoryType
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Controller
 import org.springframework.ui.ModelMap

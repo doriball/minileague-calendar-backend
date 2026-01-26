@@ -9,7 +9,7 @@ import io.doriball.moduleadmin.operation.application.port.`in`.dto.UpdateNoticeC
 import io.doriball.moduleadmin.operation.application.port.out.NoticePort
 import io.doriball.moduleadmin.operation.domain.NoticeCreate
 import io.doriball.moduleadmin.operation.domain.NoticeUpdate
-import io.doriball.modulecore.exception.NotFoundException
+import io.doriball.modulecore.shared.exception.NotFoundException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 

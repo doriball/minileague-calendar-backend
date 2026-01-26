@@ -1,7 +1,7 @@
 package io.doriball.moduleadmin.place.application.dto
 
 import io.doriball.modulecore.domain.place.Place
-import io.doriball.modulecore.enums.PlaceType
+import io.doriball.modulecore.domain.enums.PlaceType
 
 class PlaceDetailDto(
     val id: String,

@@ -1,4 +1,4 @@
-package io.doriball.modulecore.util
+package io.doriball.modulecore.shared.util
 
 import kotlin.math.ceil
 

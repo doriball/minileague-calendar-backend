@@ -6,7 +6,7 @@ import io.doriball.modulecalendar.event.application.port.`in`.EventUseCase
 import io.doriball.modulecalendar.event.application.port.`in`.dto.ReadEventDetailCommand
 import io.doriball.modulecalendar.event.application.port.`in`.dto.ReadEventsCommand
 import io.doriball.modulecalendar.event.application.port.out.EventPort
-import io.doriball.modulecore.exception.NotFoundException
+import io.doriball.modulecore.shared.exception.NotFoundException
 import org.springframework.stereotype.Service
 
 @Service

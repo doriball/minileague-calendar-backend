@@ -5,7 +5,7 @@ import io.doriball.modulecalendar.fixture.document.placeRegionDocumentFixture
 import io.doriball.modulecalendar.place.adapter.out.persistence.PlaceQueryPersistenceAdapter
 import io.doriball.modulecalendar.place.adapter.out.persistence.repository.PlaceMongoRepository
 import io.doriball.modulecalendar.place.adapter.out.persistence.repository.PlaceRegionMongoRepository
-import io.doriball.modulecore.enums.PlaceType
+import io.doriball.modulecore.domain.enums.PlaceType
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.ArgumentMatchers.anyList

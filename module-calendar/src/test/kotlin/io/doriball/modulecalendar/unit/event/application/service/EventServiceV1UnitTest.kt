@@ -5,9 +5,9 @@ import io.doriball.modulecalendar.event.application.port.`in`.dto.ReadEventsComm
 import io.doriball.modulecalendar.event.application.port.out.EventPort
 import io.doriball.modulecalendar.event.application.service.EventServiceV1
 import io.doriball.modulecalendar.fixture.domain.eventFixture
-import io.doriball.modulecore.enums.LeagueCategoryType
-import io.doriball.modulecore.enums.StageType
-import io.doriball.modulecore.exception.NotFoundException
+import io.doriball.modulecore.domain.enums.LeagueCategoryType
+import io.doriball.modulecore.domain.enums.StageType
+import io.doriball.modulecore.shared.exception.NotFoundException
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtendWith

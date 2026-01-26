@@ -1,7 +1,7 @@
 package io.doriball.modulecore.domain.place
 
-import io.doriball.modulecore.enums.DayOfWeekType
-import io.doriball.modulecore.enums.LeagueCategoryType
+import io.doriball.modulecore.domain.enums.DayOfWeekType
+import io.doriball.modulecore.domain.enums.LeagueCategoryType
 import java.time.LocalDateTime
 import java.time.LocalTime
 

@@ -8,9 +8,9 @@ import io.doriball.moduleadmin.place.application.port.`in`.dto.UpdatePlaceEventR
 import io.doriball.moduleadmin.place.application.port.`in`.dto.UpdatePlaceEventRuleStageCommand
 import io.doriball.moduleadmin.place.application.port.out.PlaceEventRulePort
 import io.doriball.moduleadmin.place.application.service.PlaceEventRuleServiceV1
-import io.doriball.modulecore.enums.DayOfWeekType
-import io.doriball.modulecore.enums.LeagueCategoryType
-import io.doriball.modulecore.enums.StageType
+import io.doriball.modulecore.domain.enums.DayOfWeekType
+import io.doriball.modulecore.domain.enums.LeagueCategoryType
+import io.doriball.modulecore.domain.enums.StageType
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.BDDMockito.given

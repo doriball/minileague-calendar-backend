@@ -7,7 +7,7 @@ import io.doriball.modulecalendar.place.application.port.`in`.dto.ReadStoreDetai
 import io.doriball.modulecalendar.place.application.port.`in`.dto.ReadStoresCommand
 import io.doriball.modulecalendar.place.application.port.out.PlaceEventRulePort
 import io.doriball.modulecalendar.place.application.port.out.PlacePort
-import io.doriball.modulecore.exception.NotFoundException
+import io.doriball.modulecore.shared.exception.NotFoundException
 import org.springframework.stereotype.Service
 
 @Service

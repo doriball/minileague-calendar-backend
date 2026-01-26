@@ -7,7 +7,7 @@ import io.doriball.moduleadmin.operation.application.port.`in`.dto.ReadNoticesCo
 import io.doriball.moduleadmin.operation.application.port.`in`.dto.UpdateNoticeCommand
 import io.doriball.moduleadmin.operation.application.port.out.NoticePort
 import io.doriball.moduleadmin.operation.application.service.NoticeServiceV1
-import io.doriball.modulecore.exception.NotFoundException
+import io.doriball.modulecore.shared.exception.NotFoundException
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtendWith

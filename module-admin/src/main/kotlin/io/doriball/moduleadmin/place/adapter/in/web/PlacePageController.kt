@@ -3,9 +3,9 @@ package io.doriball.moduleadmin.place.adapter.`in`.web
 import io.doriball.moduleadmin.place.application.port.`in`.PlaceRegionUseCase
 import io.doriball.moduleadmin.place.application.port.`in`.PlaceUseCase
 import io.doriball.moduleadmin.place.application.port.`in`.dto.ReadPlacesCommand
-import io.doriball.modulecore.enums.LeagueCategoryType
-import io.doriball.modulecore.enums.PlaceType
-import io.doriball.modulecore.util.PaginationUtil
+import io.doriball.modulecore.domain.enums.LeagueCategoryType
+import io.doriball.modulecore.domain.enums.PlaceType
+import io.doriball.modulecore.shared.util.PaginationUtil
 import org.springframework.stereotype.Controller
 import org.springframework.ui.ModelMap
 import org.springframework.web.bind.annotation.GetMapping

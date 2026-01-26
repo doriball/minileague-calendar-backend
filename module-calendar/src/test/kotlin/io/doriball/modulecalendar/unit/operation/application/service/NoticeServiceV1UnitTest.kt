@@ -5,7 +5,7 @@ import io.doriball.modulecalendar.operation.application.port.`in`.dto.ReadNotice
 import io.doriball.modulecalendar.operation.application.port.`in`.dto.ReadNoticesCommand
 import io.doriball.modulecalendar.operation.application.port.out.NoticePort
 import io.doriball.modulecalendar.operation.application.service.NoticeServiceV1
-import io.doriball.modulecore.exception.NotFoundException
+import io.doriball.modulecore.shared.exception.NotFoundException
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtendWith

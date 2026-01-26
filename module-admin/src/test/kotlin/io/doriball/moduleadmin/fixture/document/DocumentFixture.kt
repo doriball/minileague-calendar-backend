@@ -1,9 +1,9 @@
 package io.doriball.moduleadmin.fixture.document
 
-import io.doriball.modulecore.enums.DayOfWeekType
-import io.doriball.modulecore.enums.LeagueCategoryType
-import io.doriball.modulecore.enums.StageType
-import io.doriball.modulecore.enums.PlaceType
+import io.doriball.modulecore.domain.enums.DayOfWeekType
+import io.doriball.modulecore.domain.enums.LeagueCategoryType
+import io.doriball.modulecore.domain.enums.StageType
+import io.doriball.modulecore.domain.enums.PlaceType
 import io.doriball.moduleinfrastructure.persistence.entity.EventDocument
 import io.doriball.moduleinfrastructure.persistence.entity.NoticeDocument
 import io.doriball.moduleinfrastructure.persistence.entity.StageDocument

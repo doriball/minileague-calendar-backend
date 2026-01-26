@@ -1,6 +1,6 @@
 package io.doriball.moduleadmin.event.application.port.`in`.dto
 
-import io.doriball.modulecore.enums.StageType
+import io.doriball.modulecore.domain.enums.StageType
 import jakarta.validation.constraints.NotNull
 
 data class UpdateEventStageCommand(

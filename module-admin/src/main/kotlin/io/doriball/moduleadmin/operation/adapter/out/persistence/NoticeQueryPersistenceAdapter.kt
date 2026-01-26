@@ -6,7 +6,7 @@ import io.doriball.moduleadmin.operation.common.enums.NoticeKeywordSearchType
 import io.doriball.moduleadmin.operation.domain.NoticeCreate
 import io.doriball.moduleadmin.operation.domain.NoticeUpdate
 import io.doriball.modulecore.domain.operation.Notice
-import io.doriball.modulecore.exception.NotFoundException
+import io.doriball.modulecore.shared.exception.NotFoundException
 import io.doriball.moduleinfrastructure.persistence.entity.NoticeDocument
 import io.doriball.moduleinfrastructure.persistence.util.DocumentConvertUtil
 import org.springframework.data.domain.PageRequest

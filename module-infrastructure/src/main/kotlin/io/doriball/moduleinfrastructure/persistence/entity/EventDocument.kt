@@ -1,6 +1,6 @@
 package io.doriball.moduleinfrastructure.persistence.entity
 
-import io.doriball.modulecore.enums.LeagueCategoryType
+import io.doriball.modulecore.domain.enums.LeagueCategoryType
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDateTime

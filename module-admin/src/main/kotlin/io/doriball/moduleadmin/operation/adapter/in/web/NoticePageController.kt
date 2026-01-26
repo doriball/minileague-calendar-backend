@@ -3,7 +3,7 @@ package io.doriball.moduleadmin.operation.adapter.`in`.web
 import io.doriball.moduleadmin.operation.application.port.`in`.NoticeUseCase
 import io.doriball.moduleadmin.operation.application.port.`in`.dto.ReadNoticesCommand
 import io.doriball.moduleadmin.operation.common.enums.NoticeKeywordSearchType
-import io.doriball.modulecore.util.PaginationUtil
+import io.doriball.modulecore.shared.util.PaginationUtil
 import org.springframework.stereotype.Controller
 import org.springframework.ui.ModelMap
 import org.springframework.web.bind.annotation.GetMapping
