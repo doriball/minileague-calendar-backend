@@ -9,7 +9,7 @@
   - Spring Batch
   - MongoDB (Standalone, Docker on host)
   - Redis (Standalone, Docker on host)
-  - Thymeleaf (Admin)
+  - Thymeleaf + JavaScript (어드민)
 - Infrastructure
   - Ubuntu Server 24.04 LTS
   - Docker
