@@ -22,16 +22,16 @@ class NoticeController(val noticeUseCase: NoticeUseCase) {
 
     @GetMapping(BASE_PATH)
     fun getNotices(command: ReadNoticesCommand): PaginationResultResponse<NoticeDto> {
-        val (contents, totalSize) = noticeUseCase.getNotices(command)
+        val result = noticeUseCase.getNotices(command)
         val page = command.page ?: 1
         val size = command.size ?: 10
 
         return APIResponseUtil.paginationResultResponse(
-            contents = contents,
+            contents = result.notices,
             page = page,
             pageSize = size,
-            totalSize = totalSize,
-            totalPages = PaginationUtil.calculateTotalPages(size, totalSize)
+            totalSize = result.totalSize,
+            totalPages = PaginationUtil.calculateTotalPages(size, result.totalSize)
         )
     }
 

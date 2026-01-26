@@ -7,17 +7,21 @@ import io.doriball.modulecalendar.place.application.port.`in`.dto.ReadStoreDetai
 import io.doriball.modulecalendar.place.application.port.`in`.dto.ReadStoresCommand
 import io.doriball.modulecalendar.place.application.port.out.PlaceEventRulePort
 import io.doriball.modulecalendar.place.application.port.out.PlacePort
+import io.doriball.modulecore.shared.codes.SharedCacheName
 import io.doriball.modulecore.shared.exception.NotFoundException
+import org.springframework.cache.annotation.Cacheable
 import org.springframework.stereotype.Service
 
 @Service
 class PlaceServiceV1(val placePort: PlacePort, val placeEventRulePort: PlaceEventRulePort) : PlaceUseCase {
 
+    @Cacheable(value = [SharedCacheName.STORES], key = "(#command.regionNo ?: 'null')", unless = "#result.isEmpty()")
     override fun getStores(command: ReadStoresCommand): List<StoreDto> {
         val stores = placePort.getStorePlaces(command.regionNo)
         return stores.map { StoreDto.from(it) }
     }
 
+    @Cacheable(value = [SharedCacheName.STORES], key = "#command.storeId")
     override fun getStoreDetail(command: ReadStoreDetailCommand): StoreDetailDto {
         val store = placePort.getStorePlaceDetail(command.storeId) ?: throw NotFoundException();
         return StoreDetailDto.from(store, placeEventRulePort.getPlaceEventRules(store.id))

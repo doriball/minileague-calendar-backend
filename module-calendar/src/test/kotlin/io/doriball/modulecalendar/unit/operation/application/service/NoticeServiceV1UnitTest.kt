@@ -31,13 +31,13 @@ class NoticeServiceV1UnitTest {
         given(port.getNotices(command.page, command.size)).willReturn(Pair(listOf(noticeFixture()), 1))
 
         // when
-        val (result, totalCount) = sut.getNotices(command)
+        val result = sut.getNotices(command)
 
         // then
-        assert(result.size == 1)
-        assert(result[0].id == "notice-1")
-        assert(result[0].title == "신규 매장 오픈 안내")
-        assert(totalCount == 1L)
+        assert(result.notices.size == 1)
+        assert(result.notices[0].id == "notice-1")
+        assert(result.notices[0].title == "신규 매장 오픈 안내")
+        assert(result.totalSize == 1L)
 
     }
 
