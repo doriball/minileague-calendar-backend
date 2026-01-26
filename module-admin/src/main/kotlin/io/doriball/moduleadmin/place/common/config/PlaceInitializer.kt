@@ -2,7 +2,7 @@ package io.doriball.moduleadmin.place.common.config
 
 import io.doriball.moduleadmin.place.adapter.out.persistence.repository.PlaceMongoRepository
 import io.doriball.moduleadmin.place.adapter.out.persistence.repository.PlaceRegionMongoRepository
-import io.doriball.modulecore.enums.PlaceType
+import io.doriball.modulecore.domain.enums.PlaceType
 import io.doriball.moduleinfrastructure.persistence.entity.PlaceDocument
 import io.doriball.moduleinfrastructure.persistence.entity.PlaceRegionDocument
 import jakarta.annotation.PostConstruct

@@ -1,7 +1,7 @@
 package io.doriball.moduleadmin.place.domain
 
 import io.doriball.moduleadmin.place.application.port.`in`.dto.CreatePlaceCommand
-import io.doriball.modulecore.enums.PlaceType
+import io.doriball.modulecore.domain.enums.PlaceType
 
 class PlaceCreate(
     val name: String,

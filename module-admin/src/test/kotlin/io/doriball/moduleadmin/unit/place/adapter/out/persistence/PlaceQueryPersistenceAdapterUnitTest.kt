@@ -8,8 +8,8 @@ import io.doriball.moduleadmin.place.adapter.out.persistence.repository.PlaceMon
 import io.doriball.moduleadmin.place.adapter.out.persistence.repository.PlaceRegionMongoRepository
 import io.doriball.moduleadmin.place.domain.PlaceCreate
 import io.doriball.moduleadmin.place.domain.PlaceUpdate
-import io.doriball.modulecore.enums.PlaceType
-import io.doriball.modulecore.exception.NotFoundException
+import io.doriball.modulecore.domain.enums.PlaceType
+import io.doriball.modulecore.shared.exception.NotFoundException
 import io.doriball.moduleinfrastructure.persistence.entity.PlaceDocument
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows

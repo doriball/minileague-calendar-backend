@@ -1,7 +1,7 @@
 package io.doriball.moduleadmin.place.domain
 
 import io.doriball.moduleadmin.place.application.port.`in`.dto.UpdatePlaceEventRuleStageCommand
-import io.doriball.modulecore.enums.StageType
+import io.doriball.modulecore.domain.enums.StageType
 
 class PlaceEventRuleStageUpdate(
     val stageNo: Int,

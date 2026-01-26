@@ -11,7 +11,7 @@ import io.doriball.moduleadmin.event.application.port.out.EventPort
 import io.doriball.moduleadmin.event.domain.EventCreate
 import io.doriball.moduleadmin.event.domain.EventUpdate
 import io.doriball.moduleadmin.event.common.exception.EventIsPassedException
-import io.doriball.modulecore.exception.NotFoundException
+import io.doriball.modulecore.shared.exception.NotFoundException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 

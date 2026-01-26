@@ -1,7 +1,7 @@
 package io.doriball.moduleadmin.place.application.dto
 
 import io.doriball.modulecore.domain.place.PlaceEventRuleStage
-import io.doriball.modulecore.enums.StageType
+import io.doriball.modulecore.domain.enums.StageType
 
 class PlaceEventRuleStageDto(
     val stageNo: Int,

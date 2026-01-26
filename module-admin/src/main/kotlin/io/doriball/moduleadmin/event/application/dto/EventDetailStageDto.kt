@@ -1,7 +1,7 @@
 package io.doriball.moduleadmin.event.application.dto
 
 import io.doriball.modulecore.domain.event.EventStage
-import io.doriball.modulecore.enums.StageType
+import io.doriball.modulecore.domain.enums.StageType
 
 class EventDetailStageDto(
     val stageNo: Int,

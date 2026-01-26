@@ -11,8 +11,8 @@ import io.doriball.moduleadmin.event.domain.EventUpdate
 import io.doriball.moduleadmin.fixture.document.eventDocumentFixture
 import io.doriball.moduleadmin.fixture.document.placeDocumentFixture
 import io.doriball.moduleadmin.fixture.document.placeRegionDocumentFixture
-import io.doriball.modulecore.enums.LeagueCategoryType
-import io.doriball.modulecore.enums.StageType
+import io.doriball.modulecore.domain.enums.LeagueCategoryType
+import io.doriball.modulecore.domain.enums.StageType
 import io.doriball.moduleinfrastructure.persistence.entity.EventDocument
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
