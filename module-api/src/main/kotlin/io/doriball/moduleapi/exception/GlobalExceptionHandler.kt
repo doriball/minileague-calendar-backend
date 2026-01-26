@@ -3,8 +3,8 @@ package io.doriball.moduleapi.exception
 import io.doriball.moduleapi.enums.ResponseCode
 import io.doriball.moduleapi.response.FailResponse
 import io.doriball.moduleapi.util.APIResponseUtil
-import io.doriball.modulecore.exception.BadRequestException
-import io.doriball.modulecore.exception.NotFoundException
+import io.doriball.modulecore.shared.exception.BadRequestException
+import io.doriball.modulecore.shared.exception.NotFoundException
 import jakarta.servlet.http.HttpServletRequest
 import org.springframework.beans.ConversionNotSupportedException
 import org.springframework.beans.TypeMismatchException
