@@ -11,7 +11,9 @@ import io.doriball.moduleadmin.event.application.port.out.EventPort
 import io.doriball.moduleadmin.event.domain.EventCreate
 import io.doriball.moduleadmin.event.domain.EventUpdate
 import io.doriball.moduleadmin.event.common.exception.EventIsPassedException
+import io.doriball.modulecore.shared.codes.SharedCacheName
 import io.doriball.modulecore.shared.exception.NotFoundException
+import org.springframework.cache.annotation.CacheEvict
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -35,16 +37,19 @@ class EventServiceV1(val eventPort: EventPort) : EventUseCase {
         return EventDetailDto.from(event)
     }
 
+    @CacheEvict(value = [SharedCacheName.EVENTS], allEntries = true)
     @Transactional
     override fun createEvent(command: CreateEventCommand) {
         eventPort.createEvent(EventCreate.from(command))
     }
 
+    @CacheEvict(value = [SharedCacheName.EVENTS], allEntries = true)
     @Transactional
     override fun updateEvent(eventId: String, command: UpdateEventCommand) {
         eventPort.updateEvent(EventUpdate.from(eventId, command))
     }
 
+    @CacheEvict(value = [SharedCacheName.EVENTS], allEntries = true)
     @Transactional
     override fun deleteEvent(eventId: String) {
         if (eventPort.isPastEvent(eventId)) throw EventIsPassedException()
