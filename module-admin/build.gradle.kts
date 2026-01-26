@@ -28,6 +28,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+    implementation("org.springframework.boot:spring-boot-starter-data-redis")
     implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect")
