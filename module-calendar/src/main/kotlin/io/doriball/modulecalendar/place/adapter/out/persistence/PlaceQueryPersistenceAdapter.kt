@@ -4,8 +4,8 @@ import io.doriball.modulecalendar.place.adapter.out.persistence.repository.Place
 import io.doriball.modulecalendar.place.adapter.out.persistence.repository.PlaceRegionMongoRepository
 import io.doriball.modulecalendar.place.application.port.out.PlacePort
 import io.doriball.modulecore.domain.place.Place
-import io.doriball.modulecore.enums.PlaceType
-import io.doriball.modulecore.exception.NotFoundException
+import io.doriball.modulecore.domain.enums.PlaceType
+import io.doriball.modulecore.shared.exception.NotFoundException
 import io.doriball.moduleinfrastructure.persistence.util.DocumentConvertUtil
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Repository

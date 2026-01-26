@@ -1,6 +1,6 @@
 package io.doriball.modulecalendar.place.adapter.out.persistence.repository
 
-import io.doriball.modulecore.enums.PlaceType
+import io.doriball.modulecore.domain.enums.PlaceType
 import io.doriball.moduleinfrastructure.persistence.entity.PlaceDocument
 import org.springframework.data.mongodb.repository.MongoRepository
 

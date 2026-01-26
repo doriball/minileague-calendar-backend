@@ -8,7 +8,7 @@ import io.doriball.modulecalendar.operation.application.dto.NoticeDto
 import io.doriball.modulecalendar.operation.application.port.`in`.NoticeUseCase
 import io.doriball.modulecalendar.operation.application.port.`in`.dto.ReadNoticeDetailCommand
 import io.doriball.modulecalendar.operation.application.port.`in`.dto.ReadNoticesCommand
-import io.doriball.modulecore.util.PaginationUtil
+import io.doriball.modulecore.shared.util.PaginationUtil
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController

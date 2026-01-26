@@ -7,7 +7,7 @@ import io.doriball.modulecalendar.event.adapter.out.persistence.repository.Event
 import io.doriball.modulecalendar.fixture.document.eventDocumentFixture
 import io.doriball.modulecalendar.fixture.document.placeDocumentFixture
 import io.doriball.modulecalendar.fixture.document.placeRegionDocumentFixture
-import io.doriball.modulecore.enums.LeagueCategoryType
+import io.doriball.modulecore.domain.enums.LeagueCategoryType
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.ArgumentMatchers.anyList
