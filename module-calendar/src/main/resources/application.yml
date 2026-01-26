@@ -25,9 +25,22 @@ spring:
       add-mappings: false
   mongodb:
     uri: mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_URI}:${MONGO_PORT}/${MONGO_DB}?authSource=${MONGO_DB}&authMechanism=SCRAM-SHA-1
+  data:
+    redis:
+      host: ${REDIS_URI}
+      port: ${REDIS_PORT}
+      database: ${REDIS_DB}
+      password: ${REDIS_PASSWORD}
 
-#doriball:
-#  management:
+doriball:
+  management:
+    cache_ttl:
+      regions: ${TTL_REGIONS:1d}
+      events: ${TTL_EVENTS:6h}
+      stores: ${TTL_STORES:1d}
+      store_detail: ${TTL_STORE_DETAIL:1d}
+      notices: ${TTL_NOTICES:1d}
+      notice_detail: ${TTL_NOTICE_DETAIL:1d}
 #    jwt: ${JWT_SECRET}
 
 ---
