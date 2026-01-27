@@ -5,9 +5,13 @@ import io.doriball.moduleapi.response.FailResponse
 import io.doriball.moduleapi.util.APIResponseUtil
 import io.doriball.modulecore.shared.exception.BadRequestException
 import io.doriball.modulecore.shared.exception.NotFoundException
+import io.doriball.modulecore.shared.notification.model.ErrorEvent
+import io.doriball.modulecore.shared.notification.port.ErrorMessageSender
 import jakarta.servlet.http.HttpServletRequest
 import org.springframework.beans.ConversionNotSupportedException
 import org.springframework.beans.TypeMismatchException
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.context.annotation.Profile
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.HttpStatusCode
@@ -33,8 +37,13 @@ import org.springframework.web.multipart.support.MissingServletRequestPartExcept
 import org.springframework.web.servlet.NoHandlerFoundException
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
 
+@Profile("!test")
 @RestControllerAdvice
-class GlobalExceptionHandler : ResponseEntityExceptionHandler() {
+class GlobalExceptionHandler(
+    private val errorMessageSender: ErrorMessageSender,
+    @Value("\${spring.application.name:unknown}") private val moduleName: String,
+    @Value("\${spring.profiles.active:default}") private val profile: String,
+) : ResponseEntityExceptionHandler() {
 
     /**
      * 이하 Spring WEB MVC 관련 예외
@@ -319,24 +328,24 @@ class GlobalExceptionHandler : ResponseEntityExceptionHandler() {
             ex.message ?: ResponseCode.COMMON_INVALID_REQUEST.message,
         )
 
-
-    /**
-     * 전역 예외
-     */
-    override fun handleExceptionInternal(
-        ex: Exception,
-        body: Any?,
-        headers: HttpHeaders,
-        statusCode: HttpStatusCode,
-        request: WebRequest
-    ): ResponseEntity<Any>? = ResponseEntity
-        .status(HttpStatus.INTERNAL_SERVER_ERROR)
-        .body(
-            APIResponseUtil
-                .failResponse(
-                    ResponseCode.REQUEST_METHOD_NOT_SUPPORTED.code,
-                    ResponseCode.REQUEST_METHOD_NOT_SUPPORTED.message
-                )
+    @ExceptionHandler(Exception::class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    fun handleException(request: HttpServletRequest, ex: Exception): FailResponse {
+        errorMessageSender.sendErrorMessage(
+            ErrorEvent(
+                moduleName = moduleName,
+                profile = profile,
+                remoteAddress = request.remoteAddr,
+                requestUrl = request.requestURL.toString(),
+                exceptionName = ex.javaClass.simpleName,
+                exceptionMessage = ex.message ?: "",
+                exceptionStackTrace = ex.stackTraceToString()
+            )
         )
+        return APIResponseUtil.failResponse(
+            ResponseCode.INTERNAL_SERVER_ERROR.code,
+            ResponseCode.INTERNAL_SERVER_ERROR.message,
+        )
+    }
 
 }
