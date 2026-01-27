@@ -6,7 +6,7 @@ import io.doriball.moduleadmin.place.application.port.out.PlaceRegionPort
 import org.springframework.stereotype.Service
 
 @Service
-class PlaceRegionServiceV1(val port: PlaceRegionPort): PlaceRegionUseCase {
+class PlaceRegionServiceV1(private val port: PlaceRegionPort): PlaceRegionUseCase {
 
     override fun getPlaceRegions(): List<PlaceRegionDto> {
         return port.getPlaceRegions().map { PlaceRegionDto.from(it) }

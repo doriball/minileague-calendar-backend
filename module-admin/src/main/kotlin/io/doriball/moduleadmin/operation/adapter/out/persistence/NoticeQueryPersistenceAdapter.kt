@@ -19,8 +19,8 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class NoticeQueryPersistenceAdapter(
-    val mongoOperations: MongoOperations,
-    val repository: NoticeMongoRepository
+    private val mongoOperations: MongoOperations,
+    private val repository: NoticeMongoRepository
 ) : NoticePort {
 
     override fun getNotices(

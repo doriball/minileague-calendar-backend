@@ -20,10 +20,10 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class PlaceQueryPersistenceAdapter(
-    val mongoOperations: MongoOperations,
-    val placeRepository: PlaceMongoRepository,
-    val placeRegionRepository: PlaceRegionMongoRepository,
-    val placeEventRepository: PlaceEventMongoRepository,
+    private val mongoOperations: MongoOperations,
+    private val placeRepository: PlaceMongoRepository,
+    private val placeRegionRepository: PlaceRegionMongoRepository,
+    private val placeEventRepository: PlaceEventMongoRepository,
 ) : PlacePort {
 
     override fun getPlaces(
