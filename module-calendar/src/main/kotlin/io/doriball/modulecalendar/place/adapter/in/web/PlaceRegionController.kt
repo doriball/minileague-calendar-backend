@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class PlaceRegionController(val placeRegionUseCase: PlaceRegionUseCase) {
+class PlaceRegionController(private val placeRegionUseCase: PlaceRegionUseCase) {
 
     companion object {
         const val BASE_PATH = "/v1/store-regions"

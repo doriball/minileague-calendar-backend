@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class EventController(val eventUseCase: EventUseCase) {
+class EventController(private val eventUseCase: EventUseCase) {
 
     companion object {
         const val BASE_PATH = "/v1/events"
