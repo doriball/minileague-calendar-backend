@@ -12,8 +12,8 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class PlaceQueryPersistenceAdapter(
-    val placeRepository: PlaceMongoRepository,
-    val placeRegionRepository: PlaceRegionMongoRepository
+    private val placeRepository: PlaceMongoRepository,
+    private val placeRegionRepository: PlaceRegionMongoRepository
 ) : PlacePort {
 
     override fun getStorePlaces(regionNo: Int?): List<Place> {

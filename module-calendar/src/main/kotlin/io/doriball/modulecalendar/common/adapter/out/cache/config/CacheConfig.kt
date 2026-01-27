@@ -21,7 +21,7 @@ import java.time.Duration
 @Configuration
 @EnableConfigurationProperties(CacheTypeProperties::class)
 class CacheConfig(
-    val properties: CacheTypeProperties
+    private val properties: CacheTypeProperties
 ) : CachingConfigurer {
 
     @Bean

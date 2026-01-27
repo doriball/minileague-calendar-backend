@@ -9,7 +9,7 @@ import org.springframework.ui.ModelMap
 import org.springframework.web.bind.annotation.GetMapping
 
 @Controller
-class NoticePageController(val useCase: NoticeUseCase) {
+class NoticePageController(private val useCase: NoticeUseCase) {
 
     @GetMapping("/notices")
     fun getAnnouncements(command: ReadNoticesCommand, modelMap: ModelMap): String {

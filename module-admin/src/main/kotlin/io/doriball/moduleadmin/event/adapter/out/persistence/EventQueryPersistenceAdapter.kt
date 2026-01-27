@@ -25,10 +25,10 @@ import java.time.LocalDateTime
 
 @Repository
 class EventQueryPersistenceAdapter(
-    val mongoOperations: MongoOperations,
-    val eventRepository: EventMongoRepository,
-    val placeRepository: EventPlaceMongoRepository,
-    val placeRegionRepository: EventPlaceRegionMongoRepository,
+    private val mongoOperations: MongoOperations,
+    private val eventRepository: EventMongoRepository,
+    private val placeRepository: EventPlaceMongoRepository,
+    private val placeRegionRepository: EventPlaceRegionMongoRepository,
 ) : EventPort {
 
     override fun getEvents(

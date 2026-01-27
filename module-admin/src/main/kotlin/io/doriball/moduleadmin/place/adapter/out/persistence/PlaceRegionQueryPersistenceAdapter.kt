@@ -7,7 +7,7 @@ import io.doriball.moduleinfrastructure.persistence.util.DocumentConvertUtil
 import org.springframework.stereotype.Repository
 
 @Repository
-class PlaceRegionQueryPersistenceAdapter(val repository: PlaceRegionMongoRepository): PlaceRegionPort {
+class PlaceRegionQueryPersistenceAdapter(private val repository: PlaceRegionMongoRepository): PlaceRegionPort {
 
     override fun getPlaceRegions(): List<PlaceRegion> {
         return repository.findAll().map { DocumentConvertUtil.convertToPlaceRegion(it) }

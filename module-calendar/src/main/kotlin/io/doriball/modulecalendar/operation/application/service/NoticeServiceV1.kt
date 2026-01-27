@@ -13,7 +13,7 @@ import org.springframework.cache.annotation.Cacheable
 import org.springframework.stereotype.Service
 
 @Service
-class NoticeServiceV1(val noticePort: NoticePort) : NoticeUseCase {
+class NoticeServiceV1(private val noticePort: NoticePort) : NoticeUseCase {
 
     @Cacheable(value = [SharedCacheName.NOTICES], key = "(#command.page ?: '1') + '_' + (#command.size ?: '10')")
     override fun getNotices(command: ReadNoticesCommand): NoticePageDto {

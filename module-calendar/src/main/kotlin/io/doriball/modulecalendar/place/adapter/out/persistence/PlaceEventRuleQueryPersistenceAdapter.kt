@@ -7,7 +7,9 @@ import io.doriball.moduleinfrastructure.persistence.util.DocumentConvertUtil
 import org.springframework.stereotype.Repository
 
 @Repository
-class PlaceEventRuleQueryPersistenceAdapter(val repository: PlaceEventRuleMongoRepository) : PlaceEventRulePort {
+class PlaceEventRuleQueryPersistenceAdapter(
+    private val repository: PlaceEventRuleMongoRepository
+) : PlaceEventRulePort {
 
     override fun getPlaceEventRules(placeId: String): List<PlaceEventRule> {
         return repository.findByPlaceId(placeId).map { DocumentConvertUtil.convertToPlaceEventRule(it) }

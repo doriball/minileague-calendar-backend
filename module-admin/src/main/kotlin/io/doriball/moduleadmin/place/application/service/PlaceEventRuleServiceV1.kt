@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class PlaceEventRuleServiceV1(val placeEventRulePort: PlaceEventRulePort): PlaceEventRuleUseCase {
+class PlaceEventRuleServiceV1(private val placeEventRulePort: PlaceEventRulePort): PlaceEventRuleUseCase {
 
     override fun getPlaceEventRules(command: ReadPlaceEventRulesCommand): List<PlaceEventRuleDto> {
         val rules = placeEventRulePort.getPlaceEventRules(command.placeId)

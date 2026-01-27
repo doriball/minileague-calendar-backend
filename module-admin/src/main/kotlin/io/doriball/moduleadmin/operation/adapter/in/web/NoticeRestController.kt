@@ -10,7 +10,7 @@ import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
 
 @RestController
-class NoticeRestController(val useCase: NoticeUseCase) {
+class NoticeRestController(private val useCase: NoticeUseCase) {
 
     companion object {
         const val BASE_PATH = "/api/v1/notices"
