@@ -24,6 +24,7 @@ dependencies {
     implementation(project(":module-core"))
     implementation(project(":module-infrastructure"))
     implementation("org.springframework.boot:spring-boot-starter-batch")
+    implementation("org.springframework.boot:spring-boot-starter-data-redis")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     testImplementation("org.springframework.boot:spring-boot-starter-batch-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
