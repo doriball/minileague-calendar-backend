@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class EventServiceV1(val eventPort: EventPort) : EventUseCase {
+class EventServiceV1(private val eventPort: EventPort) : EventUseCase {
 
     override fun getEvents(command: ReadEventsCommand): List<EventDto> {
         val events = eventPort.getEvents(

@@ -8,14 +8,16 @@ import io.doriball.moduleadmin.place.domain.PlaceEventRuleStageUpdate
 import io.doriball.moduleadmin.place.domain.PlaceEventRuleUpdate
 import io.doriball.modulecore.domain.place.PlaceEventRule
 import io.doriball.modulecore.shared.exception.NotFoundException
-import io.doriball.moduleinfrastructure.persistence.entity.StageDocument
 import io.doriball.moduleinfrastructure.persistence.entity.PlaceEventRuleDocument
+import io.doriball.moduleinfrastructure.persistence.entity.StageDocument
 import io.doriball.moduleinfrastructure.persistence.util.DocumentConvertUtil
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Repository
 
 @Repository
-class PlaceEventRuleQueryPersistenceAdapter(val repository: PlaceEventRuleMongoRepository): PlaceEventRulePort {
+class PlaceEventRuleQueryPersistenceAdapter(
+    private val repository: PlaceEventRuleMongoRepository
+) : PlaceEventRulePort {
 
     override fun getPlaceEventRules(placeId: String): List<PlaceEventRule> {
         val rules = repository.findByPlaceId(placeId)

@@ -10,7 +10,7 @@ import org.springframework.data.redis.core.StringRedisTemplate
 import org.springframework.stereotype.Component
 
 @Component
-class CacheEvictListener(val stringRedisTemplate: StringRedisTemplate) : JobExecutionListener {
+class CacheEvictListener(private val stringRedisTemplate: StringRedisTemplate) : JobExecutionListener {
 
     private val log = LoggerFactory.getLogger(CacheEvictListener::class.java)
 

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RequestMapping(ProbeController.BASE_PATH)
 @RestController
-class ProbeController(val repository: PlaceMongoRepository) {
+class ProbeController(private val repository: PlaceMongoRepository) {
 
     companion object {
         const val BASE_PATH = "/v1/probe"

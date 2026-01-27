@@ -11,12 +11,12 @@ import org.springframework.stereotype.Component
 @Profile("!test")
 @Component
 class AdminUserInitializer(
-    val repository: AdminUserMongoRepository,
-    val passwordEncoder: PasswordEncoder,
+    private val repository: AdminUserMongoRepository,
+    private val passwordEncoder: PasswordEncoder,
     @Value("\${doriball.management.admin_username}")
-    var adminUsername: String,
+    private var adminUsername: String,
     @Value("\${doriball.management.admin_password}")
-    var adminUserPassword: String
+    private var adminUserPassword: String
 ) {
 
     @PostConstruct

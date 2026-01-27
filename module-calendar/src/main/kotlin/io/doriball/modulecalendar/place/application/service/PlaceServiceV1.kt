@@ -13,7 +13,10 @@ import org.springframework.cache.annotation.Cacheable
 import org.springframework.stereotype.Service
 
 @Service
-class PlaceServiceV1(val placePort: PlacePort, val placeEventRulePort: PlaceEventRulePort) : PlaceUseCase {
+class PlaceServiceV1(
+    private val placePort: PlacePort,
+    private val placeEventRulePort: PlaceEventRulePort
+) : PlaceUseCase {
 
     @Cacheable(value = [SharedCacheName.STORES], key = "(#command.regionNo ?: 'null')", unless = "#result.isEmpty()")
     override fun getStores(command: ReadStoresCommand): List<StoreDto> {

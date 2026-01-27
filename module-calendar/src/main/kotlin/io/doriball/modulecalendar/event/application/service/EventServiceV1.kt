@@ -12,9 +12,10 @@ import org.springframework.cache.annotation.Cacheable
 import org.springframework.stereotype.Service
 
 @Service
-class EventServiceV1(val eventPort: EventPort) : EventUseCase {
+class EventServiceV1(private val eventPort: EventPort) : EventUseCase {
 
-    @Cacheable(value = [SharedCacheName.EVENTS],
+    @Cacheable(
+        value = [SharedCacheName.EVENTS],
         key = "#command.year + '_' + #command.month + '_' + #command.regionNo",
         unless = "#result.isEmpty()"
     )

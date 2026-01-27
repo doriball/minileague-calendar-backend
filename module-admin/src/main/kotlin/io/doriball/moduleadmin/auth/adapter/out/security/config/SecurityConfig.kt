@@ -21,7 +21,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 
 @EnableMethodSecurity(securedEnabled = true)
 @Configuration
-class SecurityConfig(val customUserDetailsService: CustomUserDetailsService) {
+class SecurityConfig(private val customUserDetailsService: CustomUserDetailsService) {
 
     @Bean
     fun securityFilterChain(httpSecurity: HttpSecurity): SecurityFilterChain {

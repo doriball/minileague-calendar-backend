@@ -75,6 +75,10 @@ logging:
             core:
               MongoTemplate: DEBUG
 
+doriball:
+  management:
+    webhook_url: ${WEBHOOK_URL}
+
 ---
 
 spring:
@@ -90,5 +94,9 @@ logging:
           mongodb:
             core:
               MongoTemplate: WARN
+
+doriball:
+  management:
+    webhook_url: ${WEBHOOK_URL}
 
 ---
