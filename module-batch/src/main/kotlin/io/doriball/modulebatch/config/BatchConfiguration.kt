@@ -1,5 +1,6 @@
 package io.doriball.modulebatch.config
 
+import io.doriball.modulebatch.listner.CacheEvictListener
 import io.doriball.modulebatch.processor.EventGenerationProcessor
 import io.doriball.modulebatch.reader.EventRuleReader
 import io.doriball.modulebatch.writer.EventWriter
@@ -22,6 +23,7 @@ import org.springframework.transaction.PlatformTransactionManager
 @Configuration
 class BatchConfiguration(
     val mongoTemplate: MongoTemplate,
+    val cacheEvictListener: CacheEvictListener,
     @Value("\${doriball.management.window_days}")
     var windowDays: Long,
     @Value("\${doriball.management.chunk_size}")
@@ -40,6 +42,7 @@ class BatchConfiguration(
     ): Job = JobBuilder("eventCreateJob", jobRepository)
         .incrementer(RunIdIncrementer())
         .start(eventCreateStep(jobRepository, transactionManager()))
+        .listener(cacheEvictListener)
         .build()
 
     @Bean
