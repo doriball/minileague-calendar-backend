@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class StorePlaceController(val placeUseCase: PlaceUseCase) {
+class StorePlaceController(private val placeUseCase: PlaceUseCase) {
 
     companion object {
         const val BASE_PATH = "/v1/stores"

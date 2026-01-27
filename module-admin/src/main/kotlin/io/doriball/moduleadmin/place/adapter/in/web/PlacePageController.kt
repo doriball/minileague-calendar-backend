@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping
 
 @Controller
 class PlacePageController(
-    val placeUseCase: PlaceUseCase,
-    val placeRegionUseCase: PlaceRegionUseCase
+    private val placeUseCase: PlaceUseCase,
+    private val placeRegionUseCase: PlaceRegionUseCase
 ) {
 
     @GetMapping("/places")

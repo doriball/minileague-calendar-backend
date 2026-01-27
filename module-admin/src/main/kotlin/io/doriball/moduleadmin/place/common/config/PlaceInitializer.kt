@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component
 @Profile("!test")
 @Component
 class PlaceInitializer(
-    val placeMongoRepository: PlaceMongoRepository,
-    val placeRegionMongoRepository: PlaceRegionMongoRepository,
+    private val placeMongoRepository: PlaceMongoRepository,
+    private val placeRegionMongoRepository: PlaceRegionMongoRepository,
 ) {
 
     @PostConstruct

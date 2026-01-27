@@ -12,7 +12,7 @@ import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
 
 @RestController
-class EventRestController(val useCase: EventUseCase) {
+class EventRestController(private val useCase: EventUseCase) {
 
     companion object {
         const val BASE_PATH = "/api/v1/events"

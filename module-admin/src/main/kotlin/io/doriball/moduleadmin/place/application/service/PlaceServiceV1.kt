@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class PlaceServiceV1(val placePort: PlacePort) : PlaceUseCase {
+class PlaceServiceV1(private val placePort: PlacePort) : PlaceUseCase {
 
     override fun getPlaces(command: ReadPlacesCommand): Pair<List<PlaceDto>, Long> {
         val (stores, size) = placePort.getPlaces(

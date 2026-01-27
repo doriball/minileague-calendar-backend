@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 class PlaceRestController(
-    val placeUseCase: PlaceUseCase,
-    val placeEventRuleUseCase: PlaceEventRuleUseCase
+    private val placeUseCase: PlaceUseCase,
+    private val placeEventRuleUseCase: PlaceEventRuleUseCase
 ) {
 
     companion object {

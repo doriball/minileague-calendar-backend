@@ -22,12 +22,12 @@ import org.springframework.transaction.PlatformTransactionManager
 
 @Configuration
 class BatchConfiguration(
-    val mongoTemplate: MongoTemplate,
-    val cacheEvictListener: CacheEvictListener,
+    private val mongoTemplate: MongoTemplate,
+    private val cacheEvictListener: CacheEvictListener,
     @Value("\${doriball.management.window_days}")
-    var windowDays: Long,
+    private var windowDays: Long,
     @Value("\${doriball.management.chunk_size}")
-    var chunkSize: Int,
+    private var chunkSize: Int,
 ) {
 
     // TODO :: 추후 ReplicaSet + Transaction 처리를 하게 된다면 MongoTransactionManager로 변경

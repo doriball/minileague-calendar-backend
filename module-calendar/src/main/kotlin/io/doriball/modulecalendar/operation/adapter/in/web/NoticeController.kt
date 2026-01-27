@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class NoticeController(val noticeUseCase: NoticeUseCase) {
+class NoticeController(private val noticeUseCase: NoticeUseCase) {
 
     companion object {
         const val BASE_PATH = "/v1/notices"

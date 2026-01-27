@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class NoticeServiceV1(val port: NoticePort): NoticeUseCase {
+class NoticeServiceV1(private val port: NoticePort): NoticeUseCase {
 
     override fun getNotices(command: ReadNoticesCommand): Pair<List<NoticeDto>, Long> {
         val (notices, total) = port.getNotices(command.page, command.size, command.search, command.keyword)

@@ -5,7 +5,6 @@ import io.doriball.moduleadmin.event.application.port.`in`.dto.ReadEventsCommand
 import io.doriball.moduleadmin.event.common.enums.EventKeywordSearchType
 import io.doriball.moduleadmin.place.application.port.`in`.PlaceRegionUseCase
 import io.doriball.modulecore.domain.enums.LeagueCategoryType
-import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Controller
 import org.springframework.ui.ModelMap
 import org.springframework.web.bind.annotation.GetMapping
@@ -14,13 +13,9 @@ import java.time.LocalDate
 
 @Controller
 class EventPageController(
-    val eventUseCase: EventUseCase,
-    val placeRegionUseCase: PlaceRegionUseCase
+    private val eventUseCase: EventUseCase,
+    private val placeRegionUseCase: PlaceRegionUseCase
 ) {
-
-    companion object {
-        val log = LoggerFactory.getLogger(EventPageController::class.java)
-    }
 
     @GetMapping("/events")
     fun getEvents(
@@ -41,7 +36,6 @@ class EventPageController(
             search = search,
             keyword = keyword
         )
-        log.info("command: $command")
         val events = eventUseCase.getEvents(command)
         val searchTypes = mapOf(
             "이벤트명" to EventKeywordSearchType.EVENT,

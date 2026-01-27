@@ -8,7 +8,7 @@ import org.springframework.cache.annotation.Cacheable
 import org.springframework.stereotype.Service
 
 @Service
-class PlaceRegionServiceV1(val placeRegionPort: PlaceRegionPort) : PlaceRegionUseCase {
+class PlaceRegionServiceV1(private val placeRegionPort: PlaceRegionPort) : PlaceRegionUseCase {
 
     @Cacheable(value = [SharedCacheName.REGIONS], unless = "#result.isEmpty()")
     override fun getPlaceRegions(): List<PlaceRegionDto> =

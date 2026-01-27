@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
 
 @Service
-class CustomUserDetailsService(val repository: AdminUserMongoRepository): UserDetailsService {
+class CustomUserDetailsService(private val repository: AdminUserMongoRepository): UserDetailsService {
 
     override fun loadUserByUsername(username: String): UserDetails {
         return repository.findByAdminUserName(username) ?: throw UsernameNotFoundException("User not found")
