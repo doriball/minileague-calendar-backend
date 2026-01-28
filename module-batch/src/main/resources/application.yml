@@ -36,11 +36,19 @@ spring:
     activate:
       on-profile: dev
 
+doriball:
+  management:
+    webhook_url: ${WEBHOOK_URL}
+
 ---
 
 spring:
   config:
     activate:
       on-profile: prod
+
+doriball:
+  management:
+    webhook_url: ${WEBHOOK_URL}
 
 ---
