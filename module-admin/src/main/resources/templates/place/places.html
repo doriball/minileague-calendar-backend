@@ -3,13 +3,13 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
 <head>
-    <title>매장 관리</title>
+    <title>장소 관리</title>
 </head>
 <body>
 
 <div layout:fragment="content">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">매장 관리</h1>
+        <h1 class="h2">장소 관리</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
             <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
                     data-bs-target="#placeCreateModal">
@@ -54,14 +54,14 @@
             <thead class="table-light">
             <tr>
                 <th style="width: 10%">지역</th>
-                <th style="width: 25%">매장명</th>
+                <th style="width: 25%">장소명</th>
                 <th>주소</th>
                 <th style="width: 15%">등록일</th>
             </tr>
             </thead>
             <tbody>
             <tr th:if="${#lists.isEmpty(places)}">
-                <td colspan="4" class="text-center py-4 text-muted">조회된 매장이 없습니다.</td>
+                <td colspan="4" class="text-center py-4 text-muted">조회된 장소가 없습니다.</td>
             </tr>
             <tr th:each="place : ${places}">
                 <td th:text="${place.region}">서울</td>
@@ -69,7 +69,7 @@
                     <a href="javascript:void(0)" class="text-decoration-none fw-bold text-dark"
                        th:data-id="${place.id}"
                        onclick="showPlaceDetail(this.getAttribute('data-id'))"
-                       th:text="${place.name}">매장명</a>
+                       th:text="${place.name}">장소명</a>
                 </td>
                 <td th:text="${place.address}">주소 정보</td>
                 <td th:text="${#temporals.format(place.createdAt, 'yyyy-MM-dd')}">2023-01-01</td>
