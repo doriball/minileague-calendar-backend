@@ -40,20 +40,24 @@ object APIResponseUtil {
     ): PaginationResultResponse<T> = PaginationResultResponse(
         code = ResponseCode.SUCCESS.code,
         success = true,
-        contents = contents,
-        page = page,
-        pageSize = pageSize,
-        totalPages = totalPages,
-        totalSize = totalSize,
+        data = PaginationResultResponseData(
+            contents = contents,
+            page = page,
+            pageSize = pageSize,
+            totalPages = totalPages,
+            totalSize = totalSize
+        ),
     )
 
     fun <T> infinityScrollResultResponse(contents: List<T>, page: Int, pageSize: Int): InfinityScrollResultResponse<T> =
         InfinityScrollResultResponse(
             code = ResponseCode.SUCCESS.code,
             success = true,
-            contents = contents,
-            page = page,
-            pageSize = pageSize,
+            data = InfinityScrollResultResponseData(
+                contents = contents,
+                page = page,
+                pageSize = pageSize,
+            ),
         )
 
 }
