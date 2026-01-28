@@ -78,7 +78,7 @@
             <tr>
                 <th style="width: 15%">일시</th>
                 <th style="width: 10%">지역</th>
-                <th style="width: 20%">매장명</th>
+                <th style="width: 20%">장소명</th>
                 <th>이벤트명</th>
                 <th style="width: 15%">종목 (라운드/게임)</th>
                 <th style="width: 8%">카테고리</th>
@@ -91,7 +91,7 @@
             <tr th:each="event : ${events}">
                 <td th:text="${#temporals.format(event.scheduledAt, 'MM/dd (E) HH:mm')}">12/31 (수) 14:00</td>
                 <td th:text="${event.region}">서울</td>
-                <td th:text="${event.placeName}">매장 A</td>
+                <td th:text="${event.placeName}">장소 A</td>
                 <td>
                     <a href="javascript:void(0)" class="text-decoration-none fw-bold text-dark"
                        th:data-id="${event.id}" onclick="showEventDetail(this.getAttribute('data-id'))"
